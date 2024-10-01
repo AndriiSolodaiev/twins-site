@@ -1,0 +1,103 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'index'
+    var id_page = 'id-page-index'
+    var class_page = 'class-page-index'
+    var headerCustomClass = 'type1' 
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+
+block meta
+  title= title_page
+  meta(name='description' content='')
+block head
+  link(rel='stylesheet' href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/header.bundle.js')
+  script(defer src='./assets/scripts/footer.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+block content
+  section.hero 
+    .swiper-hero 
+      .swiper-wrapper 
+        .swiper-slide 
+          img(src="./assets/images/Hero/1.jpg" alt="Twins") 
+        .swiper-slide 
+          img(src="./assets/images/Hero/2.jpg" alt="") 
+        .swiper-slide 
+          img(src="./assets/images/Hero/3.jpg" alt="") 
+        .swiper-slide 
+          img(src="./assets/images/Hero/4.jpg" alt="") 
+        .swiper-slide 
+          img(src="./assets/images/Hero/5.jpg" alt="") 
+
+    .hero-content.container 
+      h1 Наша стихія — ваше комфортне життя 
+      .swiper-pagination
+      .hero-btns-wrap 
+        .promo РОЗТЕРМІНУВАННЯ ДО 24 МІСЯЦІВ ВІД 20%
+          .promo-disclaimer Акція
+        .promo -5% ДЛЯ ЗСУ
+          .promo-disclaimer Акція
+  section.about 
+    h2.about-title.section-title Про комплекс
+    .about-img-wrap
+      .decor 
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" viewBox="0 0 8 5" fill="none">
+          <rect x="5" y="5" width="2" height="2" rx="1" transform="rotate(180 5 5)" fill="#CDC8BC"/>
+          <rect x="2" y="2" width="2" height="2" rx="1" transform="rotate(180 2 2)" fill="#CDC8BC"/>
+          <rect x="8" y="2" width="2" height="2" rx="1" transform="rotate(180 8 2)" fill="#CDC8BC"/>
+        </svg>
+      img(src="./assets/images/About/filler.jpg" alt="").about-img
+  section.about-content 
+    .line 
+    h3.about-content__title-1 Дві величні, могутні, незламні стихії — земля та повітря.
+    p.about-content__text-1 Такі різні, але так доповнюють одна одну. Задля Вашого комфорту та безпеки  ми об’єднали цих норовливих близнюків та створили двох велетнів, які своїми покрівлями торкаються хмар. Раді представити - житловий комплекс «Twins».
+    <video muted autoplay playsinline loop preload="true" class="about-video" type='video/mp4'>
+      <source src="./assets/images/About/video.mp4" >
+    </video>
+    .line
+    h3.about-content__title-2 Ми віднайшли той унікальний баланс
+    p.about-content__text-2 Найкраща територія, найзручніша локація, а також безмежний простір для втілення Ваших ідей та неосяжність, яка сягає захмарних висот та дарує неповторні краєвиди.
+    .about-btn-wrap
+      button.general-btn БІЛЬШЕ ПРО КОМПЛЕКС
+  section.panorama
+    .panorama-scrub
+      img(src="./assets/images/panorama.png" alt="").bg-img
+      .panorama-content 
+        h2 Панорама
+        p 360°
+        .panorama-btn-wrap
+          <svg xmlns="http://www.w3.org/2000/svg" width="305" height="108" viewBox="0 0 305 108" fill="none">
+            <path d="M88 101.018C36.5849 92.6226 1 74.5014 1 53.5C1 24.5051 68.8289 1 152.5 1C236.171 1 304 24.5051 304 53.5C304 74.5014 268.415 92.6226 217 101.018M88 101.018L84.5 93M88 101.018L83 107.5" stroke="#CDC8BC" stroke-width="1.5"/>
+          </svg>
+          a(href="").general-btn ДИВИТИСЯ ПАНОРАМУ
+  .fake-section
+  section.location
+    h2.location-title.section-title Локація
+    .location-img-wrap
+      .decor 
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" viewBox="0 0 8 5" fill="none">
+          <rect x="5" y="5" width="2" height="2" rx="1" transform="rotate(180 5 5)" fill="#CDC8BC"/>
+          <rect x="2" y="2" width="2" height="2" rx="1" transform="rotate(180 2 2)" fill="#CDC8BC"/>
+          <rect x="8" y="2" width="2" height="2" rx="1" transform="rotate(180 8 2)" fill="#CDC8BC"/>
+        </svg>
+      img(src="./assets/images/Location/filler.jpg" alt="").location-img
+  section.location-content
+    .line 
+    h3.location-content__title-1 Локація у популярному районі міста "Вишенька "дасть можливість мешканцям закривати абсолютно всі потреби сьогодення. 
+    p.location-content__text-1 Школи, дитячі садки, різноманітні гуртки, адміністративні установи, медичні послуги, торгово-розважальні центри все у кроковій доступності у прямому розумінні.
+
+
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter Thin'), local('Inter-Thin'),
+    url('../fonts/Inter-Thin.ttf') format('ttf'),
+    url('../fonts/Inter-Thin.woff') format('woff'),
+    url('../fonts/Inter-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+}
+
+
+
+@font-face {
+  font-family: 'Mariupol';
+  src: local('Mariupol Regular'), local('Mariupol-Regular'),
+    url('../fonts/Mariupol-Regular.ttf') format('ttf'),
+    url('../fonts/Mariupol-Regular.woff') format('woff'),
+    url('../fonts/Mariupol-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mariupol';
+  src: local('Mariupol Medium'), local('Mariupol-Medium'),
+    url('../fonts/Mariupol-Medium.ttf') format('ttf'),
+    url('../fonts/Mariupol-Medium.woff') format('woff'),
+    url('../fonts/Mariupol-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mariupol';
+  src: local('Mariupol Bold'), local('Mariupol-Bold'),
+    url('../fonts/Mariupol-Bold.ttf') format('ttf'),
+    url('../fonts/Mariupol-Bold.woff') format('woff'),
+    url('../fonts/Mariupol-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}

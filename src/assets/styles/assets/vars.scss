@@ -1,0 +1,87 @@
+$default-font: 'Mariupol', sans-serif;
+$default-font2: 'Inter', sans-serif;
+
+$mc2: #ff554c;
+$mc3: #e5df06;
+$mc4: #4f90b6;
+$gray: #878797;
+$text: #22223e;
+$wc: #F6F6F6;
+$bc: #000;
+$bc2: #000;
+
+$bg-color: #221A22;
+$accent-color: #322A32;
+$color-body: rgba(110, 162, 188, 1);
+$text-color: #F6F6F6;
+$text-color-2: #CDC8BC;
+$second-accent-color: rgba(240, 186, 82, 1);
+
+
+@mixin title-text () {
+	font-size: 80px;
+
+	font-weight: 400;
+	font-style: normal;
+	line-height: 120%;
+
+
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+@mixin subtitle-text() {
+	font-size: 40px;
+
+	font-weight: 500;
+	font-style: normal;
+	line-height: 120%;
+
+
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+@mixin article-title () {
+	font-size: 32px;
+
+	font-weight: 700;
+	font-style: normal;
+	line-height: 140%;
+
+	text-decoration: none;
+	text-transform: none;
+}
+
+@mixin general-text() {
+	font-size: 20px;
+
+	font-weight: 400;
+	font-style: normal;
+	line-height: 140%;
+
+	text-decoration: none;
+	text-transform: none;
+}
+
+@mixin general-text-bold() {
+	font-size: 20px;
+
+	font-weight: 700;
+	font-style: normal;
+	line-height: 140%;
+
+	text-decoration: none;
+	text-transform: none;
+}
+
+@mixin tiny-text() {
+	font-size: 12px;
+
+	font-weight: 500;
+	font-style: normal;
+	line-height: 140%;
+
+	text-decoration: none;
+	text-transform: uppercase;
+}

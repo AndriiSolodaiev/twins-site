@@ -38,6 +38,9 @@
   box-shadow: 0px 2px 2px 0px #36D18B inset, 0px -2px 2px 0px #30AA71 inset;
   padding: 14px 18px;
   transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  display: block;
+  width: fit-content;
 
   &:active {
 

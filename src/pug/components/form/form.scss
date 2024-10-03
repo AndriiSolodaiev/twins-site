@@ -7,19 +7,20 @@
   z-index: 1000;
   transition: all 0.3s ease-in-out 0.2s;
   opacity: 1;
-  
+
 
   &.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    
+
   }
 }
-.modal-form{
+
+.modal-form {
   position: absolute;
-  top:50%;
-  left:50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
   background: $bg-color;
@@ -28,23 +29,26 @@
   opacity: 1;
   padding: 20px;
   padding-bottom: 28px;
+
   .hidden & {
     transform: translate(-50%, -50%) scale(1.2);
     opacity: 0;
   }
+
   @include tablet {
     padding: 40px;
     width: 523px;
-    top:50%;
-    left:50%;
-   
+    top: 50%;
+    left: 50%;
+
     transform: translate(-50%, -50%);
   }
-  
-  @include desktop{
+
+  @include desktop {
     width: 580px;
   }
 }
+
 .call-us__container {
   position: absolute;
   top: 50%;
@@ -83,7 +87,7 @@
 
   top: 20px;
   right: 20px;
-  
+
 
   svg {
     width: 14px;
@@ -108,14 +112,11 @@
   width: 100%;
   margin-bottom: 48px;
 
-  h2 {
-    
-   
-  }
+  h2 {}
 
   p {
     @include general-text;
-   
+
 
     @include tablet {
       width: 324px;
@@ -150,16 +151,12 @@
 .inputs-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
   width: 100%;
 
-  @include tablet {
+  @include tablet {}
 
-  }
-
-  @include laptop {
-  
-  }
+  @include laptop {}
 
   @include desktop {
     gap: 20px;
@@ -167,22 +164,25 @@
 }
 
 .input-title {
-  @include  tiny-text;
-  
-  text-transform: uppercase;
-  
+  color: $wc;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+
+
 
   @include tablet {}
 
-  @include laptop {
-   
-  }
+  @include laptop {}
 
   @include desktop {}
 }
-.form-field{
+
+.form-field {
   position: relative;
 }
+
 .input-message {
   position: absolute;
   bottom: -16px;
@@ -191,49 +191,56 @@
   z-index: 2;
   color: red;
 }
+
 .form-field__input {
   width: 100%;
-  padding: 13px 20px;
+  padding: 18px 20px;
+  color: #403939;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
 
-  
-  border-radius: 6px;
- 
+  border-radius: 4px;
 
- 
+
+
 
   &::placeholder {
-    
-    
+    color: #403939;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
   }
- &:focus {
- 
 
- }
+  &:focus {}
+
   @include tablet {
-    
-    padding: 13px  20px;
+
+    padding: 18px 20px;
   }
 
-  @include laptop {
-    
-  }
+  @include laptop {}
 
   @include desktop {
-    padding: 13px 20px;
+    padding: 18px 20px;
   }
 }
-.text-input{
+
+.text-input {
   resize: none;
 
 }
+
 .form__button {
   justify-self: flex-end;
 
- 
+
   width: fit-content;
 
   &:hover .submit-btn__text {
-    
+
     position: relative;
     z-index: 1;
   }
@@ -248,23 +255,23 @@
 }
 
 .form__button-wrapper {
-  margin-top: 20px;
+  margin-top: 28px;
 
-  @include tablet {
-    
+  button {
+    padding: 18px;
   }
+
+  @include tablet {}
 
   @include laptop {}
 
   @include desktop {}
 
- 
+
 }
 
 .submit-btn__text {
-  @include laptop {
-    
-  }
+  @include laptop {}
 }
 
 .iti__flag {
@@ -280,11 +287,16 @@
 
 .input-message {
   @include tiny-text;
-  
+
 }
 
 .footer .iti--allow-dropdown input {
-  padding-left: 0;
+  color: #0F0F0F;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  padding-left: 56px;
   padding-right: 0;
 
   @include laptop {

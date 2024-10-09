@@ -7,14 +7,14 @@ const loader = document.querySelector('.loader-wrap');
 let loaderProgress = document.getElementById('loader-progress');
 let loaderNumbers = document.getElementById('loader-numbers');
 let progress = 0;
-let delay = 20;
+let delay = 10;
 function updateLoader() {
   progress++;
   loaderProgress.style.transform = `translateX(${progress}%)`;
   loaderNumbers.textContent = `${progress}`;
   if (progress == 1) {
     gsap.from('.loader-numbers', {
-      xPercent: 70,
+      xPercent: 100,
       opacity: 0,
       duration: 0.7,
     });
@@ -22,7 +22,7 @@ function updateLoader() {
   if (progress == 75) {
     delay = 20;
     gsap.to('.loader-numbers', {
-      xPercent: -70,
+      xPercent: -100,
       opacity: 0,
       duration: 0.7,
       delay: 0.1,
@@ -40,10 +40,9 @@ function updateLoader() {
 //   updateLoader();
 // };
 document.addEventListener('DOMContentLoaded', () => {
-  updateLoader();
-
   window.onload = function() {
-    window.setTimeout(() => {
+    updateLoader();
+    setTimeout(() => {
       loader.classList.add('loaded');
       gsap.from('header', {
         yPercent: -100,
@@ -57,6 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 0.7,
         delay: 0.2,
       });
-    }, 1900);
+    }, 1500);
   };
 });

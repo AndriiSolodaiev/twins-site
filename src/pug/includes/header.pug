@@ -40,8 +40,16 @@ header(class="header "+headerCustomClass)
       span.over 
       span.center 
       span.under 
-
-
+.iframe-popup(data-iframe-modal) 
+  iframe(src="https://apartment-tours.smartorange.com.ua/twins-day-floors/?scene=0" loading="lazy" allowfullscreen="true").iframe-window
+  .iframe-filter 
+    button(type="button" data-day="day").general-btn.active День
+    button(type="button" data-day="night").general-btn Ніч
+    button(type="button" data-day="sunset").general-btn Захід сонця
+  .iframe__close-btn(data-iframe-close)
+    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M3.96967 3.46967C4.26256 3.17678 4.73744 3.17678 5.03033 3.46967L8.5 6.93934L11.9697 3.46967C12.2626 3.17678 12.7374 3.17678 13.0303 3.46967C13.3232 3.76256 13.3232 4.23744 13.0303 4.53033L9.56066 8L13.0303 11.4697C13.3232 11.7626 13.3232 12.2374 13.0303 12.5303C12.7374 12.8232 12.2626 12.8232 11.9697 12.5303L8.5 9.06066L5.03033 12.5303C4.73744 12.8232 4.26256 12.8232 3.96967 12.5303C3.67678 12.2374 3.67678 11.7626 3.96967 11.4697L7.43934 8L3.96967 4.53033C3.67678 4.23744 3.67678 3.76256 3.96967 3.46967Z" fill="#221A22"/>
+    </svg>
 
 
 

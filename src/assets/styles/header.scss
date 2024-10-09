@@ -4,11 +4,12 @@
   left: 0;
   width: 100%;
   z-index: 100;
+  max-width: 100vw;
 }
 
 .header-bg {
   background: linear-gradient(180deg, rgba(15, 15, 15, 0.80) 0%, rgba(15, 15, 15, 0.60) 51.5%, rgba(15, 15, 15, 0.00) 100%);
-  padding: 0px 12px;
+  padding: 4px 12px;
   display: flex;
   align-items: center;
   // justify-content: space-between;
@@ -74,6 +75,81 @@
 
     &.over {
       width: 18px
+    }
+  }
+}
+
+//iframe pop up
+
+.iframe-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #221a227a;
+  backdrop-filter: blur(10px);
+
+  &.oppened {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+
+  iframe {
+    width: 100%;
+    height: calc(100% - 150px);
+  }
+
+  .iframe-filter {
+    width: 100%;
+    border-radius: 12px;
+    background-color: rgba(205, 200, 188, 0.80);
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+  }
+
+  .general-btn {
+    background: $wc;
+    color: $bg-color;
+    box-shadow: none;
+    transition: color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+
+    &.active {
+      background-color: $bg-color;
+      color: $wc;
+    }
+  }
+
+  .iframe__close-btn {
+    position: absolute;
+    background-color: $wc;
+    top: 10px;
+    right: 10px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+
+    svg path {
+      width: 24px;
+      height: 24px;
     }
   }
 }

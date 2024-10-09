@@ -36,3 +36,13 @@ export const initSmoothScrolling = () => {
   isInited = true;
   return lenis;
 };
+document.querySelector('.up-btn-wrap').addEventListener('click', () => {
+  lenis.scrollTo(0, {
+    duration: 4, // збільшено тривалість до 3 секунд для плавності
+    easing: t => 1 - Math.pow(1 - t, 3), // плавніший easing
+  });
+  // window.scrollTo({
+  //   top: 0, // Скрол до верху сторінки
+  //   behavior: 'smooth', // Плавний скрол
+  // });
+});

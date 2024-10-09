@@ -60,11 +60,32 @@
   }
 }
 
+@keyframes load-pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .loader-lower-part {
   @extend .loader-upper-part;
   top: 50%;
   align-items: flex-end;
+
+  p {
+    color: rgba(205, 200, 188);
+    animation: load-pulse 1.5s ease infinite;
+  }
 }
+
+
 
 .loader-track {
   width: 100%;
@@ -84,7 +105,7 @@
     top: 0;
     left: 0;
     background: linear-gradient(180deg, $bg-color 47px, #322A32 49px, $bg-color);
-    transform: translateX(74%);
+    // transform: translateX(74%);
   }
 
   .colored-track {

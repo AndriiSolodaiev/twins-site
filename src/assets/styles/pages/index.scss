@@ -15,8 +15,12 @@ section {
 }
 
 .swiper-hero {
-  height: 90lvh;
+  height: 90svh;
   overflow: hidden;
+
+  @include tablet {
+    height: 100svh;
+  }
 
   .swiper-slide-prev {
     filter: brightness(0.5);
@@ -39,6 +43,10 @@ section {
   bottom: 80px;
   position: static;
   margin-bottom: 28px;
+
+  @include tablet {
+    margin-bottom: 40px;
+  }
 
   .swiper-pagination-bullet {
     opacity: 1;
@@ -83,6 +91,12 @@ section {
   width: 100%;
   background: linear-gradient(180deg, #ffffff00, $accent-color 60%);
 
+  @include tablet {
+    background: linear-gradient(180deg, #ffffff00, $accent-color 80%);
+    padding: 40px;
+    padding-bottom: 60px;
+  }
+
   h1 {
     color: $wc;
     font-size: 36px;
@@ -91,12 +105,21 @@ section {
     line-height: 110%;
     text-transform: uppercase;
     margin-bottom: 20px;
+
+    @include tablet {
+      font-size: 64px;
+    }
   }
 
   .hero-btns-wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 5px;
+
+    @include tablet {
+      gap: 20px;
+    }
   }
 }
 
@@ -117,6 +140,12 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @include tablet {
+    width: auto;
+    font-size: 14px;
+    flex: 1;
+  }
 
   .promo-disclaimer {
     position: absolute;
@@ -144,6 +173,10 @@ section {
   padding: 90px 20px 70px;
   background: linear-gradient(180deg, #322A32 0%, #221A22 100%);
   overflow: hidden;
+
+  @include tablet {
+    padding: 81px 98px;
+  }
 }
 
 .about,
@@ -168,6 +201,10 @@ section {
   top: 140px;
   left: 0;
   z-index: 3;
+
+  @include tablet {
+    font-size: 200px;
+  }
 }
 
 .about-big-wrap {
@@ -200,6 +237,9 @@ section {
   padding: 9px;
   overflow: hidden;
 
+  @include tablet {
+    height: 110vw;
+  }
 
   &::after {
     content: "";
@@ -232,6 +272,10 @@ section {
   opacity: 0.2;
   background: $wc;
   margin-bottom: 12px;
+
+  @include tablet {
+    margin-bottom: 28px;
+  }
 }
 
 .about-content {
@@ -243,27 +287,22 @@ section {
   position: relative;
   z-index: 1;
 
+  @include tablet {
+    padding: 80px 40px 150px;
+  }
 
 
 
   h3 {
 
-    color: $wc;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
-    text-transform: uppercase;
+    @include subtitle-text;
     margin-bottom: 28px;
   }
 
   p {
+    @include general-text;
     padding-left: 58px;
-    color: $text-color-2;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%;
+
   }
 
   .about-video {
@@ -271,6 +310,8 @@ section {
     height: auto;
     margin-top: 80px;
     margin-bottom: 28px;
+
+    @include tablet {}
   }
 }
 
@@ -286,17 +327,19 @@ section {
   color: $wc;
   padding: 18px;
   width: fit-content;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  text-transform: uppercase;
+  text-wrap: nowrap;
+  white-space: nowrap;
+  @include tiny-text;
   border-radius: 100px;
   border: 1px solid rgba(90, 76, 90, 0.562);
-
   overflow: hidden;
-  background: linear-gradient(180deg, #5a4c5a23, $bg-color 10%);
+  background: linear-gradient(180deg, #615661fd, $bg-color 10%);
   box-shadow: 0px 12px 60px 0px #140E14, 0px 9px 30px 0px rgba(116, 69, 116, 0.25) inset, 0px 0px 8px 0px rgba(86, 39, 86, 0.15) inset;
+
+  @include tablet {
+    padding: 20px 28px;
+  }
+
 }
 
 .fake-section {
@@ -345,12 +388,7 @@ section {
     justify-content: center;
 
     &>h2 {
-      color: $wc;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 300;
-      line-height: 120%;
-      text-transform: uppercase;
+      @include subtitle-text;
     }
 
     &>p {
@@ -362,6 +400,10 @@ section {
       line-height: 100%;
       letter-spacing: -7.68px;
       margin-bottom: 55px;
+
+      @include tablet {
+        font-size: 200px;
+      }
     }
   }
 
@@ -371,6 +413,10 @@ section {
 
     svg {
       width: 100%;
+
+      @include tablet {
+        height: 140px
+      }
 
       path {
         stroke-dasharray: 700;
@@ -425,9 +471,13 @@ section {
   border: 1px solid #CDC8BC;
   padding: 9px;
   overflow: hidden;
+
   // -webkit-box-shadow: inset 0px 0px 0px 9px $bg-color;
   // -moz-box-shadow: inset 0px 0px 0px 9px $bg-color;
   // box-shadow: inset 0px 0px 0px 9px $wc;
+  @include tablet {
+    height: 110vw;
+  }
 
   &::after {
     content: "";
@@ -470,31 +520,30 @@ section {
   flex-direction: column;
   align-items: center;
 
+  @include tablet {
+    padding: 40px 0 170px;
+  }
+
   .line {
     width: calc(100% - 40px)
   }
 
   h3 {
 
-    color: $wc;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
-    text-transform: uppercase;
+    @include subtitle-text;
     margin-bottom: 28px;
     padding-left: 20px;
     padding-right: 20px;
+
+    @include tablet {
+      margin-bottom: 40px;
+    }
   }
 
   p {
     padding-left: 78px;
     padding-right: 20px;
-    color: $text-color-2;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%;
+    @include general-text;
   }
 
   .about-video {
@@ -650,9 +699,23 @@ section {
   position: relative;
   z-index: 2;
 
+  @include tablet {
+    padding: 150px 40px;
+  }
+
   .tour-title {
     color: $accent-color;
     top: 80px;
+
+    @include tablet {
+      top: 150px;
+    }
+  }
+
+  .tour-lamp-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
   }
 
   .tour-lamp {
@@ -662,13 +725,24 @@ section {
     pointer-events: none;
     position: relative;
     z-index: -1;
-    transform: translateY(-30%);
+    transform: translateY(-10%);
+
+    @include tablet {
+      width: 70%;
+      height: auto;
+      transform: translateY(0%);
+    }
   }
 
   .tour-iframe {
     width: 100%;
     height: calc(100vw * 1.15);
     margin-bottom: 28px;
+    border-radius: 8px;
+
+    @include tablet {
+      height: calc(100vw * 0.90);
+    }
   }
 
   .line {
@@ -677,24 +751,17 @@ section {
 
   h3 {
 
+
+    @include subtitle-text;
     color: $bg-color;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
-    text-transform: uppercase;
     margin-bottom: 28px;
 
   }
 
   p {
+    @include general-text;
     padding-left: 58px;
-
     color: $bg-color;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%;
   }
 }
 
@@ -704,10 +771,13 @@ section {
 
 .advantages {
   background-color: $accent-color;
-  padding: 150px 0px;
+  padding: 80px 0px;
   margin-top: -20px;
   margin-bottom: -20px;
 
+  @include tablet {
+    padding: 170px 40px;
+  }
 }
 
 .advantages-wrapper {
@@ -755,6 +825,10 @@ section {
   padding: 40px 20px 20px 20px;
   margin-bottom: 20px;
 
+  @include tablet {
+    height: calc((100vw - 80px) * 0.64);
+
+  }
 
   &:nth-child(1) {
     top: 180px; // Перша картка зупиняється на 10px від верху
@@ -796,21 +870,16 @@ section {
   }
 
   h3 {
-    color: $wc;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
-    text-transform: uppercase;
+    @include subtitle-text;
     margin-bottom: 18px;
+
+    @include tablet {
+      margin-bottom: 10px;
+    }
   }
 
   p {
-    color: $text-color-2;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%;
+    @include general-text;
     max-width: 60%;
   }
 
@@ -828,6 +897,14 @@ section {
     line-height: 100%;
     letter-spacing: -7.68px;
 
+    @include tablet {
+      font-size: 200px;
+
+      svg {
+        width: 46px;
+        height: 23px;
+      }
+    }
   }
 
 }
@@ -838,8 +915,16 @@ section {
   border-radius: 20px;
   padding-bottom: 80px;
 
+  @include tablet {
+    padding-bottom: 150px;
+  }
+
   .line {
     margin-top: 140px;
+
+    @include tablet {
+      margin-top: 260px;
+    }
   }
 
   .property-img-wrap {
@@ -867,6 +952,10 @@ section {
       border: 1px solid #29B374;
       background: linear-gradient(180deg, #228458 0%, #006739 100%);
       box-shadow: 0px 2px 2px 0px #36D18B inset, 0px -2px 2px 0px #30AA71 inset;
+
+      @include tablet {
+        padding: 20px 28px;
+      }
     }
   }
 }
@@ -891,10 +980,6 @@ section {
 }
 
 .property-descr {
-  color: $text-color-2;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
+  @include general-text;
   padding-left: 58px;
 }

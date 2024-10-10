@@ -164,12 +164,8 @@
 }
 
 .input-title {
+  @include general-text;
   color: $wc;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-
 
 
   @include tablet {}
@@ -195,11 +191,9 @@
 .form-field__input {
   width: 100%;
   padding: 18px 20px;
+  @include general-text;
   color: #403939;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
+
 
   border-radius: 4px;
 
@@ -207,11 +201,9 @@
 
 
   &::placeholder {
+    @include general-text;
     color: #403939;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%;
+
   }
 
   &:focus {}
@@ -291,11 +283,8 @@
 }
 
 .footer .iti--allow-dropdown input {
+  @include general-text;
   color: #0F0F0F;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
   padding-left: 56px;
   padding-right: 0;
 

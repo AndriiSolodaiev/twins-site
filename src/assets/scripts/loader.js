@@ -3,45 +3,57 @@ import gsap from 'gsap';
 console.log('loader');
 
 const loader = document.querySelector('.loader-wrap');
-
 let loaderProgress = document.getElementById('loader-progress');
 let loaderNumbers = document.getElementById('loader-numbers');
 let progress = 0;
 let delay = 10;
+let isPaused = false;
+
 function updateLoader() {
-  progress++;
-  loaderProgress.style.transform = `translateX(${progress}%)`;
-  loaderNumbers.textContent = `${progress}`;
-  if (progress == 1) {
-    gsap.from('.loader-numbers', {
-      xPercent: 100,
-      opacity: 0,
-      duration: 0.7,
-    });
-  }
-  if (progress == 75) {
-    delay = 20;
-    gsap.to('.loader-numbers', {
-      xPercent: -100,
-      opacity: 0,
-      duration: 0.7,
-      delay: 0.1,
-    });
-  }
-  if (progress == 76) {
-    delay = 10;
-  }
-  if (progress < 100) {
-    setTimeout(updateLoader, delay); // Час між оновленнями, можна налаштувати
+  if (progress < 75 && !isPaused) {
+    progress++;
+    loaderProgress.style.transform = `translateX(${progress}%)`;
+    loaderNumbers.textContent = `${progress}`;
+
+    if (progress == 1) {
+      gsap.from('.loader-numbers', {
+        xPercent: 100,
+        opacity: 0,
+        duration: 0.7,
+      });
+    }
+
+    setTimeout(updateLoader, delay);
   }
 }
 
+function continueLoader() {
+  if (progress < 100) {
+    progress++;
+    loaderProgress.style.transform = `translateX(${progress}%)`;
+    loaderNumbers.textContent = `${progress}`;
+
+    if (progress == 99) {
+      gsap.to('.loader-numbers', {
+        xPercent: -100,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.1,
+      });
+    }
+
+    setTimeout(continueLoader, delay);
+  }
+}
 // window.onload = function() {
 //   updateLoader();
 // };
+
 document.addEventListener('DOMContentLoaded', () => {
+  updateLoader();
   window.onload = function() {
-    updateLoader();
+    isPaused = true;
+    continueLoader();
     setTimeout(() => {
       loader.classList.add('loaded');
       gsap.from('header', {
@@ -56,6 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 0.7,
         delay: 0.2,
       });
-    }, 1500);
+    }, 1000);
   };
 });

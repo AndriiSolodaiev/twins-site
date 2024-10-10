@@ -57,6 +57,10 @@
     font-style: normal;
     font-weight: 400;
     line-height: 100%;
+
+    @include tablet {
+      font-size: 14px;
+    }
   }
 }
 
@@ -93,6 +97,10 @@
   height: 50px;
   transition: opacity 0.3s ease-in-out;
 
+  @include tablet {
+    height: 100px;
+  }
+
   // display: flex;
   // align-items: center;
   // justify-content: center;
@@ -105,6 +113,11 @@
     top: 0;
     left: 0;
     background: linear-gradient(180deg, $bg-color 47px, #322A32 49px, $bg-color);
+
+    @include tablet {
+      background: linear-gradient(180deg, $bg-color 98px, #322A32 100px, $bg-color);
+    }
+
     // transform: translateX(74%);
   }
 
@@ -131,6 +144,10 @@
       width: 100%;
       background: linear-gradient(-2deg, #06c97100 0%, rgba(34, 26, 34, 0.60) 27.68%, #221A22 50.17%);
     }
+
+    @include tablet {
+      height: 98px;
+    }
   }
 
   .loader-numbers {
@@ -146,5 +163,9 @@
     font-weight: 100;
     line-height: 100%;
     letter-spacing: -7.68px;
+
+    @include tablet {
+      font-size: 200px;
+    }
   }
 }

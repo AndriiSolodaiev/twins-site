@@ -83,7 +83,7 @@ const aboutImg = gsap.timeline({
   scrollTrigger: {
     trigger: '.about', // Блок, до якого прив'язуємо анімацію
     start: 'top top', // Коли починається анімація
-    end: 'bottom center', // Коли закінчується
+    // end: 'bottom top', // Коли закінчується
     scrub: true, // Плавна анімація
     // markers: true,
     pin: true, // Затримка (пінінг) блока
@@ -95,7 +95,7 @@ aboutImg
   .to('.about-big-wrap', {
     scale: 2.2,
 
-    // ease: 'none',
+    ease: 'none',
   })
   .to(
     '.about-img',
@@ -103,7 +103,7 @@ aboutImg
     {
       // height: '80%',
       scale: 0.7,
-      // ease: 'none',
+      ease: 'none',
     },
     '<',
   );
@@ -201,7 +201,7 @@ const locationImg = gsap.timeline({
   scrollTrigger: {
     trigger: '.location', // Блок, до якого прив'язуємо анімацію
     start: 'top top', // Коли починається анімація
-    end: 'bottom center', // Коли закінчується
+    end: 'bottom top', // Коли закінчується
     scrub: true, // Плавна анімація
     // markers: true,
     pin: true, // Затримка (пінінг) блока
@@ -213,7 +213,7 @@ locationImg
   .to('.location-big-wrap', {
     scale: 2.2, // Збільшуємо картинку до 1.5
 
-    // ease: 'none', // Лінійна анімація без ефектів
+    ease: 'none', // Лінійна анімація без ефектів
   })
   .to(
     '.location-img',
@@ -221,7 +221,7 @@ locationImg
     {
       // height: '100%',
       scale: 0.7,
-      // ease: 'none',
+      ease: 'none',
     },
     '<',
   );

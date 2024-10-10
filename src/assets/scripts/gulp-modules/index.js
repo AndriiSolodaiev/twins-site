@@ -86,7 +86,7 @@ const aboutImg = gsap.timeline({
     // end: 'bottom top', // Коли закінчується
     scrub: true, // Плавна анімація
     // markers: true,
-    pin: true, // Затримка (пінінг) блока
+    pin: '.about-wrap', // Затримка (пінінг) блока
     // pinSpacing: false,
     // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
   },
@@ -201,10 +201,10 @@ const locationImg = gsap.timeline({
   scrollTrigger: {
     trigger: '.location', // Блок, до якого прив'язуємо анімацію
     start: 'top top', // Коли починається анімація
-    end: 'bottom top', // Коли закінчується
+    // end: 'bottom top', // Коли закінчується
     scrub: true, // Плавна анімація
     // markers: true,
-    pin: true, // Затримка (пінінг) блока
+    pin: '.location-wrap', // Затримка (пінінг) блока
     // pinSpacing: false,
     // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
   },

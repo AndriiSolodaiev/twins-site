@@ -174,6 +174,16 @@ section {
   background: linear-gradient(180deg, #322A32 0%, #221A22 100%);
   overflow: hidden;
 
+  @include to(600px){
+    height: 250vh;
+    .about-wrap {
+      height: 100vh;
+      align-self: flex-start;
+      position: sticky;
+      top: 0;
+    }
+  }
+
   @include tablet {
     padding: 81px 98px;
   }
@@ -439,6 +449,15 @@ section {
   @extend .about;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  @include to(600px){
+    height: 250vh;
+    .location-wrap {
+      height: 100vh;
+      align-self: flex-start;
+      position: sticky;
+      top: 0;
+    }
+  }
 }
 
 .location-big-wrap {

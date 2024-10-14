@@ -12,6 +12,73 @@ section {
   height: 100svh;
   position: relative;
   overflow: hidden;
+
+  @include laptop {
+    background: radial-gradient(circle at 44% 22%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 54%), url('../images/Hero/bg-pc.jpg');
+  }
+}
+
+.tablet.landscape {
+  .hero {
+    background: rradial-gradient(circle at 44% 22%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 54%),
+      url('../images/Hero/bg-pc.jpg');
+  }
+
+  .swiper-hero {
+    display: none;
+  }
+
+  .swiper-wrapper-pc {
+    display: flex;
+  }
+}
+
+.swiper-wrapper-pc {
+  display: none;
+
+  @include laptop {
+    display: flex;
+    padding: 40px;
+  }
+}
+
+.swiper-hero-pc {
+
+
+  @include laptop {
+    overflow: hidden;
+
+    width: 50%;
+
+    // .swiper-slide {
+    //   width: 260px;
+    //   height: 300px;
+    //   filter: grayscale(1);
+    //   transition: transform 1500ms ease-in-out, filter 0.3s ease-in-out, scale 400ms ease-in-out, width 500ms ease-in-out, height 500ms ease-in-out;
+
+    //   &.swiper-slide-active {
+    //     height: 100%;
+    //     width: calc(50vw - 80px);
+    //     filter: none;
+    //   }
+    // }
+  }
+}
+
+.swiper-hero-pc--thumb {
+  @include laptop {
+    overflow: hidden;
+
+    width: 50%;
+
+    // .swiper-slide {
+    //   width: 260px;
+    //   height: 300px;
+
+    //   &.swiper-slide-active {}
+    // }
+
+  }
 }
 
 .swiper-hero {
@@ -20,6 +87,10 @@ section {
 
   @include tablet {
     height: 100svh;
+  }
+
+  @include laptop {
+    display: none;
   }
 
   .swiper-slide-prev {
@@ -87,7 +158,7 @@ section {
   position: absolute;
   padding: 20px;
   bottom: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   background: linear-gradient(180deg, #ffffff00, $accent-color 60%);
 
@@ -95,6 +166,12 @@ section {
     background: linear-gradient(180deg, #ffffff00, $accent-color 80%);
     padding: 40px;
     padding-bottom: 60px;
+  }
+
+  @include laptop {
+    z-index: 2;
+    width: 50%;
+    background: transparent;
   }
 
   h1 {
@@ -174,15 +251,20 @@ section {
   background: linear-gradient(180deg, #322A32 0%, #221A22 100%);
   overflow: hidden;
 
-  @include to(600px){
-    height: 250vh;
-    .about-wrap {
-      height: 100vh;
-      align-self: flex-start;
-      position: sticky;
-      top: 0;
+
+  height: 200vh;
+
+  .about-wrap {
+    height: 100vh;
+    align-self: flex-start;
+    position: sticky;
+    top: 100px;
+
+    @include tablet {
+      top: 50px;
     }
   }
+
 
   @include tablet {
     padding: 81px 98px;
@@ -194,6 +276,11 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .section-title {
+    top: 70px;
+
+  }
 }
 
 .section-title {
@@ -345,6 +432,13 @@ section {
   overflow: hidden;
   background: linear-gradient(180deg, #615661fd, $bg-color 10%);
   box-shadow: 0px 12px 60px 0px #140E14, 0px 9px 30px 0px rgba(116, 69, 116, 0.25) inset, 0px 0px 8px 0px rgba(86, 39, 86, 0.15) inset;
+  transition: all 0.4s ease-in-out;
+
+  &:active {
+    border: 1px solid #29B374;
+    background: linear-gradient(180deg, #228458 0%, #006739 100%);
+    box-shadow: 0px 2px 2px 0px #36D18B inset, 0px -2px 2px 0px #30AA71 inset;
+  }
 
   @include tablet {
     padding: 20px 28px;
@@ -449,15 +543,21 @@ section {
   @extend .about;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  @include to(600px){
-    height: 250vh;
-    .location-wrap {
-      height: 100vh;
-      align-self: flex-start;
-      position: sticky;
-      top: 0;
+
+
+  height: 200vh;
+
+  .location-wrap {
+    height: 100vh;
+    align-self: flex-start;
+    position: sticky;
+    top: 100px;
+
+    @include tablet {
+      top: 50px;
     }
   }
+
 }
 
 .location-big-wrap {
@@ -578,7 +678,7 @@ section {
 .map-main-wrap {
   margin-top: 80px;
   width: 100%;
-  height: 70vh;
+  height: 85vh;
   border-radius: 20px;
   // background-color: $wc;
   position: relative;

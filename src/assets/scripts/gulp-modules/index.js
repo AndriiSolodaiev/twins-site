@@ -1,20 +1,28 @@
-import Swiper, { Autoplay, Navigation, Pagination, EffectCreative } from 'swiper';
+import Swiper, {
+  Autoplay,
+  Navigation,
+  Pagination,
+  EffectCreative,
+  Thumbs,
+  Controller,
+} from 'swiper';
 import { gsap, ScrollTrigger, CustomEase } from 'gsap/all';
 import { initSmoothScrolling } from '../modules/scroll/leniscroll';
 import googleMap from '../modules/map/map';
-
+import device from 'current-device';
 googleMap();
 initSmoothScrolling();
 gsap.registerPlugin(ScrollTrigger, CustomEase);
-window.addEventListener('DOMContentLoaded', () => {
+
+function initSwiperHero() {
   const swiperHero = new Swiper('.swiper-hero', {
     modules: [Autoplay, Pagination, EffectCreative],
     speed: 1500,
     effect: 'creative',
     loop: true,
-    delay: 3000,
+    delay: 2000,
     autoplay: {
-      delay: 3000,
+      delay: 2000,
       disableOnInteraction: false,
     },
 
@@ -53,12 +61,43 @@ window.addEventListener('DOMContentLoaded', () => {
     },
   });
   swiperHero.autoplay.stop();
-  setTimeout(() => swiperHero.autoplay.start(), 2000);
+  setTimeout(() => swiperHero.autoplay.start(), 1000);
+
+  const swiperHeroPc = new Swiper('.swiper-hero-pc', {
+    modules: [Autoplay, Pagination, Navigation, Controller],
+    speed: 1500,
+    slidesPerView: 1,
+    loop: true,
+    // delay: 2000,
+    spaceBetween: 20,
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: false,
+    },
+  });
+  const swiperHeroPcThumb = new Swiper('.swiper-hero-pc--thumb', {
+    modules: [Autoplay, Pagination, Navigation, Thumbs, Controller],
+    slidesPerView: 3.5,
+    loop: true,
+    spaceBetween: 20,
+    pagination: {
+      el: '.swiper-pagination-pc',
+      clickable: true,
+      type: 'progressbar',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+  // swiperHeroPcThumb.controller.control = swiperHeroPc;
+  swiperHeroPc.controller.control = swiperHeroPcThumb;
+}
+
+window.addEventListener('finishLoader', () => {
+  initSwiperHero();
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => swiperHero.autoplay.start(), 2000);
-});
 const about = gsap.timeline({
   scrollTrigger: {
     trigger: '.about-title',
@@ -76,14 +115,14 @@ about.fromTo(
   },
   {
     ease: 'none',
-    xPercent: -100,
+    xPercent: -110,
   },
 );
 const aboutImg = gsap.timeline({
   scrollTrigger: {
     trigger: '.about', // Блок, до якого прив'язуємо анімацію
     start: 'top top', // Коли починається анімація
-    // end: 'bottom top', // Коли закінчується
+    end: 'bottom center+=20%', // Коли закінчується
     scrub: true, // Плавна анімація
     // markers: true,
     pin: '.about-wrap', // Затримка (пінінг) блока
@@ -93,7 +132,7 @@ const aboutImg = gsap.timeline({
 });
 aboutImg
   .to('.about-big-wrap', {
-    scale: 2.2,
+    scale: 2.4,
 
     ease: 'none',
   })
@@ -193,7 +232,7 @@ location.fromTo(
     ease: 'none',
   },
   {
-    xPercent: -100,
+    xPercent: -110,
     ease: 'none',
   },
 );
@@ -202,6 +241,7 @@ const locationImg = gsap.timeline({
     trigger: '.location', // Блок, до якого прив'язуємо анімацію
     start: 'top top', // Коли починається анімація
     // end: 'bottom top', // Коли закінчується
+    end: 'bottom center+=20%',
     scrub: true, // Плавна анімація
     // markers: true,
     pin: '.location-wrap', // Затримка (пінінг) блока
@@ -211,7 +251,7 @@ const locationImg = gsap.timeline({
 });
 locationImg
   .to('.location-big-wrap', {
-    scale: 2.2, // Збільшуємо картинку до 1.5
+    scale: 2.4, // Збільшуємо картинку до 1.5
 
     ease: 'none', // Лінійна анімація без ефектів
   })

@@ -35,7 +35,7 @@ header(class="header "+headerCustomClass)
       </svg>
     .buttons-wrap 
       a(href="" target="").accent-btn ОБРАТИ КВАРТИРУ
-      button.call-back(data-call-us-btn) ЗВОРОТНІЙ ДЗВІНОК
+      button.call-back(data-call-us-btn) Залишити заявку
     .menu-btn 
       span.text Меню
       .menu-wrap
@@ -52,6 +52,29 @@ header(class="header "+headerCustomClass)
     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M3.96967 3.46967C4.26256 3.17678 4.73744 3.17678 5.03033 3.46967L8.5 6.93934L11.9697 3.46967C12.2626 3.17678 12.7374 3.17678 13.0303 3.46967C13.3232 3.76256 13.3232 4.23744 13.0303 4.53033L9.56066 8L13.0303 11.4697C13.3232 11.7626 13.3232 12.2374 13.0303 12.5303C12.7374 12.8232 12.2626 12.8232 11.9697 12.5303L8.5 9.06066L5.03033 12.5303C4.73744 12.8232 4.26256 12.8232 3.96967 12.5303C3.67678 12.2374 3.67678 11.7626 3.96967 11.4697L7.43934 8L3.96967 4.53033C3.67678 4.23744 3.67678 3.76256 3.96967 3.46967Z" fill="#221A22"/>
     </svg>
+.overflow(data-call-us__overflow).hidden
+  .form-wrap(data-call-us-modal)
+    .close-btn(data-call-us-modal-close) 
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.99992 2.79285L4.35348 3.1464L11.9999 10.7928L19.6464 3.1464L19.9999 2.79285L20.707 3.49995L20.3535 3.85351L12.707 11.5L20.3535 19.1464L20.707 19.5L19.9999 20.2071L19.6464 19.8535L11.9999 12.2071L4.35348 19.8535L3.99992 20.2071L3.29282 19.5L3.64637 19.1464L11.2928 11.5L3.64637 3.85351L3.29282 3.49995L3.99992 2.79285Z" fill="#F6F6F6"/>
+      </svg>
+    .form-title Зворотній дзвінок
+    .form-descr Якщо у вас лишилися запитання ми з радістю відповімо вам
+    +form
+.menu-wrap
+  .menu-list 
+    .left-block
+      a(href="").menu-item 
+        span Головна
+      a(href="").menu-item 
+        span ПРО КОМПЛЕКС
+      a(href="").menu-item 
+        span 3D ШОУРУМ
+      a(href="").menu-item 
+        span ГАЛЕРЕЯ
+
+
+
 
 
 

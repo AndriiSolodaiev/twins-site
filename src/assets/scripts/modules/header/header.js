@@ -22,7 +22,6 @@ document.body.addEventListener('click', function(evt) {
   const btnUp = evt.target.closest('[data-btn-up]');
 
   const btnMenuTarget = evt.target.closest('[data-menu-button]');
-  const btnMenu = document.querySelector('[data-menu]');
   const menu = document.querySelector('[data-menu]');
   if (btnMenuTarget) {
     menu.classList.toggle('hidden');
@@ -34,14 +33,17 @@ document.body.addEventListener('click', function(evt) {
   }
   if (btn) {
     if (overflow.classList.contains('hidden')) {
+      window.dispatchEvent(new Event('stop-scroll'));
       return overflow.classList.remove('hidden');
     }
     return;
   }
   if (close) {
+    window.dispatchEvent(new Event('start-scroll'));
     return overflow.classList.add('hidden');
   }
   if (evt.target === overflow) {
+    window.dispatchEvent(new Event('start-scroll'));
     return overflow.classList.add('hidden');
   }
 });

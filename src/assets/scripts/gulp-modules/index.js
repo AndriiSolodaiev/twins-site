@@ -63,21 +63,23 @@ function initSwiperHero() {
   swiperHero.autoplay.stop();
   setTimeout(() => swiperHero.autoplay.start(), 1000);
 
-  const swiperHeroPc = new Swiper('.swiper-hero-pc', {
-    modules: [Autoplay, Pagination, Navigation, Controller],
-    speed: 1500,
-    slidesPerView: 1,
-    loop: true,
-    // delay: 2000,
-    spaceBetween: 20,
-    autoplay: {
-      delay: 2000,
-      disableOnInteraction: false,
-    },
-  });
+  // const swiperHeroPc = new Swiper('.swiper-hero-pc', {
+  //   modules: [Autoplay, Pagination, Navigation, Controller],
+  //   speed: 1500,
+  //   slidesPerView: 1,
+  //   loop: true,
+  //   // delay: 2000,
+  //   spaceBetween: 20,
+  //   autoplay: {
+  //     delay: 2000,
+  //     disableOnInteraction: false,
+  //   },
+  // });
+  const ANIMATION_DURATION = 0.5;
   const swiperHeroPcThumb = new Swiper('.swiper-hero-pc--thumb', {
     modules: [Autoplay, Pagination, Navigation, Thumbs, Controller],
     slidesPerView: 3.5,
+    speed: ANIMATION_DURATION * 1000,
     loop: true,
     spaceBetween: 20,
     pagination: {
@@ -90,8 +92,68 @@ function initSwiperHero() {
       prevEl: '.swiper-button-prev',
     },
   });
+  swiperHeroPcThumb.on('slideNextTransitionStart', function (swiper) {
+    const impossibleSlider = document.querySelector('[data-impossible-slider]');
+    const impossibleSliderContainer = impossibleSlider.closest('.swiper-hero-pc');
+    const containerWidth = impossibleSliderContainer.getBoundingClientRect().width;
+    const imageLeft = document.querySelector('[data-prev-container]');
+    const imageRight = document.querySelector('[data-next-container]');
+    const prevImage = swiper.slides[swiper.previousIndex].querySelector('img');
+    const prevPrevImage = swiper.slides[swiper.previousIndex - 1].querySelector('img');
+    // data-prev-container
+    // data-next-container
+    const copied = prevImage.cloneNode(true);
+    const prevPrevcopied = prevPrevImage.cloneNode(true);
+    imageLeft.innerHTML = '';
+    imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
+    imageRight.innerHTML = '';
+    imageRight.insertAdjacentElement('afterbegin', copied);
+
+    gsap.timeline({
+      defaults: {
+        ease: 'none',
+      }
+    })
+      .set(impossibleSlider, { 
+        x: 0
+      })
+      .fromTo(impossibleSlider, {
+        x: 0 
+      }, {
+        x: containerWidth * -1,
+        duration: ANIMATION_DURATION,
+      })
+      .fromTo(imageRight, {
+        scale: 0.25,
+        opacity: 0,
+      }, {
+        scale: 1,
+        duration: ANIMATION_DURATION,
+        opacity: 1,
+        transformOrigin: 'top right'
+      }, '<')
+      .fromTo('.swiper-hero-pc--thumb .swiper-slide-prev img', { 
+        opacity: 1,
+        scale: 1,
+        // x: 0
+      }, {
+        opacity: 0.5,
+        // x: '-100%', 
+        clearProps: 'all',
+        duration: ANIMATION_DURATION,
+        scale: 4,
+        transformOrigin: 'top right'
+      }, '<')
+      // .fromTo()
+
+
+  });
+  swiperHeroPcThumb.on('slidePrevTransitionStart', function (swiper) {
+    console.log('slidePrevTransitionStart!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    
+  });
   // swiperHeroPcThumb.controller.control = swiperHeroPc;
-  swiperHeroPc.controller.control = swiperHeroPcThumb;
+  // swiperHeroPc.controller.control = swiperHeroPcThumb;
 }
 
 window.addEventListener('finishLoader', () => {

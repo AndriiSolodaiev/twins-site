@@ -92,14 +92,16 @@ function initSwiperHero() {
       prevEl: '.swiper-button-prev',
     },
   });
-  swiperHeroPcThumb.on('slideNextTransitionStart', function (swiper) {
+  swiperHeroPcThumb.on('slideNextTransitionStart', function(swiper) {
     const impossibleSlider = document.querySelector('[data-impossible-slider]');
     const impossibleSliderContainer = impossibleSlider.closest('.swiper-hero-pc');
     const containerWidth = impossibleSliderContainer.getBoundingClientRect().width;
     const imageLeft = document.querySelector('[data-prev-container]');
     const imageRight = document.querySelector('[data-next-container]');
     const prevImage = swiper.slides[swiper.previousIndex].querySelector('img');
-    const prevPrevImage = swiper.slides[swiper.previousIndex - 1].querySelector('img');
+    const prevPrevImage = swiper.slides[swiper.previousIndex - 1]
+      ? swiper.slides[swiper.previousIndex - 1].querySelector('img')
+      : swiper.slides[swiper.slides.length - 1].querySelector('img');
     // data-prev-container
     // data-next-container
     const copied = prevImage.cloneNode(true);
@@ -109,48 +111,130 @@ function initSwiperHero() {
     imageRight.innerHTML = '';
     imageRight.insertAdjacentElement('afterbegin', copied);
 
-    gsap.timeline({
-      defaults: {
-        ease: 'none',
-      }
-    })
-      .set(impossibleSlider, { 
-        x: 0
+    gsap
+      .timeline({
+        defaults: {
+          ease: 'none',
+        },
       })
-      .fromTo(impossibleSlider, {
-        x: 0 
-      }, {
-        x: containerWidth * -1,
-        duration: ANIMATION_DURATION,
+      .set(impossibleSlider, {
+        x: 0,
       })
-      .fromTo(imageRight, {
-        scale: 0.25,
-        opacity: 0,
-      }, {
-        scale: 1,
-        duration: ANIMATION_DURATION,
-        opacity: 1,
-        transformOrigin: 'top right'
-      }, '<')
-      .fromTo('.swiper-hero-pc--thumb .swiper-slide-prev img', { 
-        opacity: 1,
-        scale: 1,
-        // x: 0
-      }, {
-        opacity: 0.5,
-        // x: '-100%', 
-        clearProps: 'all',
-        duration: ANIMATION_DURATION,
-        scale: 4,
-        transformOrigin: 'top right'
-      }, '<')
-      // .fromTo()
-
-
+      .fromTo(
+        impossibleSlider,
+        {
+          x: 0,
+        },
+        {
+          x: containerWidth * -1,
+          duration: ANIMATION_DURATION,
+        },
+        '<',
+      )
+      .fromTo(
+        imageRight,
+        {
+          scale: 0.25,
+          opacity: 0,
+        },
+        {
+          scale: 1,
+          duration: ANIMATION_DURATION,
+          opacity: 1,
+          transformOrigin: 'top right',
+        },
+        '<',
+      )
+      .fromTo(
+        '.swiper-hero-pc--thumb .swiper-slide-prev img',
+        {
+          opacity: 1,
+          scale: 1,
+          // x: 0
+        },
+        {
+          opacity: 0.5,
+          // x: '-100%',
+          clearProps: 'all',
+          duration: ANIMATION_DURATION,
+          scale: 4,
+          transformOrigin: 'top right',
+        },
+        '<',
+      );
+    // .fromTo()
   });
-  swiperHeroPcThumb.on('slidePrevTransitionStart', function (swiper) {
+  swiperHeroPcThumb.on('slidePrevTransitionStart', function(swiper) {
     console.log('slidePrevTransitionStart!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    
+    const impossibleSlider = document.querySelector('[data-impossible-slider]');
+    const impossibleSliderContainer = impossibleSlider.closest('.swiper-hero-pc');
+    const containerWidth = impossibleSliderContainer.getBoundingClientRect().width;
+    const imageLeft = document.querySelector('[data-prev-container]');
+    const imageRight = document.querySelector('[data-next-container]');
+    const prevImage = swiper.slides[swiper.previousIndex - 1].querySelector('img');
+    const prevPrevImage = swiper.slides[swiper.previousIndex - 2]
+      ? swiper.slides[swiper.previousIndex - 2].querySelector('img')
+      : swiper.slides[0].querySelector('img');
+    // data-prev-container
+    // data-next-container
+    const copied = prevImage.cloneNode(true);
+    const prevPrevcopied = prevPrevImage.cloneNode(true);
+    imageLeft.innerHTML = '';
+    imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
+    imageRight.innerHTML = '';
+    imageRight.insertAdjacentElement('afterbegin', copied);
+
+    gsap
+      .timeline({
+        defaults: {
+          ease: 'none',
+        },
+      })
+      .set(impossibleSlider, {
+        xPercent: 0,
+      })
+      .fromTo(
+        impossibleSlider,
+        {
+          xPercent: 0,
+        },
+        {
+          xPercent: 100,
+          duration: ANIMATION_DURATION,
+        },
+        '<',
+      )
+      .fromTo(
+        imageRight,
+        {
+          scale: 1,
+          opacity: 1,
+        },
+        {
+          scale: 0.25,
+          duration: ANIMATION_DURATION,
+          opacity: 0,
+          transformOrigin: 'top right',
+        },
+        '<',
+      )
+      .fromTo(
+        '.swiper-hero-pc--thumb .swiper-slide-active img',
+        {
+          opacity: 0.5,
+          scale: 4,
+          // x: 0
+        },
+        {
+          opacity: 1,
+          // x: '-100%',
+          clearProps: 'all',
+          duration: ANIMATION_DURATION,
+          scale: 1,
+          transformOrigin: 'top right',
+        },
+        '<',
+      );
   });
   // swiperHeroPcThumb.controller.control = swiperHeroPc;
   // swiperHeroPc.controller.control = swiperHeroPcThumb;
@@ -192,33 +276,39 @@ const aboutImg = gsap.timeline({
     // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
   },
 });
-aboutImg
-  .to('.about-big-wrap', {
-    scale: 2.4,
+if (window.innerWidth < 1366 || window.innerWidth < window.innerHeight) {
+  aboutImg
+    .to('.about-big-wrap', {
+      scale: 2.4,
 
-    ease: 'none',
-  })
-  .to(
-    '.about-img',
-
-    {
-      // height: '80%',
-      scale: 0.7,
       ease: 'none',
-    },
-    '<',
-  );
+    })
+    .to(
+      '.about-img',
 
-// gsap.to('.about-big-wrap ', {
-//   scrollTrigger: {
-//     trigger: '.about-content ', // Той самий блок
-//     start: 'top bottom', // Паралакс ефект починається, коли блок доходить до низу вікна
-//     end: 'top top', // Закінчується, коли блок виходить з екрану
-//     scrub: true, // Плавне скролювання
-//   },
-//   yPercent: 20, // Зміщуємо блок на -50 пікселів по осі Y
-//   // ease: 'none',
-// });
+      {
+        scale: 0.7,
+        ease: 'none',
+      },
+      '<',
+    );
+} else {
+  aboutImg
+    .to('.about-big-wrap', {
+      scale: 2.7,
+
+      ease: 'none',
+    })
+    .to(
+      '.about-img',
+
+      {
+        scale: 0.7,
+        ease: 'none',
+      },
+      '<',
+    );
+}
 
 function textAppear(selector) {
   console.log(selector);

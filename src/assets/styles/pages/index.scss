@@ -157,9 +157,10 @@ section {
   @include laptop {
     height: fit-content;
     overflow: hidden;
-    padding-left: 80px;
+    padding-left: 20px;
     width: 50%;
-    padding-top: 80px;
+    margin-top: 80px;
+    border-radius: 20px;
 
     .navigation-wrap {
       display: flex;
@@ -196,6 +197,7 @@ section {
         object-fit: cover;
         object-position: top;
         border-radius: 20px;
+        filter: grayscale(100%);
       }
 
       &.swiper-slide-active {}

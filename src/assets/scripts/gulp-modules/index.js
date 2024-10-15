@@ -80,8 +80,18 @@ function initSwiperHero() {
     modules: [Autoplay, Pagination, Navigation, Thumbs, Controller],
     slidesPerView: 3.5,
     speed: ANIMATION_DURATION * 1000,
+    initialSlide: 1,
     loop: true,
     spaceBetween: 20,
+    on: {
+      init: (swiper) => {
+        const imageLeft = document.querySelector('[data-prev-container]');
+        const prevPrevImage = swiper.slides[0].querySelector('img');
+        const prevPrevcopied = prevPrevImage.cloneNode(true);
+        imageLeft.innerHTML = '';
+        imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
+      }
+    },
     pagination: {
       el: '.swiper-pagination-pc',
       clickable: true,
@@ -102,8 +112,6 @@ function initSwiperHero() {
     const prevPrevImage = swiper.slides[swiper.previousIndex - 1]
       ? swiper.slides[swiper.previousIndex - 1].querySelector('img')
       : swiper.slides[swiper.slides.length - 1].querySelector('img');
-    // data-prev-container
-    // data-next-container
     const copied = prevImage.cloneNode(true);
     const prevPrevcopied = prevPrevImage.cloneNode(true);
     imageLeft.innerHTML = '';
@@ -120,6 +128,12 @@ function initSwiperHero() {
       .set(impossibleSlider, {
         x: 0,
       })
+      .set(imageRight, {
+        scaleX: scaleLargeImageToSmall(prevImage, imageRight).scaleX,
+        scaleY: scaleLargeImageToSmall(prevImage, imageRight).scaleY,
+        y: 80,
+        transformOrigin: 'top right',
+      })
       .fromTo(
         impossibleSlider,
         {
@@ -129,43 +143,45 @@ function initSwiperHero() {
           x: containerWidth * -1,
           duration: ANIMATION_DURATION,
         },
-        '<',
-      )
-      .fromTo(
-        imageRight,
-        {
-          scale: 0.25,
-          opacity: 0,
-        },
-        {
-          scale: 1,
-          duration: ANIMATION_DURATION,
-          opacity: 1,
-          transformOrigin: 'top right',
-        },
-        '<',
+        
       )
       .fromTo(
         '.swiper-hero-pc--thumb .swiper-slide-prev img',
         {
           opacity: 1,
-          scale: 1,
-          // x: 0
         },
         {
-          opacity: 0.5,
-          // x: '-100%',
+          opacity: 0,
           clearProps: 'all',
-          duration: ANIMATION_DURATION,
-          scale: 4,
+          duration: ANIMATION_DURATION * 0.75,
           transformOrigin: 'top right',
         },
         '<',
-      );
+      )
+
+      .fromTo(
+        imageRight,
+        {
+          scaleX: scaleLargeImageToSmall(prevImage, imageRight).scaleX,
+          scaleY: scaleLargeImageToSmall(prevImage, imageRight).scaleY,
+          y: 80,
+          filter: 'grayscale(100%)',
+        },
+        {
+          scaleX: 1,
+          scaleY: 1,
+          y: 0,
+          duration: ANIMATION_DURATION*0.75,
+          ease: 'power1.out',
+          filter: 'grayscale(0)',
+          transformOrigin: 'top right',
+          clearProps: 'all',
+        },
+        '>30%',
+      )
     // .fromTo()
   });
   swiperHeroPcThumb.on('slidePrevTransitionStart', function(swiper) {
-    console.log('slidePrevTransitionStart!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
     const impossibleSlider = document.querySelector('[data-impossible-slider]');
     const impossibleSliderContainer = impossibleSlider.closest('.swiper-hero-pc');
     const containerWidth = impossibleSliderContainer.getBoundingClientRect().width;
@@ -175,8 +191,6 @@ function initSwiperHero() {
     const prevPrevImage = swiper.slides[swiper.previousIndex - 2]
       ? swiper.slides[swiper.previousIndex - 2].querySelector('img')
       : swiper.slides[0].querySelector('img');
-    // data-prev-container
-    // data-next-container
     const copied = prevImage.cloneNode(true);
     const prevPrevcopied = prevPrevImage.cloneNode(true);
     imageLeft.innerHTML = '';
@@ -191,53 +205,78 @@ function initSwiperHero() {
         },
       })
       .set(impossibleSlider, {
-        xPercent: 0,
+        x: containerWidth * -1,
       })
-      .fromTo(
-        impossibleSlider,
-        {
-          xPercent: 0,
-        },
-        {
-          xPercent: 100,
-          duration: ANIMATION_DURATION,
-        },
-        '<',
-      )
       .fromTo(
         imageRight,
         {
-          scale: 1,
-          opacity: 1,
+          scaleX: 1,
+          scaleY: 1,
+          y: 0,
+          filter: 'grayscale(0)',
         },
         {
-          scale: 0.25,
+          scaleX: scaleLargeImageToSmall(prevImage, imageRight).scaleX,
+          scaleY: scaleLargeImageToSmall(prevImage, imageRight).scaleY,
+          filter: 'grayscale(100%)',
+          y: 80,
           duration: ANIMATION_DURATION,
-          opacity: 0,
+          ease: 'power2.out',
           transformOrigin: 'top right',
         },
-        '<',
+      )
+      .fromTo(
+        impossibleSlider,
+        {
+          x:  containerWidth * -1,
+        },
+        {
+          x: 0,
+          duration: ANIMATION_DURATION,
+          ease: 'power2.out',
+        },
+        '<50%'
       )
       .fromTo(
         '.swiper-hero-pc--thumb .swiper-slide-active img',
         {
-          opacity: 0.5,
-          scale: 4,
-          // x: 0
+          opacity: 0,
         },
         {
           opacity: 1,
-          // x: '-100%',
           clearProps: 'all',
           duration: ANIMATION_DURATION,
-          scale: 1,
           transformOrigin: 'top right',
         },
         '<',
       );
   });
+
+
+
   // swiperHeroPcThumb.controller.control = swiperHeroPc;
   // swiperHeroPc.controller.control = swiperHeroPcThumb;
+}
+
+function scaleLargeImageToSmall(smallImage, largeImage) {
+
+  // Отримуємо видимі розміри малого зображення
+  const smallWidth = smallImage.offsetWidth;
+  const smallHeight = smallImage.offsetHeight;
+
+  // Отримуємо видимі розміри великого зображення
+  const largeWidth = largeImage.offsetWidth;
+  const largeHeight = largeImage.offsetHeight;
+
+  // Обчислюємо коефіцієнт масштабування
+  const scaleX = smallWidth / largeWidth;
+  const scaleY = smallHeight / largeHeight;
+
+  // Застосовуємо масштабування за допомогою CSS трансформацій
+  return {
+    scaleX,
+    scaleY,
+  }
 }
 
 window.addEventListener('finishLoader', () => {

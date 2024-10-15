@@ -98,18 +98,33 @@ block content
           </svg>
         .about-img-wrap
           img(src="./assets/images/About/filler.jpg" alt="").about-img
-  section.about-content 
-    .line 
-    h3.about-content__title-1 Дві величні, могутні, незламні стихії — земля та повітря.
-    p.about-content__text-1 Такі різні, але так доповнюють одна одну. Задля Вашого комфорту та безпеки  ми об’єднали цих норовливих близнюків та створили двох велетнів, які своїми покрівлями торкаються хмар. Раді представити - житловий комплекс «Twins».
+  section.about-content
+    img(src="./assets/images/About/logo.png" alt="logo").about-logo
+    .about-content__text-wrap
+      .decor 
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" viewBox="0 0 8 5" fill="none">
+          <rect x="5" y="5" width="2" height="2" rx="1" transform="rotate(180 5 5)" fill="#CDC8BC"/>
+          <rect x="2" y="2" width="2" height="2" rx="1" transform="rotate(180 2 2)" fill="#CDC8BC"/>
+          <rect x="8" y="2" width="2" height="2" rx="1" transform="rotate(180 8 2)" fill="#CDC8BC"/>
+        </svg>
+      .line 
+      h3.about-content__title-1 Дві величні, могутні, незламні стихії — земля та повітря.
+      p.about-content__text-1 Такі різні, але так доповнюють одна одну. Задля Вашого комфорту та безпеки  ми об’єднали цих норовливих близнюків та створили двох велетнів, які своїми покрівлями торкаються хмар. Раді представити - житловий комплекс «Twins».
     <video muted autoplay playsinline loop preload="true" class="about-video" type='video/mp4'>
       <source src="./assets/images/About/video.mp4" >
     </video>
-    .line
-    h3.about-content__title-2 Ми віднайшли той унікальний баланс
-    p.about-content__text-2 Найкраща територія, найзручніша локація, а також безмежний простір для втілення Ваших ідей та неосяжність, яка сягає захмарних висот та дарує неповторні краєвиди.
-    .about-btn-wrap
-      button.general-btn БІЛЬШЕ ПРО КОМПЛЕКС
+    .about-content__text-wrap.last
+      .decor 
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" viewBox="0 0 8 5" fill="none">
+          <rect x="5" y="5" width="2" height="2" rx="1" transform="rotate(180 5 5)" fill="#CDC8BC"/>
+          <rect x="2" y="2" width="2" height="2" rx="1" transform="rotate(180 2 2)" fill="#CDC8BC"/>
+          <rect x="8" y="2" width="2" height="2" rx="1" transform="rotate(180 8 2)" fill="#CDC8BC"/>
+        </svg>
+      .line
+      h3.about-content__title-2 Ми віднайшли той унікальний баланс
+      p.about-content__text-2 Найкраща територія, найзручніша локація, а також безмежний простір для втілення Ваших ідей та неосяжність, яка сягає захмарних висот та дарує неповторні краєвиди.
+      .about-btn-wrap
+        button.general-btn БІЛЬШЕ ПРО КОМПЛЕКС
   section.panorama
     .panorama-scrub
       img(src="./assets/images/panorama.png" alt="").bg-img
@@ -135,9 +150,10 @@ block content
         .location-img-wrap
           img(src="./assets/images/Location/filler.jpg" alt="").location-img
   section.location-content
-    .line 
-    h3.location-content__title-1 Локація у популярному районі міста "Вишенька "дасть можливість мешканцям закривати абсолютно всі потреби сьогодення. 
-    p.location-content__text-1 Школи, дитячі садки, різноманітні гуртки, адміністративні установи, медичні послуги, торгово-розважальні центри все у кроковій доступності у прямому розумінні.
+    .location-content__text-wrap
+      .line 
+      h3.location-content__title-1 Локація у популярному районі міста "Вишенька "дасть можливість мешканцям закривати абсолютно всі потреби сьогодення. 
+      p.location-content__text-1 Школи, дитячі садки, різноманітні гуртки, адміністративні установи, медичні послуги, торгово-розважальні центри все у кроковій доступності у прямому розумінні.
 
     .block-style-column-3__map-2.map-main-wrap
       .map-wrapper
@@ -188,12 +204,14 @@ block content
     h2.tour-title.section-title 3D шоурум
     .tour-lamp-wrap
       img(src="./assets/images/lamp.png" alt="").tour-lamp
-    iframe(src="https://apartment-tours.smartorange.com.ua/en/tkb-development-203/?scene=0" loading="lazy" allowfullscreen="true").tour-iframe
-    .line 
-    h3 Назва квартири
-    p Простора однокімнатна квартира з панорамним видом на центральний парк міста. Передпокій обладнаний вбудованими шафами. Сучасна вбиральня з якісною сантехнікою. Світла кухня, розділена на зону приготування, обідню зону та затишний куточок для відпочинку. 
-    .tour-btn-wrap
-      a(href="/").general-btn Дивитися всі шоуруми
+    .tour__content
+      iframe(src="https://apartment-tours.smartorange.com.ua/en/tkb-development-203/?scene=0" loading="lazy" allowfullscreen="true").tour-iframe
+      .tour__text-wrap  
+        .line 
+        h3 Назва квартири
+        p Простора однокімнатна квартира з панорамним видом на центральний парк міста. Передпокій обладнаний вбудованими шафами. Сучасна вбиральня з якісною сантехнікою. Світла кухня, розділена на зону приготування, обідню зону та затишний куточок для відпочинку. 
+        .tour-btn-wrap
+          a(href="/").general-btn Дивитися всі шоуруми
   section.advantages 
     .advantages-wrapper
       h2.advantages-title Переваги
@@ -293,6 +311,7 @@ block content
             </svg>
   section.property 
     .property-img-wrap 
+      .mask
       img(src="./assets/images/property.jpg" alt="").property-img
     .property-title-wrap 
       h2.right КОМЕРЦІЙНА

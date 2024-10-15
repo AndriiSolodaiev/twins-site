@@ -11,8 +11,8 @@ export default function googleMap() {
 // Google map start
 async function func() {
   const script = document.createElement('script');
-  let key = 'AIzaSyApJoOgeKdpSzapSeVhhW5VodNSqjKOo0A';
-  if (window.location.href.match(/localhost/)) key = '';
+  let key = 'AIzaSyCaYQ83EA9peTsEI6ih6cUc6uaCjn080qE';
+  // if (window.location.href.match(/localhost/)) key = '';
   script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=initMap&language=ua`;
   document.getElementsByTagName('head')[0].appendChild(script);
 }

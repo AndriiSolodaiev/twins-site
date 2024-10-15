@@ -83,14 +83,18 @@ function initSwiperHero() {
     initialSlide: 1,
     loop: true,
     spaceBetween: 20,
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: false,
+    },
     on: {
-      init: (swiper) => {
+      init: swiper => {
         const imageLeft = document.querySelector('[data-prev-container]');
         const prevPrevImage = swiper.slides[0].querySelector('img');
         const prevPrevcopied = prevPrevImage.cloneNode(true);
         imageLeft.innerHTML = '';
         imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
-      }
+      },
     },
     pagination: {
       el: '.swiper-pagination-pc',
@@ -143,7 +147,6 @@ function initSwiperHero() {
           x: containerWidth * -1,
           duration: ANIMATION_DURATION,
         },
-        
       )
       .fromTo(
         '.swiper-hero-pc--thumb .swiper-slide-prev img',
@@ -171,14 +174,14 @@ function initSwiperHero() {
           scaleX: 1,
           scaleY: 1,
           y: 0,
-          duration: ANIMATION_DURATION*0.75,
+          duration: ANIMATION_DURATION * 0.75,
           ease: 'power1.out',
           filter: 'grayscale(0)',
           transformOrigin: 'top right',
           clearProps: 'all',
         },
         '>30%',
-      )
+      );
     // .fromTo()
   });
   swiperHeroPcThumb.on('slidePrevTransitionStart', function(swiper) {
@@ -228,14 +231,14 @@ function initSwiperHero() {
       .fromTo(
         impossibleSlider,
         {
-          x:  containerWidth * -1,
+          x: containerWidth * -1,
         },
         {
           x: 0,
           duration: ANIMATION_DURATION,
           ease: 'power2.out',
         },
-        '<50%'
+        '<50%',
       )
       .fromTo(
         '.swiper-hero-pc--thumb .swiper-slide-active img',
@@ -252,14 +255,11 @@ function initSwiperHero() {
       );
   });
 
-
-
   // swiperHeroPcThumb.controller.control = swiperHeroPc;
   // swiperHeroPc.controller.control = swiperHeroPcThumb;
 }
 
 function scaleLargeImageToSmall(smallImage, largeImage) {
-
   // Отримуємо видимі розміри малого зображення
   const smallWidth = smallImage.offsetWidth;
   const smallHeight = smallImage.offsetHeight;
@@ -276,7 +276,7 @@ function scaleLargeImageToSmall(smallImage, largeImage) {
   return {
     scaleX,
     scaleY,
-  }
+  };
 }
 
 window.addEventListener('finishLoader', () => {
@@ -326,8 +326,16 @@ if (window.innerWidth < 1366 || window.innerWidth < window.innerHeight) {
       '.about-img',
 
       {
-        scale: 0.7,
+        scale: 0.8,
         ease: 'none',
+      },
+      '<',
+    )
+    .to(
+      '.about-img',
+
+      {
+        duration: 1,
       },
       '<',
     );
@@ -451,8 +459,16 @@ locationImg
 
     {
       // height: '100%',
-      scale: 0.7,
+      scale: 0.8,
       ease: 'none',
+    },
+    '<',
+  )
+  .to(
+    '.location-img',
+
+    {
+      duration: 1,
     },
     '<',
   );
@@ -592,3 +608,22 @@ footerTitle.fromTo(
     ease: 'none',
   },
 );
+
+function updateImage() {
+  const image = document.querySelector('.property-img');
+  const aspectRatio = window.innerWidth / window.innerHeight;
+
+  if (aspectRatio > 1) {
+    // Ширина більша за висоту (горизонтальна орієнтація)
+    image.src = './assets/images/property-pc.jpg';
+  } else {
+    // Висота більша за ширину (вертикальна орієнтація)
+    image.src = './assets/images/property.jpg';
+  }
+}
+
+// Викликаємо функцію при завантаженні сторінки
+updateImage();
+
+// Додаємо обробник події для зміни розміру вікна
+window.addEventListener('resize', updateImage);

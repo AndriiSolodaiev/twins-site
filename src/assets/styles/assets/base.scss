@@ -185,6 +185,7 @@ a {
 
 html {
   font-size: 14px;
+  -webkit-overflow-scrolling: none;
 }
 
 body {
@@ -197,6 +198,8 @@ body {
   background-color: $wc;
   font-weight: 500;
   color: $text-color;
+  -webkit-overflow-scrolling: none;
+
 }
 
 body input,

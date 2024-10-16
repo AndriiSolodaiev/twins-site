@@ -7,11 +7,11 @@ import Swiper, {
   Controller,
 } from 'swiper';
 import { gsap, ScrollTrigger, CustomEase } from 'gsap/all';
-import { initSmoothScrolling } from '../modules/scroll/leniscroll';
+// import { initSmoothScrolling } from '../modules/scroll/leniscroll';
 import googleMap from '../modules/map/map';
 import device from 'current-device';
 googleMap();
-initSmoothScrolling();
+// initSmoothScrolling();
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 function initSwiperHero() {
@@ -305,12 +305,16 @@ about.fromTo(
 );
 const aboutImg = gsap.timeline({
   scrollTrigger: {
+    pinType: 'fixed',
     trigger: '.about', // Блок, до якого прив'язуємо анімацію
     start: 'top top', // Коли починається анімація
-    end: 'bottom center+=20%', // Коли закінчується
-    scrub: true, // Плавна анімація
+    end: 'bottom top', // Коли закінчується
+    // scrub: true, // Плавна анімація
     // markers: true,
     pin: '.about-wrap', // Затримка (пінінг) блока
+    onLeaveBack: () => {
+      aboutImg.reverse();
+    },
     // pinSpacing: false,
     // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
   },
@@ -328,14 +332,6 @@ if (window.innerWidth < 1366 || window.innerWidth < window.innerHeight) {
       {
         scale: 0.8,
         ease: 'none',
-      },
-      '<',
-    )
-    .to(
-      '.about-img',
-
-      {
-        duration: 1,
       },
       '<',
     );
@@ -440,12 +436,14 @@ const locationImg = gsap.timeline({
     trigger: '.location', // Блок, до якого прив'язуємо анімацію
     start: 'top top', // Коли починається анімація
     // end: 'bottom top', // Коли закінчується
-    end: 'bottom center+=20%',
-    scrub: true, // Плавна анімація
+    end: 'bottom top',
+    // scrub: true, // Плавна анімація
     // markers: true,
     pin: '.location-wrap', // Затримка (пінінг) блока
     // pinSpacing: false,
-    // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
+    onLeaveBack: () => {
+      locationImg.reverse();
+    }, // Оновлення при виході з пінінгу
   },
 });
 locationImg
@@ -463,15 +461,15 @@ locationImg
       ease: 'none',
     },
     '<',
-  )
-  .to(
-    '.location-img',
-
-    {
-      duration: 1,
-    },
-    '<',
   );
+// .to(
+//   '.location-img',
+
+//   {
+//     duration: 1,
+//   },
+//   '<',
+// );
 
 // Паралакс ефект для фонового блоку
 
@@ -601,7 +599,7 @@ footerTitle.fromTo(
   '.footer-title',
   {
     ease: 'none',
-    xPercent: 50,
+    xPercent: 25,
   },
   {
     xPercent: -50,
@@ -627,3 +625,10 @@ updateImage();
 
 // Додаємо обробник події для зміни розміру вікна
 window.addEventListener('resize', updateImage);
+window.addEventListener('orientationchange', () => {
+  console.log('orientationchange');
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+    ScrollTrigger.update();
+  }, 0);
+});

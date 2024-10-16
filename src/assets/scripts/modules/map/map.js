@@ -58,7 +58,7 @@ function initMap() {
     mapTypeControl: false,
     scaleControl: false,
     draggable: true,
-    language: 'en',
+    language: 'ua',
     styles: getMapTheme(),
   });
   window.googleMap = map;

@@ -291,7 +291,7 @@ section {
 
       &::after {
         transform: translateX(0%);
-        transition: transform 4.5s linear;
+        transition: transform 3.5s linear;
       }
     }
   }
@@ -333,7 +333,8 @@ section {
     }
 
     @include laptop {
-      margin-bottom: 40px;
+      margin-bottom: 2vw;
+      font-size: 3.3vw;
     }
   }
 
@@ -351,18 +352,19 @@ section {
 }
 
 .promo {
+  flex: 1;
   color: $wc;
   text-align: center;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 130%;
-  text-decoration-line: underline;
+  // text-decoration-line: underline;
   padding: 14px 14px;
   border-radius: 100px;
   border: 1px solid rgba(246, 246, 246, 0.20);
   position: relative;
-  width: 175px;
+  // width: 175px;
   height: 60px;
   display: flex;
   justify-content: center;
@@ -394,6 +396,10 @@ section {
 
 }
 
+.about-wrap-of-wraps {
+  width: 100vw;
+}
+
 .about {
   height: 100vh;
   position: relative;
@@ -407,7 +413,7 @@ section {
   .about-wrap {
     height: 100vh;
     align-self: flex-start;
-    position: sticky;
+    // position: sticky;
     top: 100px;
 
     @include tablet {
@@ -436,17 +442,15 @@ section {
       top: 0;
     }
 
-    @at-root {
+  }
+}
 
-      .tablet.landscape,
-      .mobile.landscape {
+.tablet.landscape,
+.mobile.landscape {
 
-        .about .section-title,
-        .location .section-title {
-          top: 0;
-        }
-      }
-    }
+  .about .section-title,
+  .location .section-title {
+    top: 0;
   }
 }
 
@@ -468,6 +472,10 @@ section {
 
   @include tablet {
     font-size: 200px;
+  }
+
+  @include laptop {
+    font-size: 10.4vw;
   }
 }
 
@@ -512,16 +520,10 @@ section {
     width: 72vw;
   }
 
-  @at-root {
 
-    .tablet.landscape,
-    .mobile.landscape {
-      .about-img-wrap {
-        height: 68vh;
-        width: 72vw;
-      }
-    }
-  }
+
+
+
 
   &::after {
     content: "";
@@ -545,6 +547,14 @@ section {
     object-position: center;
     height: 100%;
     width: 100%;
+  }
+}
+
+.tablet.landscape,
+.mobile.landscape {
+  .about-img-wrap {
+    height: 68vh;
+    width: 72vw;
   }
 }
 
@@ -583,20 +593,7 @@ section {
 
   }
 
-  @at-root {
 
-    .tablet.landscape,
-    .mobile.landscape {
-      .about-content {
-        padding-left: 0;
-        padding-right: 0;
-        padding-top: 23vw;
-        padding-bottom: 23vw;
-        display: flex;
-        background: radial-gradient(circle at 44% 50%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 54%), $bg-color;
-      }
-    }
-  }
 
   .about-logo {
     display: none;
@@ -610,20 +607,7 @@ section {
       z-index: 1;
     }
 
-    @at-root {
 
-      .tablet.landscape,
-      .mobile.landscape {
-        .about-logo {
-          display: block;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: 1;
-        }
-      }
-    }
   }
 
   h3 {
@@ -650,17 +634,34 @@ section {
       width: 47vw;
     }
 
-    @at-root {
 
-      .tablet.landscape,
-      .mobile.landscape {
-        .about-video {
-          position: relative;
-          z-index: 2;
-          width: 47vw;
-        }
-      }
-    }
+  }
+}
+
+.tablet.landscape,
+.mobile.landscape {
+  .about-content {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 23vw;
+    padding-bottom: 23vw;
+    display: flex;
+    background: radial-gradient(circle at 44% 50%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 54%), $bg-color;
+  }
+
+  .about-logo {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .about-video {
+    position: relative;
+    z-index: 2;
+    width: 47vw;
   }
 }
 
@@ -691,49 +692,51 @@ section {
     }
 
     h3 {
-      @include adaptive-font(40, 20)
+
+      font-size: 2vw;
+
     }
 
     p {
-      @include adaptive-font(20, 10)
+
+      font-size: 1vw;
+
     }
   }
 
-  @at-root {
+}
 
-    .tablet.landscape,
-    .mobile.landscape {
-      .about-content__text-wrap {
-        background: rgba(50, 42, 50, 0.50);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        padding: 3.125vw 2vw;
-        position: relative;
-        z-index: 3;
-        width: 27vw;
-        height: fit-content;
-        transform: translate(10%, -40%);
+.tablet.landscape,
+.mobile.landscape {
+  .about-content__text-wrap {
+    background: rgba(50, 42, 50, 0.50);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 3.125vw 2vw;
+    position: relative;
+    z-index: 3;
+    width: 27vw;
+    height: fit-content;
+    transform: translate(10%, -40%);
 
-        &.last {
-          transform: translate(-10%, 40%);
-        }
+    &.last {
+      transform: translate(-10%, 40%);
+    }
 
-        .decor {
-          display: flex;
-        }
+    .decor {
+      display: flex;
+    }
 
-        h3 {
-          @include adaptive-font(40, 10)
-        }
+    h3 {
+      @include adaptive-font(40, 10)
+    }
 
-        p {
-          @include adaptive-font(20, 5)
-        }
+    p {
+      @include adaptive-font(20, 5)
+    }
 
-        .about-btn-wrap {
-          padding: 0
-        }
-      }
+    .about-btn-wrap {
+      padding: 0
     }
   }
 }
@@ -832,6 +835,10 @@ section {
       @include tablet {
         font-size: 200px;
       }
+
+      @include laptop {
+        font-size: 10.4vw;
+      }
     }
   }
 
@@ -913,16 +920,7 @@ section {
     width: 72vw;
   }
 
-  @at-root {
 
-    .tablet.landscape,
-    .mobile.landscape {
-      .location-img-wrap {
-        height: 68vh;
-        width: 72vw;
-      }
-    }
-  }
 
   &::after {
     content: "";
@@ -950,6 +948,14 @@ section {
     object-position: center;
     height: 100%;
     width: 100%;
+  }
+}
+
+.tablet.landscape,
+.mobile.landscape {
+  .location-img-wrap {
+    height: 68vh;
+    width: 72vw;
   }
 }
 
@@ -1017,8 +1023,8 @@ section {
     order: 2;
     width: 50%;
     flex: 1;
-    padding-left: 80px;
-    padding-right: 120px;
+    padding-left: 4.1vw;
+    padding-right: 6.25vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1069,7 +1075,7 @@ section {
   @include laptop {
 
     width: 50%;
-    flex: 1;
+    // flex: 1;
   }
 
   // @at-root {
@@ -1233,7 +1239,7 @@ section {
   .tour-lamp-wrap {
     display: flex;
     justify-content: center;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 
   }
 
@@ -1259,16 +1265,6 @@ section {
 
     }
 
-    @at-root {
-
-      .tablet.landscape,
-      .mobile.landscape {
-        .tour-lamp {
-          width: 23%;
-
-        }
-      }
-    }
   }
 
   .tour__content {
@@ -1307,15 +1303,6 @@ section {
 
     }
 
-    @at-root {
-
-      .tablet.landscape,
-      .mobile.landscape {
-        .tour-iframe {
-          height: 90vh;
-        }
-      }
-    }
   }
 
   .tour__text-wrap {
@@ -1356,6 +1343,18 @@ section {
   }
 }
 
+.tablet.landscape,
+.mobile.landscape {
+  .tour-lamp {
+    width: 23%;
+
+  }
+
+  .tour-iframe {
+    height: 90vh;
+  }
+}
+
 .tour-btn-wrap {
   padding-left: 58px;
   margin-top: 28px;
@@ -1377,14 +1376,13 @@ section {
 
   }
 
-  @at-root {
 
-    .tablet.landscape,
-    .mobile.landscape {
-      .advantages {
-        padding: 210px 0px 0px;
-      }
-    }
+}
+
+.tablet.landscape,
+.mobile.landscape {
+  .advantages {
+    padding: 210px 0px 0px;
   }
 }
 
@@ -1399,23 +1397,18 @@ section {
     background-image: radial-gradient(circle at 55% 60%, rgba(172, 126, 102, 0.50) 1%, rgba(238, 130, 238, 0) 60%),
       url('../images/Advantages/bg-pc.jpg');
   }
+}
 
-  @at-root {
-
-    .tablet.landscape,
-    .mobile.landscape {
-      .advantages-wrapper {
-        border-radius: 40px;
-        display: flex;
-        padding: 210px 40px;
-        justify-content: space-between;
-        background-image: radial-gradient(circle at 55% 60%, rgba(172, 126, 102, 0.50) 1%, rgba(238, 130, 238, 0) 60%),
-          url('../images/Advantages/bg-pc.jpg');
-      }
-    }
+.tablet.landscape,
+.mobile.landscape {
+  .advantages-wrapper {
+    border-radius: 40px;
+    display: flex;
+    padding: 210px 40px;
+    justify-content: space-between;
+    background-image: radial-gradient(circle at 55% 60%, rgba(172, 126, 102, 0.50) 1%, rgba(238, 130, 238, 0) 60%),
+      url('../images/Advantages/bg-pc.jpg');
   }
-
-
 }
 
 .advantages-title {
@@ -1437,24 +1430,21 @@ section {
     @include adaptive-font(120, 20);
 
   }
+}
 
-  @at-root {
-
-    .tablet.landscape,
-    .mobile.landscape {
-      .advantages-title {
-        width: 50%;
-        height: 40vh;
-        top: 160px;
-        @include adaptive-font(120, 20)
-      }
-    }
-
-    .mobile.landscape .advantages-title {
-      top: 80px;
-
-    }
+.tablet.landscape,
+.mobile.landscape {
+  .advantages-title {
+    width: 50%;
+    height: 40vh;
+    top: 160px;
+    @include adaptive-font(120, 20)
   }
+}
+
+.mobile.landscape .advantages-title {
+  top: 80px;
+
 }
 
 .advantages-list {
@@ -1468,15 +1458,14 @@ section {
     width: 50%;
   }
 
-  @at-root {
 
-    .tablet.landscape,
-    .mobile.landscape {
-      .advantages-list {
+}
 
-        width: 50%;
-      }
-    }
+.tablet.landscape,
+.mobile.landscape {
+  .advantages-list {
+
+    width: 50%;
   }
 }
 
@@ -1509,58 +1498,7 @@ section {
 
   }
 
-  @at-root {
 
-    .tablet.landscape {
-      .advantage-card {
-        height: calc((50vw - 80px));
-
-        p {
-          max-width: 80%;
-        }
-      }
-    }
-
-    .mobile.landscape .advantage-card {
-      height: calc((50vw - 80px) * 0.70);
-
-      &:nth-child(1) {
-        top: 80px; // Перша картка зупиняється на 10px від верху
-      }
-
-      &:nth-child(2) {
-        top: 90px; // Друга картка зупиняється на 20px від верху
-      }
-
-      &:nth-child(3) {
-        top: 100px; // Третя картка зупиняється на 30px від верху
-      }
-
-      &:nth-child(4) {
-        top: 110px; // Четверта картка зупиняється на 40px від верху
-      }
-
-      &:nth-child(5) {
-        top: 120px; // П'ята картка зупиняється на 50px від верху
-      }
-
-      &:nth-child(6) {
-        top: 130px; // Шоста картка зупиняється на 60px від верху
-      }
-
-      &:nth-child(7) {
-        top: 140px; // Шоста картка зупиняється на 60px від верху
-      }
-
-      p {
-        max-width: 100%;
-      }
-
-      .number-wrap {
-        display: none;
-      }
-    }
-  }
 
   &:nth-child(1) {
     top: 180px; // Перша картка зупиняється на 10px від верху
@@ -1637,10 +1575,63 @@ section {
         height: 23px;
       }
     }
+
+    @include laptop {
+      font-size: 10.4vw;
+    }
   }
 
 }
 
+.tablet.landscape {
+  .advantage-card {
+    height: calc((50vw - 80px));
+
+    p {
+      max-width: 80%;
+    }
+  }
+}
+
+.mobile.landscape .advantage-card {
+  height: calc((50vw - 80px) * 0.70);
+
+  &:nth-child(1) {
+    top: 80px; // Перша картка зупиняється на 10px від верху
+  }
+
+  &:nth-child(2) {
+    top: 90px; // Друга картка зупиняється на 20px від верху
+  }
+
+  &:nth-child(3) {
+    top: 100px; // Третя картка зупиняється на 30px від верху
+  }
+
+  &:nth-child(4) {
+    top: 110px; // Четверта картка зупиняється на 40px від верху
+  }
+
+  &:nth-child(5) {
+    top: 120px; // П'ята картка зупиняється на 50px від верху
+  }
+
+  &:nth-child(6) {
+    top: 130px; // Шоста картка зупиняється на 60px від верху
+  }
+
+  &:nth-child(7) {
+    top: 140px; // Шоста картка зупиняється на 60px від верху
+  }
+
+  p {
+    max-width: 100%;
+  }
+
+  .number-wrap {
+    display: none;
+  }
+}
 
 
 .property {
@@ -1660,19 +1651,7 @@ section {
     }
   }
 
-  @at-root {
 
-    .tablet.landscape,
-    .mobile.landscape {
-      .property {
-        div.container {
-          padding-left: 50%;
-          margin-top: 150px;
-        }
-      }
-
-    }
-  }
 
   .container {
     margin-top: 140px;
@@ -1709,28 +1688,7 @@ section {
       }
     }
 
-    @at-root {
 
-      .tablet.landscape,
-      .mobile.landscape {
-        .property-img-wrap {
-          height: 100vh;
-          position: relative;
-          border-radius: 40px 40px 0px 0px;
-
-          .mask {
-            display: block;
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, #ffffff00 50%, $bg-color 99%);
-            z-index: 1;
-          }
-        }
-      }
-    }
   }
 
   .property-img {
@@ -1759,24 +1717,39 @@ section {
   }
 }
 
+.tablet.landscape,
+.mobile.landscape {
+  .property {
+    div.container {
+      padding-left: 50%;
+      margin-top: 150px;
+    }
+  }
+
+  .property-img-wrap {
+    height: 100vh;
+    position: relative;
+    border-radius: 40px 40px 0px 0px;
+
+    .mask {
+      display: block;
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #ffffff00 50%, $bg-color 99%);
+      z-index: 1;
+    }
+  }
+}
+
 .property-title-wrap {
   position: relative;
 
   @include laptop {
     top: -10vw;
     left: 30vw;
-  }
-
-  @at-root {
-
-    .tablet.landscape,
-    .mobile.landscape {
-      .property-title-wrap {
-        top: -10vw;
-        left: 30vw;
-      }
-
-    }
   }
 
   .right {
@@ -1798,4 +1771,12 @@ section {
 .property-descr {
   @include general-text;
   padding-left: 58px;
+}
+
+.tablet.landscape,
+.mobile.landscape {
+  .property-title-wrap {
+    top: -10vw;
+    left: 30vw;
+  }
 }

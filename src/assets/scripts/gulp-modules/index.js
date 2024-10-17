@@ -14,7 +14,7 @@ googleMap();
 // initSmoothScrolling();
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 
-function initSwiperHero() {
+function initSwiperHero(timelineFirstToPlay) {
   const swiperHero = new Swiper('.swiper-hero', {
     modules: [Autoplay, Pagination, EffectCreative],
     speed: 1500,
@@ -94,6 +94,13 @@ function initSwiperHero() {
         const prevPrevcopied = prevPrevImage.cloneNode(true);
         imageLeft.innerHTML = '';
         imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
+        swiper.autoplay.stop();
+        setTimeout(() => {
+          timelineFirstToPlay.add(() => {
+            swiper.autoplay.start();
+          });
+          timelineFirstToPlay.play();
+        }, 1000);
       },
     },
     pagination: {
@@ -280,7 +287,36 @@ function scaleLargeImageToSmall(smallImage, largeImage) {
 }
 
 window.addEventListener('finishLoader', () => {
-  initSwiperHero();
+  const imgForLoader = document.querySelector('.swiper-hero-pc--thumb .swiper-slide img');
+  const copied = imgForLoader.cloneNode(true);
+  const container = document.querySelector('.hero');
+  const widthScaleTo = document.querySelector('.swiper-hero-pc').getBoundingClientRect().width;
+  Object.assign(copied.style, {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    position: 'absolute',
+    borderRadius: '90px',
+    zIndex: '10',
+    padding: '40px',
+  });
+
+  container.insertAdjacentElement('afterbegin', copied);
+  const tl = gsap.timeline({
+    paused: true,
+  }).to(copied, {
+    width: widthScaleTo + 80,
+    duration: 1.75,
+    ease: 'power4.out',
+  })
+  .to(copied, {
+    autoAlpha: 0,
+    duration: 0.25,
+  })
+  .add(() => {
+    copied.remove();
+  });
+  initSwiperHero(tl);
 });
 
 const about = gsap.timeline({

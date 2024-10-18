@@ -10,10 +10,18 @@ import { gsap, ScrollTrigger, CustomEase } from 'gsap/all';
 // import { initSmoothScrolling } from '../modules/scroll/leniscroll';
 import googleMap from '../modules/map/map';
 import device from 'current-device';
+if (device.iphone()) {
+  document.querySelector('html').style.overscrollBehavior = 'none';
+}
 googleMap();
 // initSmoothScrolling();
 gsap.registerPlugin(ScrollTrigger, CustomEase);
-
+document.querySelector('.up-btn-wrap').addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+});
 function initSwiperHero(timelineFirstToPlay) {
   const swiperHero = new Swiper('.swiper-hero', {
     modules: [Autoplay, Pagination, EffectCreative],
@@ -76,254 +84,261 @@ function initSwiperHero(timelineFirstToPlay) {
   //   },
   // });
   const ANIMATION_DURATION = 0.5;
-  const swiperHeroPcThumb = new Swiper('.swiper-hero-pc--thumb', {
-    modules: [Autoplay, Pagination, Navigation, Thumbs, Controller],
-    slidesPerView: 3.5,
-    speed: ANIMATION_DURATION * 1000,
-    initialSlide: 1,
-    loop: true,
-    spaceBetween: 20,
-    autoplay: {
-      delay: 2000,
-      disableOnInteraction: false,
-    },
-    on: {
-      init: swiper => {
-        const imageLeft = document.querySelector('[data-prev-container]');
-        const prevPrevImage = swiper.slides[0].querySelector('img');
-        const prevPrevcopied = prevPrevImage.cloneNode(true);
-        imageLeft.innerHTML = '';
-        imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
-        swiper.autoplay.stop();
-        setTimeout(() => {
-          timelineFirstToPlay.add(() => {
-            swiper.autoplay.start();
-          });
-          timelineFirstToPlay.play();
-        }, 1000);
+  if (timelineFirstToPlay) {
+    const swiperHeroPcThumb = new Swiper('.swiper-hero-pc--thumb', {
+      modules: [Autoplay, Pagination, Navigation, Thumbs, Controller],
+      slidesPerView: 3.5,
+      speed: ANIMATION_DURATION * 1000,
+      initialSlide: 1,
+      loop: true,
+      spaceBetween: 20,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
       },
-    },
-    pagination: {
-      el: '.swiper-pagination-pc',
-      clickable: true,
-      type: 'progressbar',
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
-  swiperHeroPcThumb.on('slideNextTransitionStart', function(swiper) {
-    const impossibleSlider = document.querySelector('[data-impossible-slider]');
-    const impossibleSliderContainer = impossibleSlider.closest('.swiper-hero-pc');
-    const containerWidth = impossibleSliderContainer.getBoundingClientRect().width;
-    const imageLeft = document.querySelector('[data-prev-container]');
-    const imageRight = document.querySelector('[data-next-container]');
-    const prevImage = swiper.slides[swiper.previousIndex].querySelector('img');
-    const prevPrevImage = swiper.slides[swiper.previousIndex - 1]
-      ? swiper.slides[swiper.previousIndex - 1].querySelector('img')
-      : swiper.slides[swiper.slides.length - 1].querySelector('img');
-    const copied = prevImage.cloneNode(true);
-    const prevPrevcopied = prevPrevImage.cloneNode(true);
-    imageLeft.innerHTML = '';
-    imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
-    imageRight.innerHTML = '';
-    imageRight.insertAdjacentElement('afterbegin', copied);
-
-    gsap
-      .timeline({
-        defaults: {
-          ease: 'none',
+      on: {
+        init: swiper => {
+          const imageLeft = document.querySelector('[data-prev-container]');
+          const prevPrevImage = swiper.slides[0].querySelector('img');
+          const prevPrevcopied = prevPrevImage.cloneNode(true);
+          imageLeft.innerHTML = '';
+          imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
+          swiper.autoplay.stop();
+          setTimeout(() => {
+            timelineFirstToPlay.add(() => {
+              swiper.autoplay.start();
+            });
+            timelineFirstToPlay.play();
+          }, 1000);
         },
-      })
-      .set(impossibleSlider, {
-        x: 0,
-      })
-      .set(imageRight, {
-        scaleX: scaleLargeImageToSmall(prevImage, imageRight).scaleX,
-        scaleY: scaleLargeImageToSmall(prevImage, imageRight).scaleY,
-        y: 80,
-        transformOrigin: 'top right',
-      })
-      .fromTo(
-        impossibleSlider,
-        {
+      },
+      pagination: {
+        el: '.swiper-pagination-pc',
+        clickable: true,
+        type: 'progressbar',
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+    swiperHeroPcThumb.on('slideNextTransitionStart', function(swiper) {
+      const impossibleSlider = document.querySelector('[data-impossible-slider]');
+      const impossibleSliderContainer = impossibleSlider.closest('.swiper-hero-pc');
+      const containerWidth = impossibleSliderContainer.getBoundingClientRect().width;
+      const imageLeft = document.querySelector('[data-prev-container]');
+      const imageRight = document.querySelector('[data-next-container]');
+      const prevImage = swiper.slides[swiper.previousIndex].querySelector('img');
+      const prevPrevImage = swiper.slides[swiper.previousIndex - 1]
+        ? swiper.slides[swiper.previousIndex - 1].querySelector('img')
+        : swiper.slides[swiper.slides.length - 1].querySelector('img');
+      const copied = prevImage.cloneNode(true);
+      const prevPrevcopied = prevPrevImage.cloneNode(true);
+      imageLeft.innerHTML = '';
+      imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
+      imageRight.innerHTML = '';
+      imageRight.insertAdjacentElement('afterbegin', copied);
+
+      gsap
+        .timeline({
+          defaults: {
+            ease: 'none',
+          },
+        })
+        .set(impossibleSlider, {
           x: 0,
-        },
-        {
-          x: containerWidth * -1,
-          duration: ANIMATION_DURATION,
-        },
-      )
-      .fromTo(
-        '.swiper-hero-pc--thumb .swiper-slide-prev img',
-        {
-          opacity: 1,
-        },
-        {
-          opacity: 0,
-          clearProps: 'all',
-          duration: ANIMATION_DURATION * 0.75,
-          transformOrigin: 'top right',
-        },
-        '<',
-      )
-
-      .fromTo(
-        imageRight,
-        {
+        })
+        .set(imageRight, {
           scaleX: scaleLargeImageToSmall(prevImage, imageRight).scaleX,
           scaleY: scaleLargeImageToSmall(prevImage, imageRight).scaleY,
           y: 80,
-          filter: 'grayscale(100%)',
-        },
-        {
-          scaleX: 1,
-          scaleY: 1,
-          y: 0,
-          duration: ANIMATION_DURATION * 0.75,
-          ease: 'power1.out',
-          filter: 'grayscale(0)',
           transformOrigin: 'top right',
-          clearProps: 'all',
-        },
-        '>30%',
-      );
-    // .fromTo()
-  });
-  swiperHeroPcThumb.on('slidePrevTransitionStart', function(swiper) {
-    const impossibleSlider = document.querySelector('[data-impossible-slider]');
-    const impossibleSliderContainer = impossibleSlider.closest('.swiper-hero-pc');
-    const containerWidth = impossibleSliderContainer.getBoundingClientRect().width;
-    const imageLeft = document.querySelector('[data-prev-container]');
-    const imageRight = document.querySelector('[data-next-container]');
-    const prevImage = swiper.slides[swiper.previousIndex - 1].querySelector('img');
-    const prevPrevImage = swiper.slides[swiper.previousIndex - 2]
-      ? swiper.slides[swiper.previousIndex - 2].querySelector('img')
-      : swiper.slides[0].querySelector('img');
-    const copied = prevImage.cloneNode(true);
-    const prevPrevcopied = prevPrevImage.cloneNode(true);
-    imageLeft.innerHTML = '';
-    imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
-    imageRight.innerHTML = '';
-    imageRight.insertAdjacentElement('afterbegin', copied);
+        })
+        .fromTo(
+          impossibleSlider,
+          {
+            x: 0,
+          },
+          {
+            x: containerWidth * -1,
+            duration: ANIMATION_DURATION,
+          },
+        )
+        .fromTo(
+          '.swiper-hero-pc--thumb .swiper-slide-prev img',
+          {
+            opacity: 1,
+          },
+          {
+            opacity: 0,
+            clearProps: 'all',
+            duration: ANIMATION_DURATION * 0.75,
+            transformOrigin: 'top right',
+          },
+          '<',
+        )
 
-    gsap
-      .timeline({
-        defaults: {
-          ease: 'none',
-        },
-      })
-      .set(impossibleSlider, {
-        x: containerWidth * -1,
-      })
-      .fromTo(
-        imageRight,
-        {
-          scaleX: 1,
-          scaleY: 1,
-          y: 0,
-          filter: 'grayscale(0)',
-        },
-        {
-          scaleX: scaleLargeImageToSmall(prevImage, imageRight).scaleX,
-          scaleY: scaleLargeImageToSmall(prevImage, imageRight).scaleY,
-          filter: 'grayscale(100%)',
-          y: 80,
-          duration: ANIMATION_DURATION,
-          ease: 'power2.out',
-          transformOrigin: 'top right',
-        },
-      )
-      .fromTo(
-        impossibleSlider,
-        {
+        .fromTo(
+          imageRight,
+          {
+            scaleX: scaleLargeImageToSmall(prevImage, imageRight).scaleX,
+            scaleY: scaleLargeImageToSmall(prevImage, imageRight).scaleY,
+            y: 80,
+            filter: 'grayscale(100%)',
+          },
+          {
+            scaleX: 1,
+            scaleY: 1,
+            y: 0,
+            duration: ANIMATION_DURATION * 0.75,
+            ease: 'power1.out',
+            filter: 'grayscale(0)',
+            transformOrigin: 'top right',
+            clearProps: 'all',
+          },
+          '>30%',
+        );
+      // .fromTo()
+    });
+    swiperHeroPcThumb.on('slidePrevTransitionStart', function(swiper) {
+      const impossibleSlider = document.querySelector('[data-impossible-slider]');
+      const impossibleSliderContainer = impossibleSlider.closest('.swiper-hero-pc');
+      const containerWidth = impossibleSliderContainer.getBoundingClientRect().width;
+      const imageLeft = document.querySelector('[data-prev-container]');
+      const imageRight = document.querySelector('[data-next-container]');
+      const prevImage = swiper.slides[swiper.previousIndex - 1].querySelector('img');
+      const prevPrevImage = swiper.slides[swiper.previousIndex - 2]
+        ? swiper.slides[swiper.previousIndex - 2].querySelector('img')
+        : swiper.slides[0].querySelector('img');
+      const copied = prevImage.cloneNode(true);
+      const prevPrevcopied = prevPrevImage.cloneNode(true);
+      imageLeft.innerHTML = '';
+      imageLeft.insertAdjacentElement('afterbegin', prevPrevcopied);
+      imageRight.innerHTML = '';
+      imageRight.insertAdjacentElement('afterbegin', copied);
+
+      gsap
+        .timeline({
+          defaults: {
+            ease: 'none',
+          },
+        })
+        .set(impossibleSlider, {
           x: containerWidth * -1,
-        },
-        {
-          x: 0,
-          duration: ANIMATION_DURATION,
-          ease: 'power2.out',
-        },
-        '<50%',
-      )
-      .fromTo(
-        '.swiper-hero-pc--thumb .swiper-slide-active img',
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          clearProps: 'all',
-          duration: ANIMATION_DURATION,
-          transformOrigin: 'top right',
-        },
-        '<',
-      );
-  });
+        })
+        .fromTo(
+          imageRight,
+          {
+            scaleX: 1,
+            scaleY: 1,
+            y: 0,
+            filter: 'grayscale(0)',
+          },
+          {
+            scaleX: scaleLargeImageToSmall(prevImage, imageRight).scaleX,
+            scaleY: scaleLargeImageToSmall(prevImage, imageRight).scaleY,
+            filter: 'grayscale(100%)',
+            y: 80,
+            duration: ANIMATION_DURATION,
+            ease: 'power2.out',
+            transformOrigin: 'top right',
+          },
+        )
+        .fromTo(
+          impossibleSlider,
+          {
+            x: containerWidth * -1,
+          },
+          {
+            x: 0,
+            duration: ANIMATION_DURATION,
+            ease: 'power2.out',
+          },
+          '<50%',
+        )
+        .fromTo(
+          '.swiper-hero-pc--thumb .swiper-slide-active img',
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            clearProps: 'all',
+            duration: ANIMATION_DURATION,
+            transformOrigin: 'top right',
+          },
+          '<',
+        );
+    });
 
-  // swiperHeroPcThumb.controller.control = swiperHeroPc;
-  // swiperHeroPc.controller.control = swiperHeroPcThumb;
-}
+    // swiperHeroPcThumb.controller.control = swiperHeroPc;
+    // swiperHeroPc.controller.control = swiperHeroPcThumb;
+  }
 
-function scaleLargeImageToSmall(smallImage, largeImage) {
-  // Отримуємо видимі розміри малого зображення
-  const smallWidth = smallImage.offsetWidth;
-  const smallHeight = smallImage.offsetHeight;
+  function scaleLargeImageToSmall(smallImage, largeImage) {
+    // Отримуємо видимі розміри малого зображення
+    const smallWidth = smallImage.offsetWidth;
+    const smallHeight = smallImage.offsetHeight;
 
-  // Отримуємо видимі розміри великого зображення
-  const largeWidth = largeImage.offsetWidth;
-  const largeHeight = largeImage.offsetHeight;
+    // Отримуємо видимі розміри великого зображення
+    const largeWidth = largeImage.offsetWidth;
+    const largeHeight = largeImage.offsetHeight;
 
-  // Обчислюємо коефіцієнт масштабування
-  const scaleX = smallWidth / largeWidth;
-  const scaleY = smallHeight / largeHeight;
+    // Обчислюємо коефіцієнт масштабування
+    const scaleX = smallWidth / largeWidth;
+    const scaleY = smallHeight / largeHeight;
 
-  // Застосовуємо масштабування за допомогою CSS трансформацій
-  return {
-    scaleX,
-    scaleY,
-  };
+    // Застосовуємо масштабування за допомогою CSS трансформацій
+    return {
+      scaleX,
+      scaleY,
+    };
+  }
 }
 
 window.addEventListener('finishLoader', () => {
-  const imgForLoader = document.querySelector('.swiper-hero-pc--thumb .swiper-slide img');
-  const copied = imgForLoader.cloneNode(true);
-  const container = document.querySelector('.hero');
-  const widthScaleTo = document.querySelector('.swiper-hero-pc').getBoundingClientRect().width;
-  Object.assign(copied.style, {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    position: 'absolute',
-    borderRadius: '90px',
-    zIndex: '10',
-    padding: '40px',
-  });
+  if (window.innerWidth > 1366 || (window.innerWidth > window.innerHeight && !device.mobile())) {
+    const imgForLoader = document.querySelector('.swiper-hero-pc--thumb .swiper-slide img');
+    const copied = imgForLoader.cloneNode(true);
+    const container = document.querySelector('.hero');
+    const widthScaleTo = document.querySelector('.swiper-hero-pc').getBoundingClientRect().width;
+    Object.assign(copied.style, {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      position: 'absolute',
+      borderRadius: '90px',
+      zIndex: '10',
+      padding: '40px',
+    });
 
-  container.insertAdjacentElement('afterbegin', copied);
-  const tl = gsap.timeline({
-    paused: true,
-  }).to(copied, {
-    width: widthScaleTo + 80,
-    duration: 1.75,
-    ease: 'power4.out',
-  })
-  .to(copied, {
-    autoAlpha: 0,
-    duration: 0.25,
-  })
-  .add(() => {
-    copied.remove();
-  });
-  initSwiperHero(tl);
+    container.insertAdjacentElement('afterbegin', copied);
+    const tl = gsap
+      .timeline({
+        paused: true,
+      })
+      .to(copied, {
+        width: widthScaleTo + 80,
+        duration: 1.75,
+        ease: 'power4.out',
+      })
+      .to(copied, {
+        autoAlpha: 0,
+        duration: 0.25,
+      })
+      .add(() => {
+        copied.remove();
+      });
+    initSwiperHero(tl);
+  }
+  initSwiperHero();
 });
 
 const about = gsap.timeline({
   scrollTrigger: {
     trigger: '.about-title',
     start: 'top bottom', // when the top of the trigger hits the top of the viewport
-    end: 'bottom+=400% top', // end after scrolling 500px beyond the start
+    end: 'bottom top', // end after scrolling 500px beyond the start
     // smooth scrubbing, takes 1 second to "catch up" to the
     scrub: 1,
   },
@@ -339,67 +354,168 @@ about.fromTo(
     xPercent: -110,
   },
 );
-const aboutImg = gsap.timeline({
-  scrollTrigger: {
-    pinType: 'fixed',
-    trigger: '.about', // Блок, до якого прив'язуємо анімацію
-    start: 'top top', // Коли починається анімація
-    end: 'bottom top', // Коли закінчується
-    scrub: true, // Плавна анімація
-    markers: true,
-    // pin: '.about-wrap', // Затримка (пінінг) блока
-    pin: '.about__anim-svg', // Затримка (пінінг) блока
-    onLeaveBack: () => {
-      // aboutImg.reverse();
-    },
-    // pinSpacing: false,
-    // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
-  },
-});
+// const aboutImg = gsap.timeline({
+//   scrollTrigger: {
+//     pinType: 'fixed',
+//     trigger: '.about', // Блок, до якого прив'язуємо анімацію
+//     start: 'top top', // Коли починається анімація
+//     end: 'bottom top', // Коли закінчується
+//     scrub: true, // Плавна анімація
+//     markers: true,
+//     // pin: '.about-wrap', // Затримка (пінінг) блока
+//     pin: '.about__anim-svg', // Затримка (пінінг) блока
+//     onLeaveBack: () => {
+//       // aboutImg.reverse();
+//     },
+//     // pinSpacing: false,
+//     // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
+//   },
+// });
 if (window.innerWidth < 1366 || window.innerWidth < window.innerHeight) {
-  aboutImg
-    .to('.about-big-wrap', {
-      scale: 2.4,
-
-      ease: 'none',
-    })
-    .to(
-      '.about-img',
-
+  const aboutImgMob = gsap.timeline({
+    scrollTrigger: {
+      pinType: 'fixed',
+      trigger: '.about', // Блок, до якого прив'язуємо анімацію
+      start: 'top top', // Коли починається анімація
+      end: 'bottom top', // Коли закінчується
+      // scrub: true, // Плавна анімація
+      // markers: true,
+      // pin: '.about-wrap', // Затримка (пінінг) блока
+      pin: '.about-wrap', // Затримка (пінінг) блока
+      onLeaveBack: () => {
+        aboutImgMob.reverse();
+      },
+      // pinSpacing: false,
+      // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
+    },
+  });
+  const path = document.querySelector('[data-about-img-path-mob]');
+  const defaultState = path.getAttribute('d');
+  // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
+  const activeState =
+    'M 375 0 H 0 V 635 H 375 V 0 Z M 192 733 C 431 732 483 483 484 330 C 483 151 414 -95 192 -95 C -37 -95 -118 152 -118 331 C -117 486 -42 733 192 733 Z';
+  const percentOfCircleOpeningAnimation = 0.25;
+  aboutImgMob
+    .fromTo(
+      path,
       {
-        scale: 0.8,
+        attr: {
+          d: defaultState,
+        },
+      },
+      {
+        attr: {
+          d: activeState,
+        },
+        duration: percentOfCircleOpeningAnimation,
         ease: 'none',
+      },
+    )
+    .fromTo(
+      '.about-img',
+      {
+        scale: 1,
+        // duration: 0.4,
+        transformOrigin: 'center',
+      },
+      {
+        scale: 1.2,
       },
       '<',
     );
-} else {
+  // .to(
+  //   '.about-img',
 
+  //   // {
+  //   //   yPercent: -30,
+  //   // },
+  // );
+  // .to(path.parentElement, {
+  //   scale: 1.1,
+  //   duration: 1 - percentOfCircleOpeningAnimation,
+  // });
+  // .fromTo(
+  //   '.about-img',
+  //   {
+  //     scale: 1,
+  //     duration: 0.4,
+  //     transformOrigin: 'top',
+  //   },
+  //   {
+  //     scale: 1.2,
+  //     yPercent: -10,
+  //   },
+  //   '<',
+  // );
+  // aboutImg
+  //   .to('.about-big-wrap', {
+  //     scale: 2.4,
+
+  //     ease: 'none',
+  //   })
+  //   .to(
+  //     '.about-img',
+
+  //     {
+  //       scale: 0.8,
+  //       ease: 'none',
+  //     },
+  //     '<',
+  //   );
+} else {
+  const aboutImg = gsap.timeline({
+    scrollTrigger: {
+      pinType: 'fixed',
+      trigger: '.about', // Блок, до якого прив'язуємо анімацію
+      start: 'top top', // Коли починається анімація
+      end: 'bottom top', // Коли закінчується
+      scrub: true, // Плавна анімація
+      // markers: true,
+      // pin: '.about-wrap', // Затримка (пінінг) блока
+      pin: '.about__anim-svg', // Затримка (пінінг) блока
+      onLeaveBack: () => {
+        // aboutImg.reverse();
+      },
+      // pinSpacing: false,
+      // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
+    },
+  });
   const path = document.querySelector('[data-about-img-path]');
   const defaultState = path.getAttribute('d');
   // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
-  const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -409 491 C -407 964 -6 1169 951 1159 C 1928 1157 2362 959 2362 472 C 2362 -1 1902 -182 956 -177 C 6 -182 -400 4 -407 491 Z';
-  const percentOfCircleOpeningAnimation = 0.15;
-  aboutImg.fromTo(path, {
-    attr: {
-      d: defaultState,
-    }
-  }, {
-    attr: {
-      d: activeState,
-    },
-    duration: percentOfCircleOpeningAnimation,
-    ease: 'none',
-  })
-  .from('.about-img', {
-    scale: 1.1,
-    duration: percentOfCircleOpeningAnimation,
-    transformOrigin: 'top'
-  },'<')
-  .to(path.parentElement, {
-    scale: 1.2,
-    duration: 1 - percentOfCircleOpeningAnimation,
-  })
-    
+  const activeState =
+    'M 1921 0 H 0 V 970 H 1921 V 0 Z M -409 491 C -407 964 -6 1169 951 1159 C 1928 1157 2362 959 2362 472 C 2362 -1 1902 -182 956 -177 C 6 -182 -400 4 -407 491 Z';
+  const percentOfCircleOpeningAnimation = 0.5;
+  aboutImg
+    .fromTo(
+      path,
+      {
+        attr: {
+          d: defaultState,
+        },
+      },
+      {
+        attr: {
+          d: activeState,
+        },
+        duration: percentOfCircleOpeningAnimation,
+        ease: 'none',
+      },
+    )
+    .from(
+      '.about-img',
+      {
+        scale: 1,
+        duration: 0.4,
+        transformOrigin: 'top',
+      },
+      '<',
+    )
+    .to(path.parentElement, {
+      scale: 1.1,
+      duration: 1 - percentOfCircleOpeningAnimation,
+    });
+
   // aboutImg
   //   .to('.about-big-wrap', {
   //     scale: 2.7,
@@ -416,7 +532,38 @@ if (window.innerWidth < 1366 || window.innerWidth < window.innerHeight) {
   //     '<',
   //   );
 }
-
+if (window.innerWidth > 1366 || (window.innerWidth < window.innerHeight && !device.mobile())) {
+  const tlAboutContent = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.about-content',
+      start: 'top center',
+      end: `bottom top`,
+      scrub: true,
+      // pin: true, // Пінінг другого блоку
+      // pinSpacing: false,
+    },
+  });
+  tlAboutContent
+    .fromTo(
+      '.about-content__text-wrap',
+      {
+        yPercent: 50,
+      },
+      {
+        yPercent: -20,
+      },
+    )
+    .fromTo(
+      '.about-video',
+      {
+        yPercent: 5,
+      },
+      {
+        yPercent: -15,
+      },
+      '<',
+    );
+}
 function textAppear(selector) {
   console.log(selector);
   gsap.from(`${selector}`, {

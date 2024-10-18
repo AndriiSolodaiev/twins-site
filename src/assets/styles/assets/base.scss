@@ -185,7 +185,8 @@ a {
 
 html {
   font-size: 14px;
-  -webkit-overflow-scrolling: none;
+  //   overscroll-behavior: none;
+  //   -webkit-overscroll-behavior: none;
 }
 
 body {
@@ -198,7 +199,8 @@ body {
   background-color: $wc;
   font-weight: 500;
   color: $text-color;
-  -webkit-overflow-scrolling: none;
+  // overscroll-behavior: none;
+  //   -webkit-overscroll-behavior: none;
 
 }
 
@@ -235,7 +237,7 @@ body textarea {
 
 ::selection {
   // background-color: $mc;
-  color: #fff;
+  // color: #fff;
 }
 
 ::placeholder {

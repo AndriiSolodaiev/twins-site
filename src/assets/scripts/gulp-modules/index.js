@@ -7,21 +7,21 @@ import Swiper, {
   Controller,
 } from 'swiper';
 import { gsap, ScrollTrigger, CustomEase } from 'gsap/all';
-// import { initSmoothScrolling } from '../modules/scroll/leniscroll';
+import { initSmoothScrolling } from '../modules/scroll/leniscroll';
 import googleMap from '../modules/map/map';
 import device from 'current-device';
 if (device.iphone()) {
   document.querySelector('html').style.overscrollBehavior = 'none';
 }
 googleMap();
-// initSmoothScrolling();
+initSmoothScrolling();
 gsap.registerPlugin(ScrollTrigger, CustomEase);
-document.querySelector('.up-btn-wrap').addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-});
+// document.querySelector('.up-btn-wrap').addEventListener('click', () => {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: 'smooth',
+//   });
+// });
 function initSwiperHero(timelineFirstToPlay) {
   const swiperHero = new Swiper('.swiper-hero', {
     modules: [Autoplay, Pagination, EffectCreative],
@@ -524,16 +524,14 @@ const tlPanorama = gsap.timeline({
     start: 'top bottom',
     end: `bottom top`,
     scrub: 0.1,
-    // pin: true, // Пінінг другого блоку
-    // pinSpacing: false,
   },
 });
 
 tlPanorama // Анімація для зображення в другому блоці
-  .to(
+  .from(
     '.bg-img',
     {
-      scale: 1.4, // Збільшуємо масштаб зображення до 1.2 (можеш змінити на 1.5, якщо потрібно)
+      scale: 1.3, // Збільшуємо масштаб зображення до 1.2 (можеш змінити на 1.5, якщо потрібно)
     },
     '<',
   );

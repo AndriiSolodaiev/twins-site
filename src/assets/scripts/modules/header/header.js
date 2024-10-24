@@ -28,9 +28,9 @@ document.body.addEventListener('click', function(evt) {
     header.classList.toggle('menu-is-open');
     return;
   }
-  if (btnUp) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+  // if (btnUp) {
+  //   window.scrollTo({ top: 0, behavior: 'smooth' });
+  // }
   if (btn) {
     if (overflow.classList.contains('hidden')) {
       window.dispatchEvent(new Event('stop-scroll'));
@@ -57,6 +57,7 @@ const iframeWindow = document.querySelector('.iframe-window');
 if (iframeOpen) {
   iframeOpen.addEventListener('click', function() {
     iframePopUp.classList.add('oppened');
+    iframeWindow.src = 'https://apartment-tours.smartorange.com.ua/twins-day-floors/?scene=5';
   });
 }
 
@@ -64,6 +65,7 @@ if (iframeClose) {
   iframeClose.addEventListener('click', function() {
     console.log('close');
     iframePopUp.classList.remove('oppened');
+    iframeWindow.src = '';
   });
 }
 

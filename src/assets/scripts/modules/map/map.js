@@ -43,10 +43,15 @@ maps.forEach(image => {
 // eslint-disable-next-line no-unused-vars
 function initMap() {
   const gmarkers1 = [];
+  // const center = {
+  //   lat: 49.2281012,
+  //   lng: 28.3925433,
+  // };
   const center = {
-    lat: 49.2281012,
-    lng: 28.3925433,
+    lat: 49.2330266,
+    lng: 28.3977645,
   };
+
   const choosedCategories = new Set();
   choosedCategories.add('main');
   const filterItems = document.querySelectorAll('[data-marker]');
@@ -84,7 +89,7 @@ function initMap() {
       filterMarkers('main', choosedCategories);
     });
   });
-  var baseFolder = './assets/images/map/';
+  var baseFolder = '/wp-content/themes/3d/assets/images/map/';
   var defaultMarkerSize = new google.maps.Size(56, 90);
   var buildLogoSize = new google.maps.Size(82, 82);
   if (document.documentElement.clientWidth < 1600) {
@@ -99,6 +104,13 @@ function initMap() {
     restaurant: `${baseFolder}restaurant.svg`,
     school: `${baseFolder}school.svg`,
     sport: `${baseFolder}sport.svg`,
+    supermarket: `${baseFolder}supermarket.svg`,
+    drivingSchool: `${baseFolder}driving-school.svg`,
+    post: `${baseFolder}post.svg`,
+    aquapark: `${baseFolder}aquapark.svg`,
+    petrolStation: `${baseFolder}petrol-station.svg`,
+    busStop: `${baseFolder}bus-stop.svg`,
+    carWashing: `${baseFolder}car-washing.svg`,
   };
   const markersData = [
     {
@@ -261,7 +273,7 @@ function initMap() {
     {
       type: 'restaurant',
       icon: { url: markersAdresses.restaurant, scaledSize: defaultMarkerSize },
-      position: { lat: 41.738302, lng: 44.7104143 },
+      position: { lat: 49.2330792, lng: 28.3934522 },
       text: 'Ресторан Oasis - вулиця Рибацька, Зарванці, Вінницька область, Украина, 23223',
     },
     {
@@ -307,32 +319,104 @@ function initMap() {
     {
       type: 'sport',
       icon: { url: markersAdresses.sport, scaledSize: defaultMarkerSize },
-      position: { lat: 41.7388829, lng: 44.7146424 },
-      text: 'Sapori Veri - Ірпінь, вул. Університетська, 20',
+      position: { lat: 49.2314161, lng: 28.4046034 },
+      text: 'Басейн «Маяк» - вулиця Василя Порика, 28, Вінниця, Вінницька область, Украина, 21000',
     },
     {
       type: 'sport',
       icon: { url: markersAdresses.sport, scaledSize: defaultMarkerSize },
-      position: { lat: 41.7388829, lng: 44.7146424 },
-      text: 'Sapori Veri - Ірпінь, вул. Університетська, 20',
+      position: { lat: 49.2274522, lng: 28.3959631 },
+      text:
+        'Тренажерний зал Fitness House - вулиця Келецька, 121, Вінниця, Вінницька область, Украина, 21000',
     },
     {
       type: 'sport',
       icon: { url: markersAdresses.sport, scaledSize: defaultMarkerSize },
-      position: { lat: 41.7388829, lng: 44.7146424 },
-      text: 'Sapori Veri - Ірпінь, вул. Університетська, 20',
+      position: { lat: 49.2304731, lng: 28.3969808 },
+      text:
+        'Тренажерний зал Top Gym - вулиця Миколи Ващука, 20, Вінниця, Вінницька область, Украина, 21000',
     },
     {
       type: 'sport',
       icon: { url: markersAdresses.sport, scaledSize: defaultMarkerSize },
-      position: { lat: 41.7388829, lng: 44.7146424 },
-      text: 'Sapori Veri - Ірпінь, вул. Університетська, 20',
+      position: { lat: 49.2261373, lng: 28.4124733 },
+      text:
+        'Тренажерний зал GBS Level - вулиця Келецька, 78В, Вінниця, Вінницька область, Украина, 21000',
     },
     {
       type: 'sport',
       icon: { url: markersAdresses.sport, scaledSize: defaultMarkerSize },
-      position: { lat: 41.7388829, lng: 44.7146424 },
-      text: 'Sapori Veri - Ірпінь, вул. Університетська, 20',
+      position: { lat: 49.2310438447, lng: 28.3984194647 },
+      text: 'Стадіон - вулиця Миколи Ващука, 10, Вінниця, Вінницька область, Украина, 21000',
+    },
+    {
+      type: 'supermarket',
+      icon: { url: markersAdresses.supermarket, scaledSize: defaultMarkerSize },
+      position: { lat: 49.2270689, lng: 28.3960066 },
+      text: 'Супермаркет Сільпо - вулиця Келецька, 121, Вінниця, Вінницька область, Украина, 21000',
+    },
+    {
+      type: 'supermarket',
+      icon: { url: markersAdresses.supermarket, scaledSize: defaultMarkerSize },
+      position: { lat: 49.2377347, lng: 28.4056058 },
+      text: 'Супермаркет АТБ - Хмельницьке шосе, 114в, Вінниця, Вінницька область, Украина, 21000',
+    },
+    {
+      type: 'drivingSchool',
+      icon: { url: markersAdresses.drivingSchool, scaledSize: defaultMarkerSize },
+      position: { lat: 49.22865449, lng: 28.3956975 },
+      text:
+        'Автошкола на Вишеньці - вулиця Келецька, 130а, Вінниця, Вінницька область, Украина, 21000',
+    },
+    {
+      type: 'sport',
+      icon: { url: markersAdresses.sport, scaledSize: defaultMarkerSize },
+      position: { lat: 49.2274522, lng: 44.7146424 },
+      text: 'Стадіон - вулиця Миколи Ващука, 10, Вінниця, Вінницька область, Украина, 21000',
+    },
+    {
+      type: 'aquapark',
+      icon: { url: markersAdresses.aquapark, scaledSize: defaultMarkerSize },
+      position: { lat: 49.2315055, lng: 28.4046839 },
+      text:
+        'Аквапарк «Маяк» - вулиця Василя Порика, 28, Вінниця, Вінницька область, Украина, 21000',
+    },
+    {
+      type: 'post',
+      icon: { url: markersAdresses.post, scaledSize: defaultMarkerSize },
+      position: { lat: 49.2319754, lng: 28.4019622 },
+      text: 'НоваПошта #23 - Порика, Василя, 46, Вінниця, Вінницька область, Украина, 21021',
+    },
+    {
+      type: 'busStop',
+      icon: { url: markersAdresses.busStop, scaledSize: defaultMarkerSize },
+      position: { lat: 49.2370253, lng: 28.4041529 },
+      text:
+        'Західний Автовокзал - Хмельницьке шосе, 107, Вінниця, Вінницька область, Украина, 21000',
+    },
+    {
+      type: 'petrolStation',
+      icon: { url: markersAdresses.petrolStation, scaledSize: defaultMarkerSize },
+      position: { lat: 49.2314095, lng: 28.4056734 },
+      text: 'АЗС «WOG» - вулиця Василя Порика, 28, Вінниця, Вінницька область, Украина, 21034',
+    },
+    {
+      type: 'petrolStation',
+      icon: { url: markersAdresses.petrolStation, scaledSize: defaultMarkerSize },
+      position: { lat: 49.2384907, lng: 28.4002884 },
+      text: 'АЗС OKKO - Хмельницьке ш., 107-В, Вінниця, Вінницька область, Украина, 21000',
+    },
+    {
+      type: 'carWashing',
+      icon: { url: markersAdresses.carWashing, scaledSize: defaultMarkerSize },
+      position: { lat: 49.230228, lng: 28.3908037 },
+      text: 'Автомийка Бастіон - вулиця Келецька, 125, Вінниця, Вінницька область, Украина, 21000',
+    },
+    {
+      type: 'carWashing',
+      icon: { url: markersAdresses.carWashing, scaledSize: defaultMarkerSize },
+      position: { lat: 49.23336724213077, lng: 28.394595164707443 },
+      text: 'Автомийка Clean Up - 1 км Барського шосе, Вінниця, Вінницька область, Украина, 21010',
     },
   ];
   /* beautify preserve:end */

@@ -139,15 +139,14 @@ block content
   section.location
     .location-wrap
       h2.location-title.section-title Локація
-      .location-big-wrap
-        .decor 
-          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" viewBox="0 0 8 5" fill="none">
-            <rect x="5" y="5" width="2" height="2" rx="1" transform="rotate(180 5 5)" fill="#CDC8BC"/>
-            <rect x="2" y="2" width="2" height="2" rx="1" transform="rotate(180 2 2)" fill="#CDC8BC"/>
-            <rect x="8" y="2" width="2" height="2" rx="1" transform="rotate(180 8 2)" fill="#CDC8BC"/>
-          </svg>
-        .location-img-wrap
-          img(src="./assets/images/Location/filler.jpg" alt="").location-img
+      <svg class="location__anim-svg" width="1921" height="970" viewBox="0 0 1921 970" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <path data-location-img-path fill-rule="evenodd" clip-rule="evenodd" d="M1921 0H0V970H1921V0ZM286 485C286 660.074 588.432 802 961.5 802C1334.57 802 1637 660.074 1637 485C1637 309.926 1334.57 168 961.5 168C588.432 168 286 309.926 286 485Z" fill="#221A22"/>
+      </svg>
+      <svg class="location__anim-svg-mob" width="375" height="635" viewBox="0 0 375 635" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path data-location-img-path-mob fill-rule="evenodd" clip-rule="evenodd" d="M375 0H0V635H375V0ZM187.5 564C280.008 564 355 459.235 355 330C355 200.765 280.008 96 187.5 96C94.9923 96 20 200.765 20 330C20 459.235 94.9923 564 187.5 564Z" fill="#221A22"/>
+      </svg>
+      .location-img-wrap
+        img(src="./assets/images/Location/filler.jpg" alt="").location-img
   section.location-content
     .location-content__text-wrap
       .line 
@@ -189,12 +188,34 @@ block content
           li(data-marker data-type="pharmacy" data-category="pharmacy").map-navigation__button
             +svg('pharmacy')
             span Медицина
-          li(data-marker data-type="park" data-category="park").map-navigation__button
-            +svg('park')
-            span Місця для відпочинку
+          //- li(data-marker data-type="park" data-category="park").map-navigation__button
+          //-   +svg('park')
+          //-   span Місця для відпочинку
           li(data-marker data-type="sport" data-category="sport").map-navigation__button
             +svg('sport')
             span Спорт та культура
+          li(data-marker data-type="supermarket" data-category="supermarket").map-navigation__button
+            +svg('supermarket')
+            span Супермаркет
+          li(data-marker data-type="drivingSchool" data-category="drivingSchool").map-navigation__button
+            +svg('driving-school')
+            span Автошкола
+          li(data-marker data-type="post" data-category="post").map-navigation__button
+            +svg('post')
+            span Нова Пошта
+          li(data-marker data-type="aquapark" data-category="aquapark").map-navigation__button
+            +svg('aquapark')
+            span Аквапарк
+          li(data-marker data-type="petrolStation" data-category="petrolStation").map-navigation__button
+            +svg('petrol-station')
+            span АЗС
+          li(data-marker data-type="busStop" data-category="busStop").map-navigation__button
+            +svg('bus-stop')
+            span Автовокзал
+          li(data-marker data-type="carWashing" data-category="carWashing").map-navigation__button
+            +svg('car-washing')
+            span Автомийка
+
           //- li(data-marker data-type="church" data-category="church").map-navigation__button
           //-   +svg('church')
           //-   span Церкви
@@ -319,7 +340,8 @@ block content
       .line
       p.property-descr Тут ми доклали неабияких зусиль щоб вирізнятись з поміж інших. Виняткове фасадне скління панорамних вітрин висотою 6 метрів ексцентричних форм за останніми зразками світової архітектури, надасть максимально екстравагантного приваблення як будинкам так і вашому бізнесу.
       .tour-btn-wrap
-        a(href="/").accent-btn ПЕРЕГЛЯНУТИ ПЛАНУВАННЯ
+        a(href="/").accent-btn 
+          span ПЕРЕГЛЯНУТИ ПЛАНУВАННЯ
 
 block footer
   include ../includes/footer.pug

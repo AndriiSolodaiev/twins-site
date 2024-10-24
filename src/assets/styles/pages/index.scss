@@ -14,13 +14,17 @@ section {
   overflow: hidden;
 
   @include laptop {
-    background: radial-gradient(circle at 44% 22%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 54%), url('../images/Hero/bg-pc.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: radial-gradient(circle at 44% 22%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 54%), url('../images/Hero/bg-pc.jpg');
   }
 }
 
 .tablet.landscape {
   .hero {
-    background: rradial-gradient(circle at 44% 22%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 54%),
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: rradial-gradient(circle at 44% 22%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 54%),
       url('../images/Hero/bg-pc.jpg');
   }
 
@@ -64,7 +68,7 @@ section {
     .navigation-wrap {
       display: flex;
       align-items: center;
-      margin-top: 40px;
+      margin-top: 2vw;
       gap: 40px;
 
       .swiper-pagination-pc {
@@ -153,7 +157,7 @@ section {
     overflow: hidden;
     padding-left: 20px;
     width: 50%;
-    margin-top: 80px;
+    margin-top: 4.16vw;
     border-radius: 20px;
 
     .navigation-wrap {
@@ -210,9 +214,20 @@ section {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: $accent-color;
+  background-color: $accent-color;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+
+.desktop {
+
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background-color: #321931;
+    box-shadow: 0px 1px 2px 0px #814180, 0px -8px 11.2px 0px rgba(96, 49, 95, 0.15) inset, 0px 1px 0px 0px #814180 inset, 0px 9px 30px 0px rgba(116, 69, 116, 0.25) inset, 0px 0px 8px 0px rgba(86, 39, 86, 0.15) inset;
+  }
 }
 
 .swiper-button-next {
@@ -222,11 +237,11 @@ section {
 }
 
 .swiper-hero {
-  height: 90svh;
+  height: 90vh;
   overflow: hidden;
 
   @include tablet {
-    height: 100svh;
+    height: 100vh;
   }
 
   @include laptop {
@@ -266,7 +281,7 @@ section {
   .swiper-pagination-bullet {
     opacity: 1;
     height: 2px;
-    width: 40px;
+    width: 30px;
     position: relative;
     overflow: hidden;
     border-radius: 0;
@@ -359,6 +374,7 @@ section {
   font-style: normal;
   font-weight: 400;
   line-height: 130%;
+  text-transform: uppercase;
   // text-decoration-line: underline;
   padding: 14px 14px;
   border-radius: 100px;
@@ -420,6 +436,7 @@ section {
     // left: 50%;
     // top: 50%;
     // transform: translate(-50%,-50%);
+    pointer-events: none;
     display: none;
     left: 0;
     top: 0;
@@ -437,11 +454,12 @@ section {
     // left: 50%;
     // top: 50%;
     // transform: translate(-50%,-50%);
+    pointer-events: none;
     position: absolute;
     left: 0;
-    top: 0;
+    top: -1px;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh + 1px);
     z-index: 2;
 
     @include laptop {
@@ -786,20 +804,41 @@ section {
   border-radius: 100px;
   border: 1px solid rgba(90, 76, 90, 0.562);
   overflow: hidden;
-  background: linear-gradient(180deg, #615661fd, $bg-color 10%);
+  background-color: #221A22;
   box-shadow: 0px 12px 60px 0px #140E14, 0px 9px 30px 0px rgba(116, 69, 116, 0.25) inset, 0px 0px 8px 0px rgba(86, 39, 86, 0.15) inset;
-  transition: all 0.4s ease-in-out;
+  transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
 
   &:active {
-    border: 1px solid #29B374;
-    background: linear-gradient(180deg, #228458 0%, #006739 100%);
-    box-shadow: 0px 2px 2px 0px #36D18B inset, 0px -2px 2px 0px #30AA71 inset;
+    border-color: rgba(90, 76, 90, 0.20);
+    background-color: #321931;
+    box-shadow: 0px 1px 2px 0px #814180,
+      0px -8px 11.2px 0px rgba(96, 49, 95, 0.15) inset,
+      0px 1px 0px 0px #814180 inset,
+      0px 12px 60px 0px #140E14,
+      0px 9px 30px 0px rgba(116, 69, 116, 0.25) inset,
+      0px 0px 8px 0px rgba(86, 39, 86, 0.15) inset;
   }
 
   @include tablet {
     padding: 20px 28px;
   }
 
+
+}
+
+.desktop {
+  .general-btn {
+    &:hover {
+      border: 1px solid rgba(90, 76, 90, 0.20);
+      background-color: #321931;
+      box-shadow: 0px 1px 2px 0px #814180,
+        0px -8px 11.2px 0px rgba(96, 49, 95, 0.15) inset,
+        0px 1px 0px 0px #814180 inset,
+        0px 12px 60px 0px #140E14,
+        0px 9px 30px 0px rgba(116, 69, 116, 0.25) inset,
+        0px 0px 8px 0px rgba(86, 39, 86, 0.15) inset;
+    }
+  }
 }
 
 .fake-section {
@@ -898,93 +937,224 @@ section {
 }
 
 .location {
-  @extend .about;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  height: 150vh;
+  position: relative;
+
+  background: linear-gradient(180deg, #322A32 0%, #221A22 100%);
+  overflow: hidden;
 
 
-  height: 200vh;
+  // height: 200vh;
 
-  .location-wrap {
-    height: 100vh;
-    align-self: flex-start;
-    // position: sticky;
-    top: 100px;
-
-    @include tablet {
-      top: 50px;
-    }
+  @include laptop {
+    height: 150vw;
+    height: calc(3729px * 100vw / 1878px - 100vh);
+    padding-top: 0 !important;
 
   }
 
+  &__anim-svg {
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%,-50%);
+    pointer-events: none;
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+
+    @include laptop {
+      display: block;
+    }
+  }
+
+  &__anim-svg-mob {
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%,-50%);
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 100vw;
+    height: calc(100vh + 1px);
+    z-index: 2;
+
+    @include laptop {
+      display: none;
+    }
+  }
+
+  .location-img-wrap {
+
+    width: 100%;
+    height: 100%;
+
+    @include laptop {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  .location-wrap {
+
+    align-self: flex-start;
+    height: 100vh;
+  }
+
+
+  @include tablet {
+    padding: 81px 98px;
+  }
+
+
 }
 
-.location-big-wrap {
-  position: relative;
-  width: 100%;
 
 
+.tablet.landscape,
+.mobile.landscape {
+  .location {
+    height: 150vw;
+    height: calc(3729px * 100vw / 1878px - 100vh);
+    padding-top: 0 !important;
+  }
+
+  .location__anim-svg-mob {
+    display: none;
+  }
+
+  .location__anim-svg {
+    display: block;
+  }
+
+  .location .section-title,
+  .location .section-title {
+    top: 0;
+  }
+
+  .location-img {
+    height: 100%;
+  }
 }
 
 .location-img-wrap {
   position: relative;
-
   transform: translateZ(0);
   width: 100%;
   height: 125vw;
-  border-radius: 50%;
-  border: 1px solid #CDC8BC;
-  padding: 9px;
-  overflow: hidden;
 
 
-  @include tablet {
-    height: 110vw;
-  }
-
-  @include laptop {
-    height: 68vh;
-    width: 72vw;
-  }
-
-
-
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    -webkit-box-shadow: inset 0px 0px 0px 9px $accent-color;
-    -moz-box-shadow: inset 0px 0px 0px 9px $accent-color;
-    box-shadow: inset 0px 0px 0px 9px $accent-color;
-    border-radius: 50%;
-  }
 
 
   .location-img {
-    // border: 1px solid #CDC8BC;
-    // border-radius: 50%;
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    transform: scale(1.2);
+
+    // transform: scale(1.2);
+    // object-fit: cover;
     object-fit: cover;
-    object-position: center;
-    height: 100%;
+    object-position: top;
+    height: 100vh;
     width: 100%;
+
+    @include laptop {
+      height: 100%;
+    }
   }
 }
 
-.tablet.landscape,
-.mobile.landscape {
-  .location-img-wrap {
-    height: 68vh;
-    width: 72vw;
-  }
-}
+// .location {
+//   @extend .about;
+//   border-top-left-radius: 20px;
+//   border-top-right-radius: 20px;
+
+
+//   height: 200vh;
+
+//   .location-wrap {
+//     height: 100vh;
+//     align-self: flex-start;
+//     // position: sticky;
+//     top: 100px;
+
+//     @include tablet {
+//       top: 50px;
+//     }
+
+//   }
+
+// }
+
+// .location-big-wrap {
+//   position: relative;
+//   width: 100%;
+
+
+// }
+
+// .location-img-wrap {
+//   position: relative;
+
+//   transform: translateZ(0);
+//   width: 100%;
+//   height: 125vw;
+//   border-radius: 50%;
+//   border: 1px solid #CDC8BC;
+//   padding: 9px;
+//   overflow: hidden;
+
+
+//   @include tablet {
+//     height: 110vw;
+//   }
+
+//   @include laptop {
+//     height: 68vh;
+//     width: 72vw;
+//   }
+
+
+
+//   &::after {
+//     content: "";
+//     position: absolute;
+//     z-index: 2;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     -webkit-box-shadow: inset 0px 0px 0px 9px $accent-color;
+//     -moz-box-shadow: inset 0px 0px 0px 9px $accent-color;
+//     box-shadow: inset 0px 0px 0px 9px $accent-color;
+//     border-radius: 50%;
+//   }
+
+
+//   .location-img {
+//     // border: 1px solid #CDC8BC;
+//     // border-radius: 50%;
+//     // position: absolute;
+//     // top: 50%;
+//     // left: 50%;
+//     transform: scale(1.2);
+//     object-fit: cover;
+//     object-position: center;
+//     height: 100%;
+//     width: 100%;
+//   }
+// }
+
+// .tablet.landscape,
+// .mobile.landscape {
+//   .location-img-wrap {
+//     height: 68vh;
+//     width: 72vw;
+//   }
+// }
 
 .location-content {
   background: radial-gradient(circle at -20% 30%, #AC7E66 1%, #221a22 70%);
@@ -1218,6 +1388,7 @@ section {
     font-weight: 400;
     line-height: 100%;
     transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+    cursor: pointer;
 
     &.active {
       background-color: $accent-color;
@@ -1732,10 +1903,10 @@ section {
 
     .accent-btn {
       padding: 18px;
-      border-radius: 100px;
-      border: 1px solid #29B374;
-      background: linear-gradient(180deg, #228458 0%, #006739 100%);
-      box-shadow: 0px 2px 2px 0px #36D18B inset, 0px -2px 2px 0px #30AA71 inset;
+      // border-radius: 100px;
+      // border: 1px solid #29B374;
+      // background: linear-gradient(180deg, #228458 0%, #006739 100%);
+      // box-shadow: 0px 2px 2px 0px #36D18B inset, 0px -2px 2px 0px #30AA71 inset;
 
       @include tablet {
         padding: 20px 28px;

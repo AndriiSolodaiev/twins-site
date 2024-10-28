@@ -137,9 +137,16 @@
 
 .menu-btn {
   display: flex;
-
+  cursor: pointer;
   gap: 12px;
   margin-left: 12px;
+
+
+
+  .center,
+  .under {
+    transition: transform 0.4s ease-in-out, background-color 0.4s ease-in-out;
+  }
 
   @include laptop {
     margin-left: 50px;
@@ -149,6 +156,7 @@
     display: none;
 
     @include tablet {
+      transition: color 0.4s ease-in-out;
       display: block;
       color: $wc;
       font-size: 14px;
@@ -169,10 +177,43 @@
       background-color: $wc;
       height: 1px;
 
+
       &.over {
-        width: 18px
+        width: 18px;
+        transition: width 0.4s ease-in-out, background-color 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        ;
       }
     }
+  }
+}
+
+.desktop {
+  .menu-btn:hover {
+    .text {
+      color: $text-color-2
+    }
+
+    .menu-wrap>span {
+      background-color: $text-color-2;
+    }
+
+    .over {
+      width: 32px;
+    }
+  }
+}
+
+.header-bg.menu-is-open {
+  .over {
+    opacity: 0;
+  }
+
+  .center {
+    transform: rotateZ(45deg);
+  }
+
+  .under {
+    transform: translateY(-5px) rotateZ(-45deg);
   }
 }
 
@@ -271,18 +312,32 @@
   }
 }
 
+.desktop {
+  .iframe-filter .general-btn:hover {
+    span {
+      color: $wc;
+    }
+  }
+}
+
 .menu-container {
-  // display: none;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 99;
   width: 100%;
   height: 100%;
-  background-image: url('../images/menu-bg.png');
+  background-image: url('../images/menu-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   padding: 100px 20px 20px;
+  transition: opacity 0.4s ease-in-out;
+
+  &.hidden {
+    opacity: 0;
+    visibility: visible;
+    pointer-events: none;
+  }
 
   @include tablet {
     padding: 126px 40px 40px 40px;
@@ -290,12 +345,12 @@
 
   @include laptop {
 
-    background-image: url('../images/menu-bg-pc.png');
+    background-image: url('../images/menu-bg-pc.jpg');
     display: flex;
     padding: 15vh 40px 40px 40px;
     gap: 40px;
     align-items: stretch;
-    // display: none;
+
   }
 }
 
@@ -656,11 +711,62 @@
     a svg {
       width: 16px;
       height: 16px;
+      transition: transform 0.4s ease-in-out;
+
+      path {
+        transition: fill 0.4s ease-in-out;
+      }
 
       @include laptop {
         width: 24px;
         height: 24px;
       }
     }
+  }
+}
+
+.desktop {
+  .menu-socials {
+    a:hover {
+      svg {
+        transform: scale(1.2);
+
+        path {
+          fill: $text-color-2
+        }
+      }
+    }
+  }
+}
+
+.link-wave {
+  display: inline-block;
+  // width: 100%;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+
+
+
+  .link__graphic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    fill: none;
+    stroke: $text-color-2;
+
+  }
+
+  .link__graphic--slide {
+    bottom: -10px;
+    stroke-width: 3px;
+    transition: transform 0.7s;
+    transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
+  }
+
+  &:hover .link__graphic--slide {
+    transform: translate3d(-66.6%, 0, 0);
   }
 }

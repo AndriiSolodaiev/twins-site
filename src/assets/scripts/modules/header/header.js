@@ -26,6 +26,7 @@ document.body.addEventListener('click', function(evt) {
   if (btnMenuTarget) {
     menu.classList.toggle('hidden');
     header.classList.toggle('menu-is-open');
+    menuAnimation();
     return;
   }
   // if (btnUp) {
@@ -48,6 +49,138 @@ document.body.addEventListener('click', function(evt) {
   }
 });
 
+function menuAnimation() {
+  const menuIsOpen = document.querySelector('.header-bg').classList.contains('menu-is-open');
+  const tl = gsap.timeline();
+  if (window.innerWidth > 1365) {
+    if (menuIsOpen) {
+      // Forward animation when menuIsOpen is true
+      tl.fromTo(
+        '.menu-item',
+        { opacity: 0, xPercent: -50, delay: 0.3 },
+        { opacity: 1, xPercent: 0, stagger: 0.1, duration: 0.8, delay: 0.3 },
+      )
+        .fromTo(
+          '.menu-block:first-child',
+          { opacity: 0, yPercent: 40 },
+          { opacity: 1, yPercent: 0, stagger: -0.2, duration: 0.8 },
+          '<',
+        )
+        .fromTo(
+          '.menu-img__wrap.house img',
+          { opacity: 0, scale: 1.5, duration: 0.8 },
+          { opacity: 1, duration: 0.8, scale: 1 },
+          '<',
+        )
+        .fromTo(
+          '.menu-block:last-child',
+          { opacity: 0, yPercent: -40 },
+          { opacity: 1, yPercent: 0, stagger: 0.2, duration: 0.8 },
+          '<',
+        )
+        .fromTo(
+          '.menu-img__wrap.girl img',
+          { opacity: 0, yPercent: 30, duration: 0.8 },
+          { opacity: 1, yPercent: 0, duration: 0.8 },
+          '<',
+        )
+        .fromTo(
+          '.menu-contact-block ',
+          { opacity: 0, yPercent: 80 },
+          { opacity: 1, yPercent: 0, stagger: 0.2, duration: 0.8 },
+          '<+=0.2',
+        );
+    } else {
+      // Reverse animation when menuIsOpen is false
+      tl.fromTo(
+        ' .menu-item',
+        { opacity: 1, xPercent: 0 },
+        { opacity: 0, xPercent: -50, stagger: 0.1, duration: 0.4 },
+      )
+        .fromTo(
+          '.menu-block:first-child',
+
+          { opacity: 1, yPercent: 0, stagger: -0.2, duration: 0.8 },
+          { opacity: 0, yPercent: 40 },
+          '<',
+        )
+        .fromTo(
+          '.menu-block:last-child',
+
+          { opacity: 1, yPercent: 0, stagger: 0.2, duration: 0.8 },
+          { opacity: 0, yPercent: -40 },
+          '<',
+        )
+        .fromTo(
+          '.menu-contact-block ',
+
+          { opacity: 1, yPercent: 0, stagger: 0.2, duration: 0.8 },
+          { opacity: 0, yPercent: 80 },
+          '<',
+        );
+    }
+  } else {
+    if (menuIsOpen) {
+      // Forward animation when menuIsOpen is true
+      tl.fromTo(
+        '.left-block .menu-item',
+        { opacity: 0, yPercent: 20, delay: 0.3 },
+        { opacity: 1, yPercent: 0, stagger: 0.1, duration: 0.4, delay: 0.3 },
+      )
+
+        .fromTo(
+          '.right-block .menu-item',
+          { opacity: 0, yPercent: 20 },
+          { opacity: 1, yPercent: 0, stagger: 0.1, duration: 0.4 },
+          '<+=0.3',
+        )
+        .fromTo(
+          '.menu-block:first-child',
+          { opacity: 0, yPercent: 20 },
+          { opacity: 1, yPercent: 0, stagger: 0.2, duration: 0.4 },
+          '<+=0.6',
+        )
+        .fromTo(
+          '.menu-img__wrap.house',
+          { opacity: 0, xPercent: 30 },
+          { opacity: 1, xPercent: 0, duration: 0.8 },
+          '<+=0.2',
+        )
+        .fromTo(
+          '.menu-block:last-child',
+          { opacity: 0, yPercent: 20 },
+          { opacity: 1, yPercent: 0, stagger: 0.2, duration: 0.4 },
+          '<',
+        )
+        .fromTo(
+          '.menu-img__wrap.girl',
+          { opacity: 0, xPercent: -30 },
+          { opacity: 1, xPercent: 0, duration: 0.8 },
+          '<+=0.2',
+        )
+        .fromTo(
+          '.menu-contact-block ',
+          { opacity: 0, yPercent: 80 },
+          { opacity: 1, yPercent: 0, stagger: 0.2, duration: 0.4 },
+          '<',
+        );
+    } else {
+      // Reverse animation when menuIsOpen is false
+      tl.fromTo(
+        '.left-block .menu-item',
+
+        { opacity: 1, yPercent: 0, stagger: 0.1, duration: 0.4, delay: 0.3 },
+        { opacity: 0, yPercent: 20, delay: 0.3 },
+      ).fromTo(
+        '.right-block .menu-item',
+
+        { opacity: 1, yPercent: 0, stagger: 0.1, duration: 0.4 },
+        { opacity: 0, yPercent: 20 },
+        '<+=0.3',
+      );
+    }
+  }
+}
 //iframe modal
 const iframePopUp = document.querySelector('[data-iframe-modal]');
 const iframeOpen = document.querySelector('[data-iframe-open]');

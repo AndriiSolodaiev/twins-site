@@ -77,7 +77,7 @@ section {
         height: 1px;
 
         .swiper-pagination-progressbar-fill {
-          background-color: rgba(205, 200, 188, 1);
+          background-color: $text-color-2;
         }
       }
 
@@ -219,14 +219,26 @@ section {
   -webkit-backdrop-filter: blur(4px);
   cursor: pointer;
   transition: all 0.4s ease-in-out;
+
+  svg path {
+    transition: stroke 0.4s ease-in-out;
+  }
 }
 
 .desktop {
 
   .swiper-button-prev:hover,
   .swiper-button-next:hover {
-    background-color: #321931;
-    box-shadow: 0px 1px 2px 0px #814180, 0px -8px 11.2px 0px rgba(96, 49, 95, 0.15) inset, 0px 1px 0px 0px #814180 inset, 0px 9px 30px 0px rgba(116, 69, 116, 0.25) inset, 0px 0px 8px 0px rgba(86, 39, 86, 0.15) inset;
+    svg path {
+      stroke: $bg-color;
+    }
+
+    background-color: $text-color-2;
+    box-shadow: 0px 1px 2px 0px rgba(180, 164, 166, 0.20),
+    0px -8px 11.2px 0px #D2C5C4 inset,
+    0px 1px 0px 0px #F1E0DE inset,
+    0px 9px 30px 0px rgba(226, 208, 207, 0.10) inset,
+    0px 0px 8px 0px #A89B84 inset;
   }
 }
 
@@ -486,9 +498,9 @@ section {
   }
 
 
-  @include tablet {
-    padding: 81px 98px;
-  }
+  // @include tablet {
+  //   padding: 81px 98px;
+  // }
 
 
 }
@@ -511,10 +523,26 @@ section {
 
 .tablet.landscape,
 .mobile.landscape {
+
+  .about,
+  .location {
+    .section-title {
+      top: 10.4vw;
+    }
+  }
+
   .about {
     height: 150vw;
     height: calc(3729px * 100vw / 1878px - 100vh);
     padding-top: 0 !important;
+  }
+
+  .about-img-wrap {
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
   }
 
   .about__anim-svg-mob {
@@ -525,10 +553,7 @@ section {
     display: block;
   }
 
-  .about .section-title,
-  .location .section-title {
-    top: 0;
-  }
+
 
   .about-img {
     height: 100%;
@@ -1008,9 +1033,7 @@ section {
   }
 
 
-  @include tablet {
-    padding: 81px 98px;
-  }
+
 
 
 }
@@ -1033,13 +1056,18 @@ section {
     display: block;
   }
 
-  .location .section-title,
-  .location .section-title {
-    top: 0;
-  }
+
 
   .location-img {
     height: 100%;
+  }
+
+  .location-img-wrap {
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
   }
 }
 
@@ -1261,16 +1289,26 @@ section {
 }
 
 .map-main-wrap {
+  padding-left: 20px;
+  padding-right: 20px;
   margin-top: 80px;
   width: 100%;
-  height: 85vh;
-  border-radius: 20px;
+  height: 60vh;
+  // border-radius: 20px;
   // background-color: $wc;
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
+
+  @include tablet {
+    padding-left: 40px;
+    padding-right: 40px;
+
+  }
 
   @include laptop {
-
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 85vh;
     width: 50%;
     // flex: 1;
   }
@@ -1289,6 +1327,8 @@ section {
   .map-wrapper {
     width: 100%;
     height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
 
     .map {
       height: 100%;
@@ -1338,7 +1378,15 @@ section {
 
     &.oppened {
       background-color: rgba(205, 200, 188, 0.80);
-      width: calc(100% - 20px);
+      width: calc(100% - 60px);
+
+      @include tablet {
+        width: calc(100% - 100px);
+      }
+
+      @include laptop {
+        width: calc(100% - 20px);
+      }
 
       .map-navigation__main {
         display: flex;
@@ -1588,13 +1636,17 @@ section {
   position: relative;
 
   @include laptop {
-    border-radius: 40px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+
     display: flex;
     padding: 210px 40px;
     justify-content: space-between;
     background-image: radial-gradient(circle at 55% 60%, rgba(172, 126, 102, 0.50) 1%, rgba(238, 130, 238, 0) 60%),
       url('../images/Advantages/bg-pc.jpg');
   }
+
+
 }
 
 .tablet.landscape,

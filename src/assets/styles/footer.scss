@@ -29,6 +29,10 @@
       width: 20%;
     }
   }
+
+  .form-phone {
+    display: none;
+  }
 }
 
 .footer-content {
@@ -107,7 +111,7 @@
   }
 
   .close-btn {
-
+    cursor: pointer;
 
     svg {
       width: 24px;

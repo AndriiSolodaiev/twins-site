@@ -22,6 +22,7 @@ gsap.registerPlugin(ScrollTrigger, CustomEase);
 //     behavior: 'smooth',
 //   });
 // });
+
 function initSwiperHero(timelineFirstToPlay) {
   const swiperHero = new Swiper('.swiper-hero', {
     modules: [Autoplay, Pagination, EffectCreative],
@@ -298,12 +299,28 @@ function initSwiperHero(timelineFirstToPlay) {
   }
 }
 
+const imgForLoader = document.querySelector('.swiper-hero-pc--thumb .swiper-slide img');
+const copied = imgForLoader.cloneNode(true);
+const container = document.querySelector('.hero');
+const widthScaleTo = document.querySelector('.swiper-hero-pc').getBoundingClientRect().width;
+const tl = gsap
+  .timeline({
+    paused: true,
+  })
+  .to(copied, {
+    width: widthScaleTo + 80,
+    duration: 1.75,
+    ease: 'power4.out',
+  })
+  .to(copied, {
+    autoAlpha: 0,
+    duration: 0.25,
+  })
+  .add(() => {
+    copied.remove();
+  });
 window.addEventListener('finishLoader', () => {
   if (window.innerWidth > 1366 || (window.innerWidth > window.innerHeight && !device.mobile())) {
-    const imgForLoader = document.querySelector('.swiper-hero-pc--thumb .swiper-slide img');
-    const copied = imgForLoader.cloneNode(true);
-    const container = document.querySelector('.hero');
-    const widthScaleTo = document.querySelector('.swiper-hero-pc').getBoundingClientRect().width;
     Object.assign(copied.style, {
       width: '100%',
       height: '100%',
@@ -315,22 +332,7 @@ window.addEventListener('finishLoader', () => {
     });
 
     container.insertAdjacentElement('afterbegin', copied);
-    const tl = gsap
-      .timeline({
-        paused: true,
-      })
-      .to(copied, {
-        width: widthScaleTo + 80,
-        duration: 1.75,
-        ease: 'power4.out',
-      })
-      .to(copied, {
-        autoAlpha: 0,
-        duration: 0.25,
-      })
-      .add(() => {
-        copied.remove();
-      });
+
     initSwiperHero(tl);
   }
   initSwiperHero();
@@ -357,144 +359,150 @@ about.fromTo(
   },
 );
 
-if (window.innerWidth < 1366 || window.innerWidth < window.innerHeight) {
-  const aboutImgMob = gsap.timeline({
-    scrollTrigger: {
-      pinType: 'fixed',
-      trigger: '.about', // Блок, до якого прив'язуємо анімацію
-      start: 'top top', // Коли починається анімація
-      end: 'bottom top', // Коли закінчується
-      // scrub: true, // Плавна анімація
-      // markers: true,
-      // pin: '.about-wrap', // Затримка (пінінг) блока
-      pin: '.about-wrap', // Затримка (пінінг) блока
-      onLeaveBack: () => {
-        aboutImgMob.reverse();
-      },
-      // pinSpacing: false,
-      // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
-    },
-  });
-  const path = document.querySelector('[data-about-img-path-mob]');
-  const defaultState = path.getAttribute('d');
-  // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
-  const activeState =
-    'M 375 0 H 0 V 635 H 375 V 0 Z M 192 733 C 431 732 483 483 484 330 C 483 151 414 -95 192 -95 C -37 -95 -118 152 -118 331 C -117 486 -42 733 192 733 Z';
-  const percentOfCircleOpeningAnimation = 0.25;
-  aboutImgMob
-    .fromTo(
-      path,
-      {
-        attr: {
-          d: defaultState,
+function aboutAnim() {
+  if (window.innerWidth > 1366 || window.innerWidth > window.innerHeight) {
+    const aboutImg = gsap.timeline({
+      scrollTrigger: {
+        pinType: 'fixed',
+        trigger: '.about', // Блок, до якого прив'язуємо анімацію
+        start: 'top top', // Коли починається анімація
+        end: 'bottom top', // Коли закінчується
+        scrub: true, // Плавна анімація
+        // markers: true,
+        // pin: '.about-wrap', // Затримка (пінінг) блока
+        pin: '.about__anim-svg', // Затримка (пінінг) блока
+        onLeaveBack: () => {
+          // aboutImg.reverse();
         },
+        // pinSpacing: false,
+        // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
       },
-      {
-        attr: {
-          d: activeState,
-        },
-        duration: percentOfCircleOpeningAnimation,
-        ease: 'none',
-      },
-    )
-    .fromTo(
-      '.about-img',
-      {
-        scale: 1,
-        // duration: 0.4,
-        transformOrigin: 'center',
-      },
-      {
-        scale: 1.2,
-      },
-      '<',
-    );
-} else {
-  const aboutImg = gsap.timeline({
-    scrollTrigger: {
-      pinType: 'fixed',
-      trigger: '.about', // Блок, до якого прив'язуємо анімацію
-      start: 'top top', // Коли починається анімація
-      end: 'bottom top', // Коли закінчується
-      scrub: true, // Плавна анімація
-      // markers: true,
-      // pin: '.about-wrap', // Затримка (пінінг) блока
-      pin: '.about__anim-svg', // Затримка (пінінг) блока
-      onLeaveBack: () => {
-        // aboutImg.reverse();
-      },
-      // pinSpacing: false,
-      // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
-    },
-  });
-  const path = document.querySelector('[data-about-img-path]');
-  const defaultState = path.getAttribute('d');
-  // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
-  const activeState =
-    'M 1921 0 H 0 V 970 H 1921 V 0 Z M -409 491 C -407 964 -6 1169 951 1159 C 1928 1157 2362 959 2362 472 C 2362 -1 1902 -182 956 -177 C 6 -182 -400 4 -407 491 Z';
-  const percentOfCircleOpeningAnimation = 0.5;
-  aboutImg
-    .fromTo(
-      path,
-      {
-        attr: {
-          d: defaultState,
-        },
-      },
-      {
-        attr: {
-          d: activeState,
-        },
-        duration: percentOfCircleOpeningAnimation,
-        ease: 'none',
-      },
-    )
-    .from(
-      '.about-img',
-      {
-        scale: 1,
-        duration: 0.4,
-        transformOrigin: 'top',
-      },
-      '<',
-    )
-    .to(path.parentElement, {
-      scale: 1.1,
-      duration: 1 - percentOfCircleOpeningAnimation,
     });
+    const path = document.querySelector('[data-about-img-path]');
+    const defaultState = path.getAttribute('d');
+    // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
+    const activeState =
+      'M 1921 0 H 0 V 970 H 1921 V 0 Z M -409 491 C -407 964 -6 1169 951 1159 C 1928 1157 2362 959 2362 472 C 2362 -1 1902 -182 956 -177 C 6 -182 -400 4 -407 491 Z';
+    const percentOfCircleOpeningAnimation = 0.5;
+    aboutImg
+      .fromTo(
+        path,
+        {
+          attr: {
+            d: defaultState,
+          },
+        },
+        {
+          attr: {
+            d: activeState,
+          },
+          duration: percentOfCircleOpeningAnimation,
+          ease: 'none',
+        },
+      )
+      .from(
+        '.about-img',
+        {
+          scale: 1,
+          duration: 0.4,
+          transformOrigin: 'top',
+        },
+        '<',
+      )
+      .to(path.parentElement, {
+        scale: 1.1,
+        duration: 1 - percentOfCircleOpeningAnimation,
+      });
+  } else {
+    const aboutImgMob = gsap.timeline({
+      scrollTrigger: {
+        pinType: 'fixed',
+        trigger: '.about', // Блок, до якого прив'язуємо анімацію
+        start: 'top top', // Коли починається анімація
+        end: 'bottom top', // Коли закінчується
+        // scrub: true, // Плавна анімація
+        // markers: true,
+        // pin: '.about-wrap', // Затримка (пінінг) блока
+        pin: '.about-wrap', // Затримка (пінінг) блока
+        onLeaveBack: () => {
+          aboutImgMob.reverse();
+        },
+        // pinSpacing: false,
+        // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
+      },
+    });
+
+    const path = document.querySelector('[data-about-img-path-mob]');
+    const defaultState = path.getAttribute('d');
+    // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
+    const activeState =
+      'M 375 0 H 0 V 635 H 375 V 0 Z M 192 733 C 431 732 483 483 484 330 C 483 151 414 -95 192 -95 C -37 -95 -118 152 -118 331 C -117 486 -42 733 192 733 Z';
+    const percentOfCircleOpeningAnimation = 0.25;
+    aboutImgMob
+      .fromTo(
+        path,
+        {
+          attr: {
+            d: defaultState,
+          },
+        },
+        {
+          attr: {
+            d: activeState,
+          },
+          duration: percentOfCircleOpeningAnimation,
+          ease: 'none',
+        },
+      )
+      .fromTo(
+        '.about-img',
+        {
+          scale: 1,
+          // duration: 0.4,
+          transformOrigin: 'center',
+        },
+        {
+          scale: 1.2,
+        },
+        '<',
+      );
+  }
+
+  if (window.innerWidth > 1366 || (window.innerWidth < window.innerHeight && !device.mobile())) {
+    const tlAboutContent = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.about-content',
+        start: 'top center',
+        end: `bottom top`,
+        scrub: true,
+        // pin: true, // Пінінг другого блоку
+        // pinSpacing: false,
+      },
+    });
+    tlAboutContent
+      .fromTo(
+        '.about-content__text-wrap',
+        {
+          yPercent: 50,
+        },
+        {
+          yPercent: -20,
+        },
+      )
+      .fromTo(
+        '.about-video',
+        {
+          yPercent: 5,
+        },
+        {
+          yPercent: -15,
+        },
+        '<',
+      );
+  }
 }
-if (window.innerWidth > 1366 || (window.innerWidth < window.innerHeight && !device.mobile())) {
-  const tlAboutContent = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.about-content',
-      start: 'top center',
-      end: `bottom top`,
-      scrub: true,
-      // pin: true, // Пінінг другого блоку
-      // pinSpacing: false,
-    },
-  });
-  tlAboutContent
-    .fromTo(
-      '.about-content__text-wrap',
-      {
-        yPercent: 50,
-      },
-      {
-        yPercent: -20,
-      },
-    )
-    .fromTo(
-      '.about-video',
-      {
-        yPercent: 5,
-      },
-      {
-        yPercent: -15,
-      },
-      '<',
-    );
-}
+aboutAnim();
+
 function textAppear(selector) {
   console.log(selector);
   gsap.from(`${selector}`, {
@@ -571,166 +579,116 @@ location.fromTo(
     ease: 'none',
   },
 );
-// const locationImg = gsap.timeline({
-//   scrollTrigger: {
-//     trigger: '.location', // Блок, до якого прив'язуємо анімацію
-//     start: 'top top', // Коли починається анімація
-//     // end: 'bottom top', // Коли закінчується
-//     end: 'bottom top',
-//     // scrub: true, // Плавна анімація
-//     // markers: true,
-//     pin: '.location-wrap', // Затримка (пінінг) блока
-//     // pinSpacing: false,
-//     onLeaveBack: () => {
-//       locationImg.reverse();
-//     }, // Оновлення при виході з пінінгу
-//   },
-// });
-if (window.innerWidth < 1366 || window.innerWidth < window.innerHeight) {
-  const locationImgMob = gsap.timeline({
-    scrollTrigger: {
-      pinType: 'fixed',
-      trigger: '.location', // Блок, до якого прив'язуємо анімацію
-      start: 'top top', // Коли починається анімація
-      end: 'bottom top', // Коли закінчується
-      // scrub: true, // Плавна анімація
-      // markers: true,
-      pin: '.location-wrap', // Затримка (пінінг) блока
-      // pin: '.location-wrap', // Затримка (пінінг) блока
-      onLeaveBack: () => {
-        locationImgMob.reverse();
-      },
-      // pinSpacing: false,
-      // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
-    },
-  });
-  const path = document.querySelector('[data-location-img-path-mob]');
-  const defaultState = path.getAttribute('d');
-  // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
-  const activeState =
-    'M 375 0 H 0 V 635 H 375 V 0 Z M 192 733 C 431 732 483 483 484 330 C 483 151 414 -95 192 -95 C -37 -95 -118 152 -118 331 C -117 486 -42 733 192 733 Z';
-  const percentOfCircleOpeningAnimation = 0.25;
-  locationImgMob
-    .fromTo(
-      path,
-      {
-        attr: {
-          d: defaultState,
+
+function locationAnim() {
+  if (window.innerWidth > 1366 || window.innerWidth > window.innerHeight) {
+    const locationImg = gsap.timeline({
+      scrollTrigger: {
+        pinType: 'fixed',
+        trigger: '.location', // Блок, до якого прив'язуємо анімацію
+        start: 'top top', // Коли починається анімація
+        end: 'bottom top', // Коли закінчується
+        scrub: true, // Плавна анімація
+        // markers: true,
+        // pin: '.location-wrap', // Затримка (пінінг) блока
+        pin: '.location__anim-svg', // Затримка (пінінг) блока
+        onLeaveBack: () => {
+          // locationImg.reverse();
         },
+        // pinSpacing: false,
+        // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
       },
-      {
-        attr: {
-          d: activeState,
-        },
-        duration: percentOfCircleOpeningAnimation,
-        ease: 'none',
-      },
-    )
-    .fromTo(
-      '.location-img',
-      {
-        scale: 1,
-        // duration: 0.4,
-        transformOrigin: 'center',
-      },
-      {
-        scale: 1.2,
-      },
-      '<',
-    );
-} else {
-  const locationImg = gsap.timeline({
-    scrollTrigger: {
-      pinType: 'fixed',
-      trigger: '.location', // Блок, до якого прив'язуємо анімацію
-      start: 'top top', // Коли починається анімація
-      end: 'bottom top', // Коли закінчується
-      scrub: true, // Плавна анімація
-      // markers: true,
-      // pin: '.location-wrap', // Затримка (пінінг) блока
-      pin: '.location__anim-svg', // Затримка (пінінг) блока
-      onLeaveBack: () => {
-        // locationImg.reverse();
-      },
-      // pinSpacing: false,
-      // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
-    },
-  });
-  const path = document.querySelector('[data-location-img-path]');
-  const defaultState = path.getAttribute('d');
-  // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
-  const activeState =
-    'M 1921 0 H 0 V 970 H 1921 V 0 Z M -409 491 C -407 964 -6 1169 951 1159 C 1928 1157 2362 959 2362 472 C 2362 -1 1902 -182 956 -177 C 6 -182 -400 4 -407 491 Z';
-  const percentOfCircleOpeningAnimation = 0.5;
-  locationImg
-    .fromTo(
-      path,
-      {
-        attr: {
-          d: defaultState,
-        },
-      },
-      {
-        attr: {
-          d: activeState,
-        },
-        duration: percentOfCircleOpeningAnimation,
-        ease: 'none',
-      },
-    )
-    .from(
-      '.location-img',
-      {
-        scale: 1,
-        duration: 0.4,
-        transformOrigin: 'top',
-      },
-      '<',
-    )
-    .to(path.parentElement, {
-      scale: 1.1,
-      duration: 1 - percentOfCircleOpeningAnimation,
     });
+    const path = document.querySelector('[data-location-img-path]');
+    const defaultState = path.getAttribute('d');
+    // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
+    const activeState =
+      'M 1921 0 H 0 V 970 H 1921 V 0 Z M -409 491 C -407 964 -6 1169 951 1159 C 1928 1157 2362 959 2362 472 C 2362 -1 1902 -182 956 -177 C 6 -182 -400 4 -407 491 Z';
+    const percentOfCircleOpeningAnimation = 0.5;
+    locationImg
+      .fromTo(
+        path,
+        {
+          attr: {
+            d: defaultState,
+          },
+        },
+        {
+          attr: {
+            d: activeState,
+          },
+          duration: percentOfCircleOpeningAnimation,
+          ease: 'none',
+        },
+      )
+      .from(
+        '.location-img',
+        {
+          scale: 1,
+          duration: 0.4,
+          transformOrigin: 'top',
+        },
+        '<',
+      )
+      .to(path.parentElement, {
+        scale: 1.1,
+        duration: 1 - percentOfCircleOpeningAnimation,
+      });
+  } else {
+    const locationImgMob = gsap.timeline({
+      scrollTrigger: {
+        pinType: 'fixed',
+        trigger: '.location', // Блок, до якого прив'язуємо анімацію
+        start: 'top top', // Коли починається анімація
+        end: 'bottom top', // Коли закінчується
+        // scrub: true, // Плавна анімація
+        // markers: true,
+        pin: '.location-wrap', // Затримка (пінінг) блока
+        // pin: '.location-wrap', // Затримка (пінінг) блока
+        onLeaveBack: () => {
+          locationImgMob.reverse();
+        },
+        // pinSpacing: false,
+        // onLeave: () => ScrollTrigger.refresh(), // Оновлення при виході з пінінгу
+      },
+    });
+    const path = document.querySelector('[data-location-img-path-mob]');
+    const defaultState = path.getAttribute('d');
+    // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
+    const activeState =
+      'M 375 0 H 0 V 635 H 375 V 0 Z M 192 733 C 431 732 483 483 484 330 C 483 151 414 -95 192 -95 C -37 -95 -118 152 -118 331 C -117 486 -42 733 192 733 Z';
+    const percentOfCircleOpeningAnimation = 0.25;
+    locationImgMob
+      .fromTo(
+        path,
+        {
+          attr: {
+            d: defaultState,
+          },
+        },
+        {
+          attr: {
+            d: activeState,
+          },
+          duration: percentOfCircleOpeningAnimation,
+          ease: 'none',
+        },
+      )
+      .fromTo(
+        '.location-img',
+        {
+          scale: 1,
+          // duration: 0.4,
+          transformOrigin: 'center',
+        },
+        {
+          scale: 1.2,
+        },
+        '<',
+      );
+  }
 }
-// locationImg
-//   .to('.location-big-wrap', {
-//     scale: 2.4, // Збільшуємо картинку до 1.5
-
-//     ease: 'none', // Лінійна анімація без ефектів
-//   })
-//   .to(
-//     '.location-img',
-
-//     {
-//       // height: '100%',
-//       scale: 0.8,
-//       ease: 'none',
-//     },
-//     '<',
-//   );
-// .to(
-//   '.location-img',
-
-//   {
-//     duration: 1,
-//   },
-//   '<',
-// );
-
-// Паралакс ефект для фонового блоку
-
-// gsap.to('.location-img', {
-//   scrollTrigger: {
-//     trigger: '.location-content ', // Той самий блок
-//     start: 'top bottom', // Паралакс ефект починається, коли блок доходить до низу вікна
-//     end: 'top top', // Закінчується, коли блок виходить з екрану
-//     scrub: true, // Плавне скролювання
-//     // markers: true,
-//   },
-//   yPercent: 20, // Зміщуємо блок на -50 пікселів по осі Y
-//   // ease: 'none',
-// });
-
+locationAnim();
 textAppear('.location-content__title-1');
 textAppear('.location-content__text-1');
 
@@ -873,8 +831,13 @@ updateImage();
 // window.addEventListener('resize', updateImage);
 window.addEventListener('orientationchange', () => {
   console.log('orientationchange');
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-    ScrollTrigger.update();
-  }, 0);
+  window.location.reload();
+  // initSwiperHero(tl);
+  // aboutAnim();
+  // locationAnim();
+
+  // setTimeout(() => {
+  //   ScrollTrigger.refresh();
+  //   ScrollTrigger.update();
+  // }, 0);
 });

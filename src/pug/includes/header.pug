@@ -36,7 +36,7 @@ header(class="header "+headerCustomClass)
     .buttons-wrap 
       button(data-call-us-btn).accent-btn 
         span Залишити заявку
-    .menu-btn 
+    .menu-btn(data-menu-button) 
       span.text Меню
       .menu-wrap
         span.over 
@@ -61,7 +61,7 @@ header(class="header "+headerCustomClass)
     .form-title Зворотній дзвінок
     .form-descr Якщо у вас лишилися запитання ми з радістю відповімо вам
     +form
-.menu-container
+.menu-container.hidden(data-menu)
   .menu-list 
     .left-block
       a(href="").menu-item 
@@ -108,7 +108,11 @@ header(class="header "+headerCustomClass)
           img(src="./assets/images/Menu/girl.png" alt="Girl").menu-block__img
         .top-mask
     .menu-contact-block 
-      a(href="tel:+380672632222").phone +38 067 263 22 22
+      a(href="tel:+380672632222").phone.link-wave
+        span +38 067 263 22 22
+        <svg class="link__graphic link__graphic--slide" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        </svg>
       .menu-socials
         a(href="https://t.me/twinsvn" target="_blank" rel="noopener noreferrer")
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">

@@ -19,6 +19,19 @@
     pointer-events: none;
 
   }
+
+  .form-wrap {
+    transition: transform 0.3s ease-in-out 0.3s, opacity 0.3s ease 0.3s;
+
+    @include tablet {
+      width: 688px;
+    }
+
+    .hidden & {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
 }
 
 .modal-form {
@@ -41,16 +54,16 @@
 
   @include tablet {
     padding: 40px;
-    width: 523px;
+    width: 688px;
     top: 50%;
     left: 50%;
 
     transform: translate(-50%, -50%);
   }
 
-  @include desktop {
-    width: 580px;
-  }
+  // @include desktop {
+  //   width: 580px;
+  // }
 }
 
 .call-us__container {
@@ -252,6 +265,9 @@
 
 .form__button-wrapper {
   margin-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   button {
     padding: 18px;
@@ -313,5 +329,21 @@
     left: 0;
     width: auto;
     height: auto;
+  }
+}
+
+.form-phone {
+  span {
+    color: $text-color-2;
+    font-size: 20px;
+
+    @include tablet {
+      font-size: 40px;
+
+    }
+
+    @include laptop {
+      font-size: 2vw;
+    }
   }
 }

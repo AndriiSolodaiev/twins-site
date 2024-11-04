@@ -1,0 +1,62 @@
+.tours-hero {
+
+
+  .about__title-wrap {
+    position: relative;
+
+    .lamp-img-wrap {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100vw - 40px);
+    }
+  }
+
+  .tours-title {
+    margin-bottom: 158px;
+
+  }
+}
+
+.tours-section {
+  background-color: $accent-color;
+  padding-top: 20px;
+}
+
+.tours {
+  padding: 25px 20px 40px 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  margin-top: 0;
+}
+
+.tours-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 25px;
+
+  &__btn {
+    padding: 5px 14px;
+    border-radius: 8px;
+    border: 1px solid $text-color-2;
+    transition: border-color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+
+    &.active {
+      border-color: $bg-color;
+      background-color: $bg-color;
+
+      span {
+        color: $text-color;
+      }
+    }
+
+    span {
+      @include general-text;
+      color: $bg-color;
+      transition: color 0.4s ease-in-out;
+    }
+  }
+}

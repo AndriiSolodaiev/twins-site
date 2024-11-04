@@ -1,0 +1,244 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'About'
+    var id_page = 'id-page-about'
+    var class_page = 'class-page-about'
+    var headerCustomClass = 'type1' 
+    var breadcrumbsSubitem = [
+
+    ]
+
+block meta
+  title= title_page
+  meta(name='description' content='')
+block head
+  link(rel='stylesheet' href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/header.bundle.js')
+  script(defer src='./assets/scripts/footer.bundle.js')
+  script(defer src='./assets/scripts/about.bundle.js')
+block content
+  section.page-hero 
+    include ../includes/breadcrumbs.pug
+    .about__title-wrap.container
+      .line 
+      h2.section-title.about-title Про комплекс
+      .line-with-circle
+        .line
+        .decor-circle 
+          +svg("points")
+        .line
+    p.page-hero-descr.container “TWINS” –  це новий, стриманий та характерний житловий комплекс, який точно стане ще однією візитівкою Вінниці.
+    .page-hero__about-img-wrap 
+      img(src="./assets/images/About/filler.jpg" alt="twins buildings")
+      .container.about__text-block
+        .about__text-wrap 
+          p Проєкт представлений двома сучасними висотними будинками по 24 поверхи.
+            +svg("points")
+          +svg('logo-mini')
+  section.about-arcitecture
+    .container.about__text-block.about-arcitecture__text-block
+      .about__text-wrap 
+        p Виграшне поєднання матеріалів та глибокі кольори підкреслять лаконічність, а скляний фасад і панорамні вікна у кожній квартирі, подарують вам прекрасні краєвиди на зелений масив, озеро та місто.
+          +svg("points")
+        +svg('logo-mini')
+    .about-arcitecture__img-wrap 
+      .mask 
+      img(src="./assets/images/About/arc-1.jpg" alt="arcitecture")
+      p.about-arcitecture__descr Трендові архітектурні рішення та продумані планування видових квартир створять загальний естетичний вигляд та подарують комфорт і затишок майбутнім мешканцям.
+    .container.about__text-block
+      .about__text-wrap 
+        p Проєкт представлений двома сучасними висотними будинками по 24 поверхи.
+          +svg("points")
+        +svg('logo-mini')
+    .about-arcitecture__img-wrap 
+      .mask 
+      img(src="./assets/images/About/arc-2.jpg" alt="arcitecture")
+      p.about-arcitecture__descr Просторий двір з інтерактивним дитячим майданчиком, ландшафтним дизайном та зонами для відпочинку подарує затишок та стане улюбленим місцем для прогулянок та дозвілля.
+    .container.about__text-block
+      .about__text-wrap 
+        p У "TWINS" ми поклали найкраще із нашого багаторічного досвіду у будівництві, знання і бажання зроблять такий проєкт, в якому люди отримають втілення найменших побажань. 
+          +svg("points")
+        +svg('logo-mini')
+  section.about-location
+    .about__title-wrap.container
+      .line 
+      h2.section-title.location-title Локація
+
+    .container
+      p.about-arcitecture__descr Ми поєднали вигідне розташування з передовими технологічними рішеннями. Все заради того, щоб створити для вас ідеальне житло, де тільки Ви і Ваші мрії над містом. 
+    .swiper-about.container
+      .swiper-wrapper 
+        .swiper-slide 
+          img(src="/assets/images/About/slide1.jpg" alt="happy family")
+          p Житловий комплекс спроєктований у мікрорайоні «Вишенька».
+        .swiper-slide 
+          img(src="/assets/images/About/slide1.jpg" alt="happy family")
+          p Зручна транспортна розвʼязка - наявність зупинок різноманітного громадського транспорту в кроковій доступності дає можливість у найкоротший час дістатись до будь-якого куточка міста. 
+        .swiper-slide 
+          img(src="/assets/images/About/slide1.jpg" alt="happy family")
+          p Житловий комплекс спроєктований у мікрорайоні «Вишенька».
+        .swiper-slide 
+          img(src="/assets/images/About/slide1.jpg" alt="happy family")
+          p Зручна транспортна розвʼязка - наявність зупинок різноманітного громадського транспорту в кроковій доступності дає можливість у найкоротший час дістатись до будь-якого куточка міста. 
+      .navigation-about 
+        .numbers-slides 
+          span.js-active-number 1
+          span /
+          span.js-total-number 1
+        .arrows-wrap
+          .swiper-button-prev
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6.07692 1L1 6M1 6L6.07692 11M1 6C4.00855 6 8.44274 6 11 6" stroke="#F6F6F6" stroke-linecap="square"/>
+            </svg>
+          .swiper-button-next
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6.07692 1L1 6M1 6L6.07692 11M1 6C4.00855 6 8.44274 6 11 6" stroke="#F6F6F6" stroke-linecap="square"/>
+            </svg>
+    .block-style-column-3__map-2.map-main-wrap
+      .map-wrapper
+        #map.map
+      .map-navigation
+        button.general-btn(type="button" id="filter-button") 
+          .oppened-fltr СХОВАТИ ФІЛЬТРИ
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M3.96967 3.46967C4.26256 3.17678 4.73744 3.17678 5.03033 3.46967L8.5 6.93934L11.9697 3.46967C12.2626 3.17678 12.7374 3.17678 13.0303 3.46967C13.3232 3.76256 13.3232 4.23744 13.0303 4.53033L9.56066 8L13.0303 11.4697C13.3232 11.7626 13.3232 12.2374 13.0303 12.5303C12.7374 12.8232 12.2626 12.8232 11.9697 12.5303L8.5 9.06066L5.03033 12.5303C4.73744 12.8232 4.26256 12.8232 3.96967 12.5303C3.67678 12.2374 3.67678 11.7626 3.96967 11.4697L7.43934 8L3.96967 4.53033C3.67678 4.23744 3.67678 3.76256 3.96967 3.46967Z" fill="#221A22"/>
+            </svg>
+          .closed-fltr ПОКАЗАТИ ФІЛЬТРИ
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2501 13.75L12.2501 15C12.2501 15.4142 11.9143 15.75 11.5001 15.75C11.0858 15.75 10.7501 15.4142 10.7501 15L10.7501 13L10.7501 11C10.7501 10.5858 11.0858 10.25 11.5001 10.25C11.9143 10.25 12.2501 10.5858 12.2501 11L12.2501 12.25L15.5001 12.25C15.9143 12.25 16.2501 12.5858 16.2501 13C16.2501 13.4142 15.9143 13.75 15.5001 13.75L12.2501 13.75ZM7.50006 7.25C7.08585 7.25 6.75006 7.58579 6.75006 8C6.75006 8.41421 7.08585 8.75 7.50006 8.75L15.5001 8.75C15.9143 8.75 16.2501 8.41421 16.2501 8C16.2501 7.58579 15.9143 7.25 15.5001 7.25L7.50006 7.25ZM10.2501 3.75L15.5001 3.75C15.9143 3.75 16.2501 3.41421 16.2501 3C16.2501 2.58579 15.9143 2.25 15.5001 2.25L10.2501 2.25L10.2501 1C10.2501 0.585787 9.91427 0.25 9.50006 0.25C9.08585 0.25 8.75006 0.585787 8.75006 1L8.75006 3L8.75006 5C8.75006 5.41421 9.08585 5.75 9.50006 5.75C9.91427 5.75 10.2501 5.41421 10.2501 5L10.2501 3.75ZM0.750061 3C0.750061 2.58579 1.08585 2.25 1.50006 2.25L5.50006 2.25C5.91427 2.25 6.25006 2.58579 6.25006 3C6.25006 3.41421 5.91428 3.75 5.50006 3.75L1.50006 3.75C1.08585 3.75 0.750061 3.41421 0.750061 3ZM0.750061 8C0.750061 7.58579 1.08585 7.25 1.50006 7.25L3.75006 7.25L3.75006 6C3.75006 5.58579 4.08585 5.25 4.50006 5.25C4.91427 5.25 5.25006 5.58579 5.25006 6L5.25006 8L5.25006 10C5.25006 10.4142 4.91427 10.75 4.50006 10.75C4.08585 10.75 3.75006 10.4142 3.75006 10L3.75006 8.75L1.50006 8.75C1.08585 8.75 0.750061 8.41421 0.750061 8ZM0.750061 13C0.750061 12.5858 1.08585 12.25 1.50006 12.25L7.50006 12.25C7.91427 12.25 8.25006 12.5858 8.25006 13C8.25006 13.4142 7.91428 13.75 7.50006 13.75L1.50006 13.75C1.08585 13.75 0.750061 13.4142 0.750061 13Z" fill="#CDC8BC"/>
+            </svg>
+        ul.map-navigation__main
+          //- li(data-marker data-type="supermarket" data-category="supermarket").map-navigation__button
+          //-   +svg('supermarket')
+          //-   span Супермаркети
+          li(data-marker data-type="mall" data-category="mall").map-navigation__button
+            +svg('mall')
+            span Торгівельні центри
+          //- li(data-marker data-type="kindergarden" data-category="kindergarden").map-navigation__button
+          //-   +svg('kindergarden')
+          //-   span Дитячі садочки
+          li(data-marker data-type="school" data-category="school").map-navigation__button
+            +svg('school')
+            span Школи і дитячі садочки
+          //- li(data-marker data-type="university" data-category="university").map-navigation__button
+          //-   +svg('university')
+          //-   span Вищі навчальні заклади
+          li(data-marker data-type="restaurant" data-category="restaurant").map-navigation__button
+            +svg('restaurant')
+            span Ресторани та кав’ярні
+          li(data-marker data-type="pharmacy" data-category="pharmacy").map-navigation__button
+            +svg('pharmacy')
+            span Медицина
+          //- li(data-marker data-type="park" data-category="park").map-navigation__button
+          //-   +svg('park')
+          //-   span Місця для відпочинку
+          li(data-marker data-type="sport" data-category="sport").map-navigation__button
+            +svg('sport')
+            span Спорт та культура
+          li(data-marker data-type="supermarket" data-category="supermarket").map-navigation__button
+            +svg('supermarket')
+            span Супермаркет
+          li(data-marker data-type="drivingSchool" data-category="drivingSchool").map-navigation__button
+            +svg('driving-school')
+            span Автошкола
+          li(data-marker data-type="post" data-category="post").map-navigation__button
+            +svg('post')
+            span Нова Пошта
+          li(data-marker data-type="aquapark" data-category="aquapark").map-navigation__button
+            +svg('aquapark')
+            span Аквапарк
+          li(data-marker data-type="petrolStation" data-category="petrolStation").map-navigation__button
+            +svg('petrol-station')
+            span АЗС
+          li(data-marker data-type="busStop" data-category="busStop").map-navigation__button
+            +svg('bus-stop')
+            span Автовокзал
+          li(data-marker data-type="carWashing" data-category="carWashing").map-navigation__button
+            +svg('car-washing')
+            span Автомийка
+  section.advantages 
+    .advantages-wrapper
+      h2.advantages-title Переваги
+      .advantages-list 
+        .advantage-card
+          img(src="./assets/images/Advantages/1.jpg" alt="advantages")
+          h3 Надійність
+          p Перевірений людьми забудовник
+          .number-wrap
+            span 01
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="23" viewBox="0 0 46 23" fill="none">
+              <path d="M0 1.77748V0H8.02058V1.77748H5.08556V10H2.94854V1.77748H0Z" fill="#CDC8BC"/>
+              <path d="M8.61569 0H10.6039L12.1594 7.10991L14.0394 0H15.7842L17.6507 6.98779L19.1926 0H21.1808L18.9762 10H16.6227L14.8915 3.4464L13.1738 10H10.8203L8.61569 0Z" fill="#CDC8BC"/>
+              <path d="M22.5198 10V0H24.6569V10H22.5198Z" fill="#CDC8BC"/>
+              <path d="M26.7127 10V0H29.2149L33.6242 7.05563V0H35.7613V10H33.259L28.8498 2.94437V10H26.7127Z" fill="#CDC8BC"/>
+              <path d="M37.3843 6.7708H39.6024C39.6024 7.23213 39.8053 7.59847 40.2111 7.88341C40.6169 8.15478 41.1849 8.30404 41.9153 8.30404C42.4698 8.30404 42.9162 8.19549 43.2543 7.99196C43.5924 7.77487 43.7683 7.5035 43.7683 7.17785C43.7683 6.90648 43.6601 6.67582 43.4437 6.51299C43.2273 6.3366 42.9297 6.20092 42.578 6.11951C42.2264 6.02453 41.8341 5.94312 41.4013 5.87527C40.9685 5.80743 40.5492 5.69888 40.1164 5.57677C39.6836 5.45465 39.2914 5.27826 38.9397 5.0883C38.588 4.88477 38.304 4.58626 38.0741 4.19278C37.8577 3.79929 37.7495 3.32439 37.7495 2.76808C37.7495 2.02181 38.1147 1.38409 38.845 0.827783C39.5754 0.285042 40.5628 0.0136719 41.8206 0.0136719C42.551 0.0136719 43.1867 0.108652 43.7277 0.298611C44.2822 0.48857 44.7015 0.746372 44.9991 1.07202C45.2967 1.39766 45.5266 1.72331 45.6754 2.07609C45.8241 2.42887 45.8918 2.78165 45.8918 3.16157H43.6736C43.6736 2.74094 43.5248 2.38816 43.2273 2.11679C42.9297 1.84542 42.4563 1.70974 41.8206 1.70974C41.2931 1.70974 40.8468 1.80472 40.5087 1.99468C40.157 2.18464 39.9812 2.44244 39.9812 2.76808C39.9812 3.09373 40.0894 3.33796 40.3058 3.54149C40.5222 3.74502 40.8197 3.89427 41.1714 3.98925C41.5231 4.08423 41.9153 4.16564 42.3481 4.24705C42.7809 4.32846 43.2137 4.42344 43.633 4.53199C44.0658 4.65411 44.4446 4.80336 44.8097 4.97975C45.1614 5.16971 45.4454 5.44108 45.6754 5.80743C45.8918 6.17378 46 6.63511 46 7.17785C46 7.99196 45.6483 8.65682 44.9315 9.19956C44.2146 9.7423 43.2137 10.0001 41.9018 10.0001C41.1038 10.0001 40.414 9.90512 39.8053 9.71516C39.1967 9.5252 38.7233 9.28097 38.3852 8.95533C38.047 8.64325 37.79 8.30404 37.6142 7.92412C37.4654 7.55777 37.3843 7.17785 37.3843 6.7708Z" fill="#CDC8BC"/>
+            </svg>
+        .advantage-card
+          img(src="./assets/images/Advantages/1.jpg" alt="advantages")
+          h3 Надійність
+          p Перевірений людьми забудовник
+          .number-wrap
+            span 01
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="23" viewBox="0 0 46 23" fill="none">
+              <path d="M0 1.77748V0H8.02058V1.77748H5.08556V10H2.94854V1.77748H0Z" fill="#CDC8BC"/>
+              <path d="M8.61569 0H10.6039L12.1594 7.10991L14.0394 0H15.7842L17.6507 6.98779L19.1926 0H21.1808L18.9762 10H16.6227L14.8915 3.4464L13.1738 10H10.8203L8.61569 0Z" fill="#CDC8BC"/>
+              <path d="M22.5198 10V0H24.6569V10H22.5198Z" fill="#CDC8BC"/>
+              <path d="M26.7127 10V0H29.2149L33.6242 7.05563V0H35.7613V10H33.259L28.8498 2.94437V10H26.7127Z" fill="#CDC8BC"/>
+              <path d="M37.3843 6.7708H39.6024C39.6024 7.23213 39.8053 7.59847 40.2111 7.88341C40.6169 8.15478 41.1849 8.30404 41.9153 8.30404C42.4698 8.30404 42.9162 8.19549 43.2543 7.99196C43.5924 7.77487 43.7683 7.5035 43.7683 7.17785C43.7683 6.90648 43.6601 6.67582 43.4437 6.51299C43.2273 6.3366 42.9297 6.20092 42.578 6.11951C42.2264 6.02453 41.8341 5.94312 41.4013 5.87527C40.9685 5.80743 40.5492 5.69888 40.1164 5.57677C39.6836 5.45465 39.2914 5.27826 38.9397 5.0883C38.588 4.88477 38.304 4.58626 38.0741 4.19278C37.8577 3.79929 37.7495 3.32439 37.7495 2.76808C37.7495 2.02181 38.1147 1.38409 38.845 0.827783C39.5754 0.285042 40.5628 0.0136719 41.8206 0.0136719C42.551 0.0136719 43.1867 0.108652 43.7277 0.298611C44.2822 0.48857 44.7015 0.746372 44.9991 1.07202C45.2967 1.39766 45.5266 1.72331 45.6754 2.07609C45.8241 2.42887 45.8918 2.78165 45.8918 3.16157H43.6736C43.6736 2.74094 43.5248 2.38816 43.2273 2.11679C42.9297 1.84542 42.4563 1.70974 41.8206 1.70974C41.2931 1.70974 40.8468 1.80472 40.5087 1.99468C40.157 2.18464 39.9812 2.44244 39.9812 2.76808C39.9812 3.09373 40.0894 3.33796 40.3058 3.54149C40.5222 3.74502 40.8197 3.89427 41.1714 3.98925C41.5231 4.08423 41.9153 4.16564 42.3481 4.24705C42.7809 4.32846 43.2137 4.42344 43.633 4.53199C44.0658 4.65411 44.4446 4.80336 44.8097 4.97975C45.1614 5.16971 45.4454 5.44108 45.6754 5.80743C45.8918 6.17378 46 6.63511 46 7.17785C46 7.99196 45.6483 8.65682 44.9315 9.19956C44.2146 9.7423 43.2137 10.0001 41.9018 10.0001C41.1038 10.0001 40.414 9.90512 39.8053 9.71516C39.1967 9.5252 38.7233 9.28097 38.3852 8.95533C38.047 8.64325 37.79 8.30404 37.6142 7.92412C37.4654 7.55777 37.3843 7.17785 37.3843 6.7708Z" fill="#CDC8BC"/>
+            </svg>
+        .advantage-card
+          img(src="./assets/images/Advantages/1.jpg" alt="advantages")
+          h3 Надійність
+          p Перевірений людьми забудовник
+          .number-wrap
+            span 01
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="23" viewBox="0 0 46 23" fill="none">
+              <path d="M0 1.77748V0H8.02058V1.77748H5.08556V10H2.94854V1.77748H0Z" fill="#CDC8BC"/>
+              <path d="M8.61569 0H10.6039L12.1594 7.10991L14.0394 0H15.7842L17.6507 6.98779L19.1926 0H21.1808L18.9762 10H16.6227L14.8915 3.4464L13.1738 10H10.8203L8.61569 0Z" fill="#CDC8BC"/>
+              <path d="M22.5198 10V0H24.6569V10H22.5198Z" fill="#CDC8BC"/>
+              <path d="M26.7127 10V0H29.2149L33.6242 7.05563V0H35.7613V10H33.259L28.8498 2.94437V10H26.7127Z" fill="#CDC8BC"/>
+              <path d="M37.3843 6.7708H39.6024C39.6024 7.23213 39.8053 7.59847 40.2111 7.88341C40.6169 8.15478 41.1849 8.30404 41.9153 8.30404C42.4698 8.30404 42.9162 8.19549 43.2543 7.99196C43.5924 7.77487 43.7683 7.5035 43.7683 7.17785C43.7683 6.90648 43.6601 6.67582 43.4437 6.51299C43.2273 6.3366 42.9297 6.20092 42.578 6.11951C42.2264 6.02453 41.8341 5.94312 41.4013 5.87527C40.9685 5.80743 40.5492 5.69888 40.1164 5.57677C39.6836 5.45465 39.2914 5.27826 38.9397 5.0883C38.588 4.88477 38.304 4.58626 38.0741 4.19278C37.8577 3.79929 37.7495 3.32439 37.7495 2.76808C37.7495 2.02181 38.1147 1.38409 38.845 0.827783C39.5754 0.285042 40.5628 0.0136719 41.8206 0.0136719C42.551 0.0136719 43.1867 0.108652 43.7277 0.298611C44.2822 0.48857 44.7015 0.746372 44.9991 1.07202C45.2967 1.39766 45.5266 1.72331 45.6754 2.07609C45.8241 2.42887 45.8918 2.78165 45.8918 3.16157H43.6736C43.6736 2.74094 43.5248 2.38816 43.2273 2.11679C42.9297 1.84542 42.4563 1.70974 41.8206 1.70974C41.2931 1.70974 40.8468 1.80472 40.5087 1.99468C40.157 2.18464 39.9812 2.44244 39.9812 2.76808C39.9812 3.09373 40.0894 3.33796 40.3058 3.54149C40.5222 3.74502 40.8197 3.89427 41.1714 3.98925C41.5231 4.08423 41.9153 4.16564 42.3481 4.24705C42.7809 4.32846 43.2137 4.42344 43.633 4.53199C44.0658 4.65411 44.4446 4.80336 44.8097 4.97975C45.1614 5.16971 45.4454 5.44108 45.6754 5.80743C45.8918 6.17378 46 6.63511 46 7.17785C46 7.99196 45.6483 8.65682 44.9315 9.19956C44.2146 9.7423 43.2137 10.0001 41.9018 10.0001C41.1038 10.0001 40.414 9.90512 39.8053 9.71516C39.1967 9.5252 38.7233 9.28097 38.3852 8.95533C38.047 8.64325 37.79 8.30404 37.6142 7.92412C37.4654 7.55777 37.3843 7.17785 37.3843 6.7708Z" fill="#CDC8BC"/>
+            </svg>
+    section.about-safety
+      .about__title-wrap.container
+        .line
+        h2.section-title.safety-title Безпека
+        .line
+      .about-safety__descr-wrap
+        img(src="./assets/images/About/camera.png" alt="camera").about-safety__camera
+        p.about-safety__descr Закрита територія двору, з  можливістю персонального доступу та цілодобовим відеоспостереженням стане справжнім острівцем безпеки та комфорту.
+      .about-safety__list 
+        .about-safety__card 
+          .about-safety__card-img-wrap 
+            img(src="./assets/images/About/safe1.jpg" alt="lift")
+            .mask
+          .about-safety__card-descr 
+            p У кожному під’їзді буде встановлено автономний ліфт, який дозволить  дістатись на самий верхній поверх навіть при відключеннях світла.
+        .about-safety__card.second-card
+          .about-safety__card-img-wrap 
+            img(src="./assets/images/About/auto.png" alt="auto")
+            .elips
+          .about__text-block
+            .about__text-wrap 
+              p Також у  комплексі наявний укріплений підземний паркінг, в якому передбачена зона укриття, яка просто необхідна в тривожних умовах сьогодення.
+                +svg("points")
+              +svg('logo-mini')
+        .about-safety__card
+          .about-safety__card-img-wrap 
+            img(src="./assets/images/About/safe2.jpg" alt="lift")
+            .mask
+          .about-safety__card-descr 
+            p Встановлені від забудовника генератори забезпечать можливість безперебійної роботи систем опалення, водопостачання та пожежної безпеки. 
+
+
+
+
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

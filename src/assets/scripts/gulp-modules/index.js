@@ -7,21 +7,15 @@ import Swiper, {
   Controller,
 } from 'swiper';
 import { gsap, ScrollTrigger, CustomEase } from 'gsap/all';
-import { initSmoothScrolling } from '../modules/scroll/leniscroll';
+
 import googleMap from '../modules/map/map';
 import device from 'current-device';
 if (device.iphone()) {
   document.querySelector('html').style.overscrollBehavior = 'none';
 }
 googleMap();
-initSmoothScrolling();
+
 gsap.registerPlugin(ScrollTrigger, CustomEase);
-// document.querySelector('.up-btn-wrap').addEventListener('click', () => {
-//   window.scrollTo({
-//     top: 0,
-//     behavior: 'smooth',
-//   });
-// });
 
 function initSwiperHero(timelineFirstToPlay) {
   const swiperHero = new Swiper('.swiper-hero', {
@@ -437,7 +431,7 @@ function aboutAnim() {
     // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
     const activeState =
       'M 375 0 H 0 V 635 H 375 V 0 Z M 192 733 C 431 732 483 483 484 330 C 483 151 414 -95 192 -95 C -37 -95 -118 152 -118 331 C -117 486 -42 733 192 733 Z';
-    const percentOfCircleOpeningAnimation = 0.25;
+    const percentOfCircleOpeningAnimation = 0.5;
     aboutImgMob
       .fromTo(
         path,
@@ -657,7 +651,7 @@ function locationAnim() {
     // const activeState = 'M 1921 0 H 0 V 970 H 1921 V 0 Z M -1 487 C -12 1024 -70 971 967 971 C 2021 968 1917 1048 1917 481 C 1920 -93 2021 -1 960 -1 C -109 3 0 -93 -1 487 Z';
     const activeState =
       'M 375 0 H 0 V 635 H 375 V 0 Z M 192 733 C 431 732 483 483 484 330 C 483 151 414 -95 192 -95 C -37 -95 -118 152 -118 331 C -117 486 -42 733 192 733 Z';
-    const percentOfCircleOpeningAnimation = 0.25;
+    const percentOfCircleOpeningAnimation = 0.5;
     locationImgMob
       .fromTo(
         path,

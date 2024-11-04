@@ -1,0 +1,48 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'panorama'
+    var id_page = 'id-page-panorama'
+    var class_page = 'class-page-panorama'
+    var headerCustomClass = 'type1' 
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+
+block meta
+  title= title_page
+  meta(name='description' content='')
+block head
+  link(rel='stylesheet' href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/header.bundle.js')
+  script(defer src='./assets/scripts/footer.bundle.js')
+  script(defer src='./assets/scripts/panorama.bundle.js')
+block content
+  section.page-hero.panorama-hero
+    include ../includes/breadcrumbs.pug
+    .about__title-wrap.container
+      .line 
+      h2.section-title.panorama-title 360° ПАНОРАМА
+      .line-with-circle
+        .line
+        .decor-circle 
+          +svg("points")
+        .line
+    .panorama-iframe__wrap
+      iframe(src="https://apartment-tours.smartorange.com.ua/twins-day-floors/?scene=5" loading="lazy" allowfullscreen="true").iframe-window.static
+      .iframe-filter 
+        button(type="button" data-day="day").general-btn.active День
+        button(type="button" data-day="night").general-btn Ніч
+        button(type="button" data-day="sunset").general-btn Захід сонця
+
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

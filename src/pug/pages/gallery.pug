@@ -1,0 +1,85 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'gallery'
+    var id_page = 'id-page-gallery'
+    var class_page = 'class-page-gallery'
+    var headerCustomClass = 'type1' 
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+
+block meta
+  title= title_page
+  meta(name='description' content='')
+block head
+  link(rel='stylesheet' href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/header.bundle.js')
+  script(defer src='./assets/scripts/footer.bundle.js')
+  script(defer src='./assets/scripts/gallery.bundle.js')
+block content
+  section.page-hero 
+    include ../includes/breadcrumbs.pug
+    .about__title-wrap.container
+      .line 
+      h2.section-title.gallery-title Галерея
+      .line-with-circle
+        .line
+        .decor-circle 
+          +svg("points")
+        .line
+    .gallery 
+      .slick-arrows 
+        .slick-arrow-up
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M11 6.07692L6 1M6 1L1 6.07692M6 1C6 4.00855 6 8.44273 6 11" stroke="#0F0F0F" stroke-linecap="square"/>
+          </svg>
+        .slick-arrow-down
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M11 6.07692L6 1M6 1L1 6.07692M6 1C6 4.00855 6 8.44273 6 11" stroke="#0F0F0F" stroke-linecap="square"/>
+          </svg>
+      .split-slideshow
+        .slideshow
+          .slider
+            .item
+              picture
+                source(
+                  srcset="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-2.jpg" media="(min-width: 768px)"
+                  )
+                img(src="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-2.jpg" alt="Canyon 2")
+            .item
+              picture
+                source(
+                  srcset="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-3.jpg" media="(min-width: 768px)"
+                  )
+                img(src="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-3.jpg" alt="Canyon 3")
+            .item
+              picture
+                source(
+                  srcset="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-4.jpg" media="(min-width: 768px)"
+                  )
+                img(src="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-4.jpg" alt="Canyon 4")
+            .item
+              picture
+                source(
+                  srcset="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-1.jpg" media="(min-width: 768px)"
+                  )
+                img(src="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-1.jpg" alt="Canyon 1")
+            .item
+              picture
+                source(
+                  srcset="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-1.jpg" media="(min-width: 768px)"
+                  )
+                img(src="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-1.jpg" alt="Canyon 1")
+
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

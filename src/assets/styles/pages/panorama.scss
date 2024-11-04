@@ -1,0 +1,100 @@
+.panorama-hero {
+  padding-bottom: 20px;
+}
+
+.panorama-iframe__wrap {
+  margin-top: 28px;
+  position: relative;
+  width: 100%;
+  height: 120vw;
+  padding: 0 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+
+
+  &.oppened {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+
+  iframe {
+    border-radius: 8px;
+    width: 100%;
+    // height: calc(100% - 150px);
+    height: 100%;
+  }
+
+  .iframe-filter {
+
+    // border-radius: 12px;
+    // background-color: rgba(205, 200, 188, 0.80);
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 4px;
+    left: 24px;
+    border-radius: 80px;
+    background: rgba(32, 35, 38, 0.24);
+    box-shadow: 0px 8.336px 6.252px 0px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(52px);
+    -webkit-backdrop-filter: blur(52px);
+  }
+
+  .general-btn {
+    background: $wc;
+    color: $bg-color;
+    box-shadow: none;
+    transition: color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+
+    &.active {
+      background-color: $bg-color;
+      color: $wc;
+    }
+  }
+
+  .iframe__close-btn {
+    position: absolute;
+    background-color: $wc;
+    top: 4px;
+    right: 4px;
+    // width: 42px;
+    // height: 42px;
+
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: $wc;
+    box-shadow: 0px 8.336px 6.252px 0px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(52px);
+    -webkit-backdrop-filter: blur(52px);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .25s ease-out;
+
+    svg path {
+      width: 24px;
+      height: 24px;
+      fill: $bg-color;
+    }
+  }
+}
+
+.desktop {
+  .iframe-filter .general-btn:hover {
+    span {
+      color: $wc;
+    }
+  }
+}

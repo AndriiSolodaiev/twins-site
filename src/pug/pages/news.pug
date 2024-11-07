@@ -7,21 +7,66 @@ block variable
     var class_page = 'class-page-news'
     var headerCustomClass = 'type2' 
     var breadcrumbsSubitem = [
-     
+
     ]
-  
+
 block meta
   title= title_page
-  meta(name='description', content='')
+  meta(name='description' content='')
 block head
-    link(rel='stylesheet', href="./assets/styles/main.min.css")
+  link(rel='stylesheet' href="./assets/styles/main.min.css")
 block scripts
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/header.bundle.js')
   script(defer src='./assets/scripts/footer.bundle.js')
   script(defer src='./assets/scripts/news.bundle.js')
 block content
- 
+  section.page-hero.news
+    include ../includes/breadcrumbs.pug
+    .about__title-wrap.container
+      .line 
+      h2.section-title.news-title-1 Новини
+      h1.section-title.news-title-2 Та акції
+      .line-with-circle
+        .line
+        .decor-circle 
+          +svg("points")
+        .line
+    .news-filter.container
+      button.general-btn.news-btn.active(data-news="all")
+        span Показати всі
+      button.general-btn.news-btn(data-news="1")
+        span СЕКЦІЯ 1
+      button.general-btn.news-btn(data-news="2")
+        span СЕКЦІЯ 2
+    .container.line-margin
+      .line
+    .news-list 
+      a.news-card( href="/" data-news-card="1")
+        .news-card__img-wrap 
+          img(src="./assets/images/news-card.jpg" alt="news")
+        .news-card__text-wrap 
+          p.news-card__descr Встигніть здійснити бажання про власне житло! Продаж квартир у нашому жк відкрито!
+          .news-card__btn-date-wrap 
+            p.news-card__date 25 жовтня 2024
+            button.general-btn ЧИТАТИ НОВИНУ
+      a.news-card( href="/" data-news-card="1")
+        .news-card__img-wrap 
+          img(src="./assets/images/news-card.jpg" alt="news")
+        .news-card__text-wrap 
+          p.news-card__descr Встигніть здійснити бажання про власне житло! Продаж квартир у нашому жк відкрито!
+          .news-card__btn-date-wrap 
+            p.news-card__date 25 жовтня 2024
+            button.general-btn ЧИТАТИ НОВИНУ
+      a.news-card( href="/" data-news-card="2")
+        .news-card__img-wrap 
+          img(src="./assets/images/news-card.jpg" alt="news")
+        .news-card__text-wrap 
+          p.news-card__descr Встигніть здійснити бажання про власне житло! Продаж квартир у нашому жк відкрито!
+          .news-card__btn-date-wrap 
+            p.news-card__date 25 жовтня 2024
+            button.general-btn 
+              span ЧИТАТИ НОВИНУ
 block footer
   include ../includes/footer.pug
 

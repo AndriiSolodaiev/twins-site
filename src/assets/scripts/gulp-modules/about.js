@@ -1,11 +1,10 @@
 import Swiper, { Navigation } from 'swiper';
 import { gsap, ScrollTrigger, CustomEase } from 'gsap/all';
-import { initSmoothScrolling } from '../modules/scroll/leniscroll';
+
 import googleMap from '../modules/map/map';
-import device from 'current-device';
 
 googleMap();
-initSmoothScrolling();
+
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 const swiperAbout = new Swiper('.swiper-about', {
   modules: [Navigation],

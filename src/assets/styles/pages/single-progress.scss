@@ -1,0 +1,137 @@
+.single-progress {
+  background: radial-gradient(circle at 44% 60vh, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 50%), $accent-color;
+
+  @media screen and (min-width: 1065px) {
+    background: radial-gradient(circle at 50% 100vh, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 60%), $accent-color;
+  }
+
+  .progress-card__date-wrap {
+    @media screen and (min-width: 1065px) {
+      justify-content: flex-start;
+      gap: 20px;
+
+      .progress-card__year,
+      .progress-card__month {
+        text-align: start;
+      }
+    }
+
+    .progress-card__day {
+      color: $text-color-2;
+      border-right-color: rgba(246, 246, 246, 0.2);
+    }
+
+    .progress-card__year,
+    .progress-card__month {
+      color: $text-color;
+
+    }
+  }
+
+  .navigation-about {
+    position: static;
+    width: 100%;
+  }
+
+  &__content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    // margin-bottom: 20px;
+    margin-top: 20px;
+    background-color: $wc;
+    border-radius: 20px;
+
+    @media screen and (min-width: 1065px) {
+      max-width: 1065px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 132.5px;
+      padding-right: 132.5px;
+      overflow: hidden;
+    }
+  }
+
+  &__img {
+    border-radius: 20px;
+    width: 100%;
+    margin-bottom: 40px;
+    margin-top: 20px;
+  }
+
+  .numbers-slides span {
+    color: $bg-color
+  }
+
+  .swiper-progress {
+    .swiper-slide {
+      height: 75vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include tablet {
+        height: 60vw;
+      }
+
+      @media screen and (min-width: 1065px) {
+        height: 608px;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+
+      }
+    }
+  }
+
+  &__title {
+    @include subtitle-text;
+    color: $bg-color;
+    margin-bottom: 20px;
+  }
+
+  &__general-text {
+    @include general-text;
+    color: $bg-color;
+    margin-bottom: 20px;
+  }
+
+  &__list {
+
+    margin-bottom: 20px;
+
+    li {
+      @include general-text;
+      color: $bg-color
+    }
+  }
+
+  &__video {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: 100%;
+
+    border-radius: 20px;
+  }
+}
+
+.last-progress {
+  padding-top: 150px;
+  padding-bottom: 20px;
+  background-color: $accent-color;
+  position: relative;
+  top: -1px;
+
+  &__title {
+    @include subtitle-text;
+    margin-bottom: 40px;
+    font-size: 36px;
+
+    @include tablet {
+      font-size: 64px;
+
+    }
+  }
+}

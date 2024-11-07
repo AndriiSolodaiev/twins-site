@@ -1,0 +1,140 @@
+.progress {
+  padding-bottom: 100px;
+  background: radial-gradient(circle at 44% 700px, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 70%), $accent-color;
+
+  &-title {
+    @include laptop {
+      width: 20%
+    }
+  }
+}
+
+.progress-filter {
+  margin-top: 20px;
+  padding-bottom: 30px;
+  // border-bottom: 1px solid rgba(246, 246, 246, 0.2);
+  display: flex;
+  gap: 4px;
+
+
+}
+
+.progress-btn {
+  background-color: transparent;
+  box-shadow: none;
+  border-color: rgba(246, 246, 246, 0.20);
+
+  &.active {
+    pointer-events: none;
+    background: var(--Violet-dark, #221A22);
+    box-shadow: 0px 1px 0px 0px #5A4C5A inset, 0px 12px 60px 0px #140E14, 0px 9px 30px 0px rgba(116, 69, 116, 0.25) inset, 0px 0px 8px 0px rgba(86, 39, 86, 0.15) inset;
+  }
+}
+
+.progress-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  min-height: 50vh;
+
+  @include tablet {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.progress-card {
+  width: 100%;
+  background-color: $wc;
+  border-radius: 20px;
+  padding: 20px;
+  height: fit-content;
+  transition: box-shadow 0.4s ease-in-out;
+
+  @include tablet {
+    width: calc((100% - 20px) / 2)
+  }
+
+  @include laptop {
+    width: calc((100% - 40px)/3)
+  }
+
+  &__img-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 72%;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease-in-out;
+    }
+  }
+
+  &__labels-wrap {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 2;
+    display: flex;
+    gap: 4px;
+  }
+
+  &__label {
+    padding: 4px 12px;
+    background-color: $wc;
+    border-radius: 100px;
+    width: fit-content;
+    font-size: 16px;
+    color: $accent-color;
+  }
+
+  &__date-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+  }
+
+  &__day {
+    padding-right: 20px;
+    border-right: 1px solid rgba(64, 57, 57, 0.20);
+    font-size: 96px;
+    font-weight: 400;
+    line-height: 80%;
+    letter-spacing: -3.84px;
+    color: $text-dark;
+
+    @include laptop {
+      font-size: 10.4vw
+    }
+  }
+
+  &__year {
+    @include general-text;
+    color: $accent-color;
+    text-align: end;
+
+  }
+
+  &__month {
+    @include subtitle-text;
+    color: $accent-color;
+    text-align: end;
+  }
+}
+
+.desktop .progress-card:hover {
+  // box-shadow: 0px 12px 20px 0px #140E14;
+
+  img {
+    transform: scale(1.15);
+  }
+}

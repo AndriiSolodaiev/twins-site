@@ -5,7 +5,7 @@ block variable
 block meta
     title= '404'
     meta(name='description' content='')
-    
+
 block head
     link(rel='stylesheet' href="./assets/styles/main.min.css")
 
@@ -17,23 +17,26 @@ block scripts
 block content
     section.notFound
         .notFound-bg
-            .container.notFound__text
-                .notFound__title 
-                    p 404
-                    h1 Упс, щось пішло не так...
-                .notFound-links__wrap 
-                    a.general-button(href="") 
-                        p Повернутися назад
+            .lamp-decor
+                img(src="./assets/images/lamp.png" alt="lamp")
+            .notFound__cotent-wrap.container
+                .notFound__img-wrap
+                    img(src="./assets/images/404.png" alt="404")
+                .notFound__text
+                    h1.notFound__title Упс, щось пішло не так...
+                    .notFound-links__wrap 
+                        a.general-btn(href="") 
+                            span  назад
+                        a.general-btn(href="/") 
+                            span На головну
+                        a(href="/").accent-btn 
+                            span  ОБРАТИ КВАРТИРУ
 
-                    a.general-button(href="/") 
-                        p На головну
-            
 
 
 
-
-//- block footer
-//-     include ../includes/footer.pug
+block footer
+    include ../includes/footer.pug
 
 block header
     include ../includes/header.pug

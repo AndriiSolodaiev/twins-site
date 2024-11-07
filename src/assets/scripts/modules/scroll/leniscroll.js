@@ -8,7 +8,7 @@ let lenis;
 let isInited = false;
 export const initSmoothScrolling = () => {
   // Instantiate the Lenis object with specified properties
-  if (isInited) return lenis;
+  // if (isInited) return lenis;
 
   lenis = new Lenis({
     lerp: 0.1,
@@ -19,6 +19,7 @@ export const initSmoothScrolling = () => {
   // Update ScrollTrigger each time the user scrolls
   lenis.on('scroll', () => ScrollTrigger.update());
   window.lenis = lenis;
+
   window.addEventListener('stop-scroll', () => {
     lenis.stop();
   });
@@ -28,12 +29,14 @@ export const initSmoothScrolling = () => {
 
   // Define a function to run at each animation frame
   const scrollFn = time => {
-    lenis.raf(time); // Run Lenis' requestAnimationFrame method
-    requestAnimationFrame(scrollFn); // Recursively call scrollFn on each frame
+    lenis.raf(time);
+    ScrollTrigger.update(); // Run Lenis' requestAnimationFrame method
+    requestAnimationFrame(scrollFn);
+    // Recursively call scrollFn on each frame
   };
   // Start the animation frame loop
   requestAnimationFrame(scrollFn);
-  isInited = true;
+  // isInited = true;
   return lenis;
 };
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -52,7 +55,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 document.querySelector('.up-btn-wrap').addEventListener('click', () => {
   lenis.scrollTo(0, {
-    duration: 4, // збільшено тривалість до 3 секунд для плавності
+    duration: 2, // збільшено тривалість до 3 секунд для плавності
     easing: t => 1 - Math.pow(1 - t, 3), // плавніший easing
   });
 

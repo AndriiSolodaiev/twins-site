@@ -1,5 +1,10 @@
 import '../../loader';
 import { gsap, ScrollTrigger, CustomEase } from 'gsap/all';
+import device from 'current-device';
+if (device.iphone()) {
+  document.querySelector('html').style.overscrollBehavior = 'none';
+}
+
 const header = document.querySelector('.header-bg');
 
 window.addEventListener('scroll', function headerSquosh() {

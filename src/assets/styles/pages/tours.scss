@@ -1,5 +1,9 @@
 .tours-hero {
+  background: radial-gradient(circle at 50% 40%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 70%), $accent-color;
 
+  @include tablet {
+    padding-bottom: 50px;
+  }
 
   .about__title-wrap {
     position: relative;
@@ -9,24 +13,40 @@
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100vw - 40px);
+      width: 335px;
+
+      @include tablet {
+        top: 100px;
+      }
+
+      @include laptop {
+        top: 60px;
+      }
     }
   }
 
   .tours-title {
     margin-bottom: 158px;
+    position: relative;
+    top: 0;
+    z-index: 2;
 
+    @include laptop {
+      width: 20%
+    }
   }
 }
 
 .tours-section {
-  background-color: $accent-color;
+
   padding-top: 20px;
+  padding-bottom: 20px;
+
 }
 
 .tours {
   padding: 25px 20px 40px 20px;
-  margin-bottom: 20px;
+
   border-radius: 20px;
   margin-top: 0;
 }

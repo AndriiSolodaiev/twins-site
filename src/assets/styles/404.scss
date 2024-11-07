@@ -1,52 +1,114 @@
-.notFound {
-    height:100vh;
-   
-}
-
 .notFound-bg {
 
     background-size: cover;
-    padding-top: 100px;
-    height:100%;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    height: 100%;
     width: 100%;
-    background-image: url('../images/home/hero-bg.jpg');
+    background-image: url('../images/menu-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
-    @include tablet {
-        padding-top: 200px;
-    }
+    // @include tablet {
+    //     padding-top: 70px;
+    // }
 
     @include laptop {
+        background-image: url('../images/menu-bg-pc.jpg');
+        padding-top: 0px;
+    }
+
+
+
+    .lamp-decor {
         display: flex;
-        flex-direction: row-reverse;
-        
-        height: 100%;
-        padding-top: 130px;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            height: auto;
+            width: 40%;
+
+            @include laptop {
+                width: 15%
+            }
+
+        }
+    }
+}
+
+.notFound {
+    // height: 100svh;
+
+
+    &__cotent-wrap {
+
+        @include laptop {
+
+            display: flex;
+            align-items: center;
+        }
+
+        .notFound__img-wrap {
+            margin-bottom: 20px;
+
+            @include tablet {
+                margin-top: -50px;
+            }
+
+            @include laptop {
+                margin-top: 0;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+
+                img {
+                    width: 35vw;
+                }
+            }
+        }
     }
 
-    @include desktop {
-        padding-top: 200px;
+    &__text {
+        @include laptop {
+            padding-left: 9.1vw;
+            flex: 1;
+        }
     }
+
+    &__title {
+        @include subtitle-text;
+        color: $text-color-2;
+        margin-bottom: 20px;
+        text-align: center;
+
+        @include laptop {
+            font-size: 3.33vw;
+            text-align: start;
+            max-width: 27vw;
+        }
+    }
+
+    &-links__wrap {
+        display: flex;
+        align-items: stretch;
+        gap: 4px;
+
+        @include tablet {
+            justify-content: center;
+        }
+
+        @include laptop {
+            justify-content: flex-start;
+        }
+
+        .accent-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+
 }
-
-.notFound__text {
-    
-
-}
-
-.notFound__title {
- 
-
-}
-
-.notFound-links__wrap {
-    
-}
-
-.notFound-img-wraper {
-    
-}
-
-

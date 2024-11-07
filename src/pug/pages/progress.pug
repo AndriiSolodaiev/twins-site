@@ -12,19 +12,81 @@ block variable
         link: pagesLink[0].about
       }
     ]
-  
+
 block meta
   title= title_page
-  meta(name='description', content='')
+  meta(name='description' content='')
 block head
-    link(rel='stylesheet', href="./assets/styles/main.min.css")
+  link(rel='stylesheet' href="./assets/styles/main.min.css")
 block scripts
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/header.bundle.js')
   script(defer src='./assets/scripts/footer.bundle.js')
   script(defer src='./assets/scripts/progress.bundle.js')
 block content
-  h1 progress
+  section.page-hero.progress
+    include ../includes/breadcrumbs.pug
+    .about__title-wrap.container
+      .line 
+      h1.section-title.progress-title Хід будівництва
+      .line-with-circle
+        .line
+        .decor-circle 
+          +svg("points")
+        .line
+    .progress-filter.container
+      button.general-btn.progress-btn.active(data-progress="all")
+        span Показати всі
+      button.general-btn.progress-btn(data-progress="1")
+        span СЕКЦІЯ 1
+      button.general-btn.progress-btn(data-progress="2")
+        span СЕКЦІЯ 2
+    .container.line-margin
+      .line
+
+    .progress-list 
+      a.progress-card( href="/" data-progress-card="1")
+        .progress-card__img-wrap 
+          img(src="./assets/images/progress-card.jpg" alt="progress")
+          .progress-card__labels-wrap
+            .progress-card__label 16
+              span  фото
+            .progress-card__label 1
+              span  відео
+        .progress-card__date-wrap 
+          p.progress-card__day 25
+          .progress-card__month-year-wrap 
+            p.progress-card__year 2024
+            p.progress-card__month жовтень
+      a.progress-card( href="/" data-progress-card="1")
+        .progress-card__img-wrap 
+          img(src="./assets/images/progress-card.jpg" alt="progress")
+          .progress-card__labels-wrap
+            .progress-card__label 16
+              span  фото
+            .progress-card__label 1
+              span  відео
+        .progress-card__date-wrap 
+          p.progress-card__day 25
+          .progress-card__month-year-wrap 
+            p.progress-card__year 2024
+            p.progress-card__month жовтень
+      a.progress-card( href="/" data-progress-card="2")
+        .progress-card__img-wrap 
+          img(src="./assets/images/progress-card.jpg" alt="progress")
+          .progress-card__labels-wrap
+            .progress-card__label 16
+              span  фото
+            .progress-card__label 1
+              span  відео
+        .progress-card__date-wrap 
+          p.progress-card__day 25
+          .progress-card__month-year-wrap 
+            p.progress-card__year 2024
+            p.progress-card__month жовтень
+
+
+
 block footer
   include ../includes/footer.pug
 

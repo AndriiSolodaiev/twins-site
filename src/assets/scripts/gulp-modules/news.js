@@ -1,103 +1,78 @@
-import { gsap, ScrollTrigger, CustomEase } from 'gsap/all';
+import { gsap, ScrollTrigger } from 'gsap/all';
 
-import { useState } from '../modules/helpers/helpers.js';
-import { newsCard } from '../modules/news/newsCard';
-import requestData from '../modules/api.js';
-import { initSmoothScrolling } from '../modules/scroll/leniscroll';
-
-initSmoothScrolling();
-gsap.registerPlugin(ScrollTrigger, CustomEase);
-
-// const loadMoreBtn = document.querySelector('[data-more-news]');
-
-// const [news, setNews, useNewsEffect] = useState({
-//   pending: false,
-//   type: 'all',
-//   container: document.querySelector('.news__container'),
-//   data: [],
-//   part: 1,
-//   step: 4,
+// gsap.registerPlugin(ScrollTrigger);
+// const progressTl = gsap.timeline({
+//   scrollTrigger: {
+//     trigger: '.progress-title',
+//     start: 'top center', // when the top of the trigger hits the top of the viewport
+//     end: 'bottom top', // end after scrolling 500px beyond the start
+//     // smooth scrubbing, takes 1 second to "catch up" to the
+//     scrub: 1,
+//     // markers: true,
+//   },
 // });
+// progressTl.fromTo(
+//   '.progress-title',
+//   {
+//     ease: 'none',
+//     xPercent: 150,
+//   },
+//   {
+//     xPercent: -150,
+//     ease: 'none',
+//   },
+// );
 
-// useNewsEffect(({ data, container,step,part, type }) => {
+const filterBtnFirst = document.querySelector('[data-news]');
+const filterBtn = document.querySelectorAll('[data-news]');
+const newsCards = document.querySelectorAll('.news-card');
+filterBtn.forEach(item => item.classList.remove('active'));
+filterBtnFirst.classList.add('active');
 
-
-//   const dataFiltredByType = type==="all"? data : data.filter(el =>  el.type === type)
-//   console.log(dataFiltredByType);
-
-//   if (dataFiltredByType.length <= step * part) {
-//     loadMoreBtn.style.display = 'none';
-//   } else {
-//     loadMoreBtn.style.display = 'block';
-//   }
-//   const newData = dataFiltredByType
-//     .map(el => {
-//       return newsCard(el);
-//     })
-//     .slice(0, step * part)
-//     .join('');
-//   container.innerHTML = newData;
-  
-// });
-
-// useNewsEffect(({ pending, container }) => {
-//   gsap.to(container, {
-//     autoAlpha: pending ? 0.5 : 1,
-//   });
-
-//   pending ? container.classList.add('loading') : container.classList.remove('loading');
-// });
-
-
-
-// requestData("news", {type:"all"}).then(res => {
-//   console.log(res);
-//   setNews({
-//     ...news(),
-//     data: res.data.result,
-//   });
-// });
-
-
-// if (loadMoreBtn) {
-//   loadMoreBtn.addEventListener('click', function() {
-//     setNews({
-//       ...news(),
-//       part: news().part + 1,
-//       pending: true,
-//     });
-//     setTimeout(() => {
-//       setNews({
-//         ...news(),
-//         pending: false,
-//       });
-//     }, 500);
-//   });
-// }
-// const filterBtnWraper = document.querySelector(".filter__list")
-// filterBtnWraper.addEventListener('click', evt => {
-//   const target = evt.target.closest('[data-news-type-button]');
-  
-//   filterBtnWraper.querySelectorAll('[data-news-type-button]').forEach(el => {
-//     if (el === target) { 
-//       const type = target.getAttribute('data-news-type-button');
-      
-//       el.classList.add('active');
-      
-//         setNews({
-//           ...news(),
-//           type,
-//           pending: true,
-//           part: 1,
-//         });
-//         setTimeout(()=> {
-//           setNews({
-//             ...news(),
-            
-//             pending: false,
-//           });
-//         }, 500)
-//     }
-//     if (el !== target) el.classList.remove('active');
-//   });
-// });
+filterBtn.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtn.forEach(item => item.classList.remove('active'));
+    btn.classList.add('active');
+    const btnDataset = btn.dataset.news;
+    if (btn.dataset.news == 'all') {
+      gsap
+        .timeline()
+        .to('.news-card', { opacity: 0, yPercent: 20, duration: 0.3 })
+        .add(() => {
+          newsCards.forEach(card => {
+            if (card.dataset.newsCard !== btnDataset) {
+              card.style.display = 'none';
+            }
+          });
+        })
+        .to(`.news-card`, {
+          display: 'block',
+          opacity: 1,
+          yPercent: 0,
+          duration: 0.3,
+          stagger: 0.1,
+        });
+    } else {
+      gsap
+        .timeline()
+        .to('.news-card', { opacity: 0, yPercent: 20, duration: 0.3 })
+        .add(() => {
+          newsCards.forEach(card => {
+            if (card.dataset.newsCard !== btnDataset) {
+              card.style.display = 'none';
+            }
+          });
+        })
+        .to(`[data-news-card="${btnDataset}"]`, {
+          display: 'block',
+          opacity: 1,
+          yPercent: 0,
+          duration: 0.3,
+          stagger: 0.1,
+        });
+    }
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 0);
+  });
+});

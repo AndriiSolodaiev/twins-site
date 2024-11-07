@@ -12,19 +12,115 @@ block variable
         link: pagesLink[0].about
       }
     ]
-  
+
 block meta
   title= title_page
-  meta(name='description', content='')
+  meta(name='description' content='')
 block head
-    link(rel='stylesheet', href="./assets/styles/main.min.css")
+  link(rel='stylesheet' href="./assets/styles/main.min.css")
 block scripts
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/header.bundle.js')
   script(defer src='./assets/scripts/footer.bundle.js')
-  script(defer src='./assets/scripts/single-progress.bundle.js')
+  script(defer src='./assets/scripts/singleProgress.bundle.js')
 block content
-  h1 single-progress
+  section.page-hero.single-progress
+    include ../includes/breadcrumbs.pug
+    .about__title-wrap.container
+      .line 
+      .progress-card__date-wrap 
+        p.progress-card__day 25
+        .progress-card__month-year-wrap 
+          p.progress-card__year 2024
+          p.progress-card__month жовтень
+      .line-with-circle
+        .line
+        .decor-circle 
+          +svg("points")
+        .line
+    .single-progress__content.container 
+      .swiper-progress
+        .swiper-wrapper 
+          .swiper-slide 
+            img(src="/assets/images/About/slide1.jpg" alt="happy family")
+
+          .swiper-slide 
+            img(src="/assets/images/progress-card.jpg" alt="happy family")
+
+          .swiper-slide 
+            img(src="/assets/images/About/slide1.jpg" alt="happy family")
+
+          .swiper-slide 
+            img(src="/assets/images/About/slide1.jpg" alt="happy family")
+
+        .navigation-about 
+          .numbers-slides 
+            span.js-active-number 1
+            span /
+            span.js-total-number 1
+          .arrows-wrap
+            .swiper-button-prev
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6.07692 1L1 6M1 6L6.07692 11M1 6C4.00855 6 8.44274 6 11 6" stroke="#F6F6F6" stroke-linecap="square"/>
+              </svg>
+            .swiper-button-next
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6.07692 1L1 6M1 6L6.07692 11M1 6C4.00855 6 8.44274 6 11 6" stroke="#F6F6F6" stroke-linecap="square"/>
+              </svg>
+      h1.single-progress__title На сьогодні вже введені в експлуатацію, приймають гостей та приносять власникам пасивний дохід перші два будинки апарт-готелю.
+      p.single-progress__general-text Зараз тривають роботи над зведенням третього будинку:
+      ul.single-progress__list 
+        li Монолітний каркас вже залили на 80 відсотків.
+        li Зовнішні стіни виконали на 50%.
+        li Сходові марші та майданчики залиті до рівня восьмого поверху.
+        li В будинку розпочали влаштування металопластикових вікон.
+      p.single-progress__general-text Завдяки злагодженій та організованій роботі будівництво йде швидкими темпами, графік запланованих будівельних робіт суттєво випереджено.
+      video(src="" controls).single-progress__video
+      a(href="").single-progress__link.general-btn 
+        span ОБРАТИ КВАРТИРУ
+  section.last-progress 
+    h2.last-progress__title.container Останні Звіти
+    .progress-list 
+      a.progress-card( href="/" data-progress-card="1")
+        .progress-card__img-wrap 
+          img(src="./assets/images/progress-card.jpg" alt="progress")
+          .progress-card__labels-wrap
+            .progress-card__label 16
+              span  фото
+            .progress-card__label 1
+              span  відео
+        .progress-card__date-wrap 
+          p.progress-card__day 25
+          .progress-card__month-year-wrap 
+            p.progress-card__year 2024
+            p.progress-card__month жовтень
+      a.progress-card( href="/" data-progress-card="1")
+        .progress-card__img-wrap 
+          img(src="./assets/images/progress-card.jpg" alt="progress")
+          .progress-card__labels-wrap
+            .progress-card__label 16
+              span  фото
+            .progress-card__label 1
+              span  відео
+        .progress-card__date-wrap 
+          p.progress-card__day 25
+          .progress-card__month-year-wrap 
+            p.progress-card__year 2024
+            p.progress-card__month жовтень
+      a.progress-card( href="/" data-progress-card="1")
+        .progress-card__img-wrap 
+          img(src="./assets/images/progress-card.jpg" alt="progress")
+          .progress-card__labels-wrap
+            .progress-card__label 16
+              span  фото
+            .progress-card__label 1
+              span  відео
+        .progress-card__date-wrap 
+          p.progress-card__day 25
+          .progress-card__month-year-wrap 
+            p.progress-card__year 2024
+            p.progress-card__month жовтень
+
 block footer
   include ../includes/footer.pug
 

@@ -1,4 +1,9 @@
 .property-hero {
+  @include laptop {
+    padding-bottom: 50px;
+  }
+
+
   .property-title-1 {
     margin: 0;
   }
@@ -20,6 +25,19 @@
     width: 100%;
     @include subtitle-text;
     color: $text-color-2;
+
+    @include laptop {
+      display: none;
+    }
+  }
+}
+
+.tablet.landscape,
+.mobile.landscape {
+  .property-hero__img-wrap {
+    padding-left: 10.15vw;
+    padding-right: 10.15vw;
+    height: 37.4vw;
   }
 }
 
@@ -30,6 +48,17 @@
   overflow: hidden;
   width: 100%;
   height: calc((100vw - 40px) * 1.4);
+
+  @include tablet {
+    height: calc((100vw - 80px) * 1.3);
+
+  }
+
+  @include laptop {
+    padding-left: 10.15vw;
+    padding-right: 10.15vw;
+    height: 37.4vw;
+  }
 
   .mask-border {
     position: absolute;
@@ -69,6 +98,9 @@
 
 .property-filler {
   background-color: $accent-color;
+  position: relative;
+  top: -1px;
+  overflow: visible;
 }
 
 .property-filler__text-block {
@@ -79,7 +111,36 @@
 
   .about__text-block {
     margin: 0;
+
+    p span {
+      display: none;
+    }
   }
+
+  @include laptop {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    padding: 0;
+    width: 40vw;
+    padding-right: 20px;
+
+    .about__text-wrap {
+      background-color: transparent;
+      padding: 0;
+      padding-bottom: 50px;
+
+
+      p {
+        @include subtitle-text;
+
+        span {
+          display: inline;
+        }
+      }
+    }
+  }
+
 }
 
 .property-filler__text-block-2 {
@@ -87,6 +148,11 @@
   position: relative;
   z-index: 2;
   top: -80px;
+
+  @include laptop {
+    display: none;
+  }
+
 
   .about__text-block {
     margin: 0;
@@ -98,25 +164,59 @@
 
   .mask {
     position: absolute;
-    top: 0;
+    top: -1%;
     left: 0;
     z-index: 1;
     width: 100%;
-    height: 100%;
+    height: 102%;
     background: linear-gradient(180deg, #322A32, rgba(50, 42, 50, 0.75) 15.5%, rgba(50, 42, 50, 0.00) 30%, rgba(50, 42, 50, 0.00) 80%, rgba(50, 42, 50, 0.75) 90.5%,
         #322A32 100%);
+  }
+
+  @include laptop {
+    img {
+      height: 92vw;
+      object-fit: cover;
+      object-position: center;
+    }
   }
 }
 
 .property-advantages {
+  margin-bottom: 20px;
+  background-color: $accent-color;
+
+  @include laptop {
+    padding-top: 4vw;
+
+  }
+
+  .advantages-wrapper {
+    @include laptop {
+      padding-top: 11vw;
+      justify-content: space-between;
+      border-radius: 40px;
+      padding-bottom: 50px;
+    }
+  }
+
   .advantages-list {
-    margin-bottom: 80px
+    margin-bottom: 80px;
+
   }
 
   &__card {
-    height: calc(106vw);
+    height: 106vw;
     overflow: visible;
     padding: 0;
+
+    @include tablet {
+      height: 95vw;
+    }
+
+    @include laptop {
+      height: 65vh;
+    }
 
     .mask {
       position: absolute;
@@ -138,6 +238,7 @@
       max-width: none;
       padding-top: 60px;
       z-index: 2;
+      padding: 60px 20px;
     }
 
     .property-advantages__img-wrap {
@@ -189,9 +290,24 @@
   align-items: center;
   gap: 20px;
 
+  @include laptop {
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: sticky;
+    top: calc(11vw + 30px);
+    width: 40vw;
+    height: 70vh;
+    margin: 0
+  }
+
   p {
     @include subtitle-text;
     color: $text-color-2;
     text-align: center;
+
+    @include laptop {
+      text-align: start;
+      font-size: 3.3vw;
+    }
   }
 }

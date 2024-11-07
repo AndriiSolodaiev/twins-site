@@ -1,20 +1,52 @@
-import { initSmoothScrolling } from '../modules/scroll/leniscroll';
-import Swiper from 'swiper';
-import { Navigation } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-initSmoothScrolling();
+import Swiper, { Navigation } from 'swiper';
+import { gsap, ScrollTrigger, CustomEase } from 'gsap/all';
 
-// const swiper = new Swiper('.swiper-single-news', {
-//   modules: [Navigation],
-//   speed: 1000,
-//   spaceBetween: 20,
-//   slidesPerView: 1,
-//   // autoHeight: true,
-//   navigation: {
-//     prevEl: '.swiper-news-button-prev',
-//     nextEl: '.swiper-news-button-next',
-//   },
-// });
- 
-// document.querySelector(".single-news__content-wrap").querySelectorAll('*').forEach(el => el.classList.add('dont-reset-me'))
+gsap.registerPlugin(ScrollTrigger, CustomEase);
+
+const swiperProgress = new Swiper('.swiper-progress', {
+  modules: [Navigation],
+  speed: 1000,
+  slidesPerView: 1,
+  spaceBetween: 8,
+  breakpoints: {
+    // 360: {
+    //   slidesPerView: 1.1,
+    //   spaceBetween: 8,
+    // },
+    // 768: {
+    //   slidesPerView: 2,
+    //   //   spaceBetween: 20,
+    // },
+    // 1366: {
+    //   // spaceBetween: 20,
+    //   slidesPerView: 3,
+    // },
+  },
+
+  navigation: {
+    prevEl: '.swiper-button-prev',
+    nextEl: '.swiper-button-next',
+  },
+  on: {
+    init: function(sw) {
+      const active = document.querySelector('.js-active-number');
+      active.innerHTML =
+        String(sw.activeIndex + 1).length > 1
+          ? sw.activeIndex + 1
+          : '0' + String(sw.activeIndex + 1);
+      const total = document.querySelector('.js-total-number');
+      total.innerHTML =
+        String(sw.slides.length).length > 1 ? sw.slides.length : '0' + sw.slides.length;
+    },
+    slideChange: function(sw) {
+      const active = document.querySelector('.js-active-number');
+      active.innerHTML =
+        String(sw.activeIndex + 1).length > 1
+          ? sw.activeIndex + 1
+          : '0' + String(sw.activeIndex + 1);
+      const total = document.querySelector('.js-total-number');
+      total.innerHTML =
+        String(sw.slides.length).length > 1 ? sw.slides.length : '0' + sw.slides.length;
+    },
+  },
+});

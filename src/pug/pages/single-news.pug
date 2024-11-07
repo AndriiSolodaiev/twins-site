@@ -12,19 +12,99 @@ block variable
         link: pagesLink[0].about
       }
     ]
-  
+
 block meta
   title= title_page
-  meta(name='description', content='')
+  meta(name='description' content='')
 block head
-    link(rel='stylesheet', href="./assets/styles/main.min.css")
+  link(rel='stylesheet' href="./assets/styles/main.min.css")
 block scripts
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/header.bundle.js')
   script(defer src='./assets/scripts/footer.bundle.js')
   script(defer src='./assets/scripts/singleNews.bundle.js')
 block content
-  
+  section.page-hero.single-progress.single-news
+    include ../includes/breadcrumbs.pug
+    .about__title-wrap.container
+      .line 
+      h1.single-news__title Встигніть здійснити бажання про власне житло! Продаж квартир у нашому жк відкрито!
+      .line-with-circle
+        .line
+        .decor-circle 
+          +svg("points")
+        .line
+    .single-progress__content.container 
+      time.single-news__date 25 жовтня 2024
+      video(src="" controls).single-progress__video
+      h2.single-progress__title Яким буде Київ через 10 років? За версією нашої компанії, він буде найкомфортнішим містом у світі. 
+      p.single-progress__general-text Саме такий BHAG ми собі поставили та до якого впевнено рухаємося з кожним новим проєктом. Про те, що вже зараз ми змінюємо обличчя Києва та створюємо проєкти майбутнього, говорить і редакція НВ. У новому номері вона разом з архітекторами, забудовниками та урбаністами склала рейтинг 10 знакових об’єктів столиці та включила до нього відразу два проєкти, які ми реалізуємо спільно з партнерами забудовника1 і забудовника 2 — ми хочемо розказати вам про ці проєкти та показати їхні сильні сторони.
+      img(src="./assets/images/Hero/1.jpg" alt="news").single-progress__img
+      h2.single-progress__title Наш проєкт відзначив за наш підхід до будівництва кварталів, насичену інфраструктуру та головну родзинку району — набережну завдовжки 1 км.
+      p.single-progress__general-text Вона буде відкрита для всіх охочих і стане улюбленим місцем для відпочинку та прогулянок містян і мешканців району. Вона буде відкрита для всіх охочих і стане улюбленим місцем для відпочинку та прогулянок містян і мешканців району. Вона буде відкрита для всіх охочих і стане улюбленим місцем для відпочинку та прогулянок містян і мешканців району:
+      ul.single-progress__list 
+        li Монолітний каркас вже залили на 80 відсотків.
+        li Зовнішні стіни виконали на 50%.
+        li Сходові марші та майданчики залиті до рівня восьмого поверху.
+        li В будинку розпочали влаштування металопластикових вікон.
+      .swiper-progress
+        .swiper-wrapper 
+          .swiper-slide 
+            img(src="/assets/images/About/slide1.jpg" alt="happy family")
+
+          .swiper-slide 
+            img(src="/assets/images/progress-card.jpg" alt="happy family")
+
+          .swiper-slide 
+            img(src="/assets/images/news-card.jpg" alt="happy family")
+
+          .swiper-slide 
+            img(src="/assets/images/About/slide1.jpg" alt="happy family")
+
+        .navigation-about 
+          .numbers-slides 
+            span.js-active-number 1
+            span /
+            span.js-total-number 1
+          .arrows-wrap
+            .swiper-button-prev
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6.07692 1L1 6M1 6L6.07692 11M1 6C4.00855 6 8.44274 6 11 6" stroke="#F6F6F6" stroke-linecap="square"/>
+              </svg>
+            .swiper-button-next
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6.07692 1L1 6M1 6L6.07692 11M1 6C4.00855 6 8.44274 6 11 6" stroke="#F6F6F6" stroke-linecap="square"/>
+              </svg>
+      a(href="").single-progress__link.general-btn 
+        span ОБРАТИ КВАРТИРУ
+  section.last-news 
+    h2.last-news__title.container Останні новини
+    .news-list 
+      a.news-card( href="/" data-news-card="1")
+        .news-card__img-wrap 
+          img(src="./assets/images/news-card.jpg" alt="news")
+        .news-card__text-wrap 
+          p.news-card__descr Встигніть здійснити бажання про власне житло! Продаж квартир у нашому жк відкрито!
+          .news-card__btn-date-wrap 
+            p.news-card__date 25 жовтня 2024
+            button.general-btn ЧИТАТИ НОВИНУ
+      a.news-card( href="/" data-news-card="1")
+        .news-card__img-wrap 
+          img(src="./assets/images/news-card.jpg" alt="news")
+        .news-card__text-wrap 
+          p.news-card__descr Встигніть здійснити бажання про власне житло! Продаж квартир у нашому жк відкрито!
+          .news-card__btn-date-wrap 
+            p.news-card__date 25 жовтня 2024
+            button.general-btn ЧИТАТИ НОВИНУ
+      a.news-card( href="/" data-news-card="2")
+        .news-card__img-wrap 
+          img(src="./assets/images/news-card.jpg" alt="news")
+        .news-card__text-wrap 
+          p.news-card__descr Встигніть здійснити бажання про власне житло! Продаж квартир у нашому жк відкрито!
+          .news-card__btn-date-wrap 
+            p.news-card__date 25 жовтня 2024
+            button.general-btn 
+              span ЧИТАТИ НОВИНУ
 block footer
   include ../includes/footer.pug
 

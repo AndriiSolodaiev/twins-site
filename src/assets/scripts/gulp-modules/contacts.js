@@ -1,3 +1,3 @@
-import { initSmoothScrolling } from '../modules/scroll/leniscroll';
+// import { initSmoothScrolling } from '../modules/scroll/leniscroll';
 
-initSmoothScrolling();
+// initSmoothScrolling();

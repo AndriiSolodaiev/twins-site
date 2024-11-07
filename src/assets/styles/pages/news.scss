@@ -1,0 +1,129 @@
+.news {
+  padding-bottom: 100px;
+  background: radial-gradient(circle at 44% 700px, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 50%), $accent-color;
+
+  .section-title {
+    margin: 0;
+  }
+
+
+}
+
+.line-margin {
+  margin-bottom: 40px
+}
+
+.news-filter {
+  margin-top: 20px;
+  padding-bottom: 30px;
+  // border-bottom: 1px solid rgba(246, 246, 246, 0.2);
+  display: flex;
+  gap: 4px;
+
+
+}
+
+.news-btn {
+  background-color: transparent;
+  box-shadow: none;
+  border-color: rgba(246, 246, 246, 0.20);
+
+  &.active {
+    pointer-events: none;
+    background: var(--Violet-dark, #221A22);
+    box-shadow: 0px 1px 0px 0px #5A4C5A inset, 0px 12px 60px 0px #140E14, 0px 9px 30px 0px rgba(116, 69, 116, 0.25) inset, 0px 0px 8px 0px rgba(86, 39, 86, 0.15) inset;
+  }
+}
+
+.news-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  min-height: 50vh;
+
+  @include tablet {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.news-card {
+  display: block;
+  border-radius: 20px;
+  overflow: hidden;
+  height: fit-content;
+  transition: box-shadow 0.4s ease-in-out;
+
+  @include tablet {
+    width: calc((100% - 40px) / 2)
+  }
+
+  @include laptop {
+    width: calc((100% - 80px)/3)
+  }
+
+  &__img-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 64%;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s ease-in-out;
+    }
+  }
+
+  &__text-wrap {
+    background-color: $wc;
+    padding: 20px 20px 30px;
+  }
+
+  &__descr {
+    @include subtitle-text;
+    color: $bg-color;
+    margin-bottom: 20px;
+
+    @include tablet {
+
+      font-size: 24px;
+    }
+  }
+
+  &__btn-date-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p.news-card__date {
+      font-weight: 500;
+      font-size: 14px;
+      color: $bg-color
+    }
+  }
+
+  .general-btn span {
+    font-size: 14px;
+
+    @include tablet {
+
+      font-size: 14px;
+    }
+
+  }
+
+}
+
+.desktop .news-card:hover {
+  // box-shadow: 0px 12px 60px 0px #140E14;
+
+  img {
+    transform: scale(1.15);
+  }
+}

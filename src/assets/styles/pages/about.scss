@@ -1,6 +1,19 @@
 .page-hero {
   padding-top: 106px;
-  background: radial-gradient(circle at 44% 50%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 70%), $accent-color;
+  background: radial-gradient(circle at 50% 50%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 70%), $accent-color;
+
+
+}
+
+.about-page {
+  @include laptop {
+    background: $accent-color;
+
+    .line-with-circle {
+      display: none;
+    }
+  }
+
 }
 
 .about__title-wrap {
@@ -9,7 +22,7 @@
     margin-bottom: 50px;
   }
 
-  .about-title {
+  .section-title {
     margin-bottom: 20px;
   }
 }
@@ -52,6 +65,41 @@
   margin-bottom: 60px;
 }
 
+.page-hero__wrapper {
+  .mask {
+    display: none;
+  }
+
+  @include laptop {
+    position: relative;
+
+    .container.about__text-block {
+      display: none;
+    }
+
+    .page-hero-descr {
+      position: absolute;
+      top: 13vw;
+      right: 11vw;
+      z-index: 2;
+      width: 40vw;
+      color: $bg-color;
+      text-align: start;
+    }
+
+    .mask {
+      display: block;
+      position: absolute;
+      top: -1px;
+      right: 0;
+      z-index: 1;
+      width: 100%;
+      height: 15%;
+      background: linear-gradient(0deg, rgba(50, 42, 50, 0.00) 0%, #322A32 100%);
+    }
+  }
+}
+
 .page-hero__about-img-wrap {
   position: relative;
 
@@ -65,10 +113,19 @@
 .about__text-block {
   width: 100%;
 
+  @include tablet {
+    display: flex;
+    justify-content: center;
+  }
+
   .about__text-wrap {
     background-color: $bg-color;
     padding: 32px 20px 48px 20px;
     position: relative;
+
+    @include tablet {
+      width: 60vw;
+    }
   }
 
   p {
@@ -101,6 +158,20 @@
 .about-arcitecture {
   background-color: $accent-color;
   padding-top: 80px;
+
+  @include laptop {
+    background: radial-gradient(circle at 50% -10%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 20%), $accent-color;
+
+    .about__text-block {
+      padding-left: calc(50% + 20px);
+      padding-right: 0;
+      justify-content: flex-start;
+
+      .about__text-wrap {
+        width: 27vw
+      }
+    }
+  }
 }
 
 .about__text-block {
@@ -109,7 +180,23 @@
 
 .about-arcitecture__img-wrap {
   position: relative;
-  margin-bottom: 80px;
+
+  @include laptop {
+    margin-bottom: 150px;
+  }
+
+  .about__text-block {
+    margin-top: 80px;
+
+    @include laptop {
+      position: absolute;
+      bottom: 0;
+      right: 55%;
+      margin: 0;
+      padding: 0;
+      width: auto;
+    }
+  }
 
   .mask {
     position: absolute;
@@ -129,6 +216,40 @@
     width: calc(100% - 40px);
 
   }
+
+  @include laptop {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 40px;
+
+    &.second-block {
+      flex-direction: row;
+
+      .about__text-block {
+        right: auto;
+        left: 55%;
+
+      }
+    }
+
+
+    img {
+      width: calc(50% - 20px);
+      height: 90vh
+    }
+
+    .mask {
+      display: none;
+    }
+
+    .about-arcitecture__descr {
+      position: static;
+      width: 45%;
+      height: fit-content;
+    }
+  }
 }
 
 .about-arcitecture__descr {
@@ -143,9 +264,69 @@
 .about-location {
   background: radial-gradient(circle at 44% 50%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 70%), $accent-color;
 
-  .about__title-wrap {
-    .line {
-      margin-bottom: 80px;
+  @include laptop {
+    padding-bottom: 210px;
+
+    .about__title-wrap {
+      .line {
+        margin-bottom: 4.1vw;
+      }
+
+      .section-title {
+        margin-bottom: 4.1vw;
+      }
+    }
+  }
+
+
+
+  .line-pc {
+    display: none;
+  }
+
+  @include laptop {
+    .line-pc.line {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    &__content {
+      width: 100%;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: stretch;
+      padding-left: 40px;
+      padding-right: 40px;
+
+    }
+
+    &__swiper-descr-wrap {
+      width: 45%;
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+
+      overflow: hidden;
+
+      .swiper-about {
+        height: 55%;
+        margin: 0;
+        justify-self: flex-end;
+        margin-top: auto;
+      }
+
+      .about-arcitecture__descr {
+        border-top: none;
+        padding-top: 0;
+
+      }
+    }
+
+    .map-main-wrap {
+      width: 50%;
+      height: 85vh;
+      margin: 0;
     }
   }
 }
@@ -155,6 +336,10 @@
   margin-bottom: 80px;
   position: relative;
 
+  @include tablet {
+    height: 70vh
+  }
+
   .swiper-slide {
     border-radius: 20px;
     overflow: hidden;
@@ -163,58 +348,106 @@
       position: absolute;
       bottom: 0;
       left: 0;
+      width: 100%;
       @include general-text;
       color: $wc;
       padding: 40px 20px 80px;
       background: linear-gradient(180deg, rgba(50, 42, 50, 0.00) 0%, rgba(50, 42, 50, 0.80) 35%, #322A32 100%);
+
+      @include tablet {
+        padding: 40px 40px 120px;
+      }
     }
   }
 
-  .navigation-about {
+
+}
+
+.navigation-about {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+  z-index: 2;
+  width: calc(100% - 40px);
+  padding: 20px;
+
+  @include tablet {
+    padding: 40px;
+    left: 40px;
+    width: calc(100% - 80px);
+  }
+
+  .arrows-wrap {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 0px;
-    left: 20px;
-    z-index: 2;
-    width: calc(100% - 40px);
-    padding: 20px;
+    gap: 4px;
+  }
 
-    .arrows-wrap {
-      display: flex;
-      gap: 4px;
+  .numbers-slides {
+    @include general-text;
+    color: $text-color-2;
+    display: flex;
+    gap: 8px;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    background-color: $text-color-2;
+
+    svg path {
+      stroke: $bg-color;
     }
+  }
+}
 
-    .numbers-slides {
-      @include general-text;
-      color: $text-color-2;
-      display: flex;
-      gap: 8px;
-    }
+.about-advantages.advantages {
+  @include laptop {
+    padding-top: 0;
 
-    .swiper-button-prev,
-    .swiper-button-next {
-      background-color: $text-color-2;
-
-      svg path {
-        stroke: $bg-color;
-      }
+    .advantages-wrapper {
+      border-radius: 40px;
     }
   }
 }
 
 .about-safety {
   padding-top: 80px;
-  background: radial-gradient(circle at 44% 20%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 70%), $accent-color;
+  background: radial-gradient(circle at 44% 40%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 60%), $accent-color;
+  padding-bottom: 20px;
 
-  .about__title-wrap {
-    .line {
+  @include laptop {
+    .about__title-wrap {
+      .line {
+        margin-bottom: 4.1vw;
+      }
+
+      .section-title {
+        margin-bottom: 4.1vw;
+      }
+    }
+
+    &__descr-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 80px;
+
+      p {
+        @include subtitle-text;
+        width: 45%;
+        margin: 0;
+      }
+
+      img {
+        width: 45%;
+        margin: 0;
+      }
     }
   }
 
-  &__descr-wrap {}
+
 
   &__camera {
     padding-left: 37px;
@@ -228,6 +461,11 @@
     @include general-text;
     color: $text-color;
     margin-bottom: 60px;
+
+    @include laptop {
+      padding-right: 40px;
+    }
+
   }
 
   &__list {
@@ -235,12 +473,26 @@
     flex-direction: column;
     align-items: center;
     gap: 80px;
+
+    @include laptop {
+      flex-direction: row;
+      align-items: stretch;
+      gap: 20px;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
   }
 
   &__card {
     border-radius: 20px;
     overflow: hidden;
     background-color: $bg-color;
+
+    @include laptop {
+      width: calc((100% - 40px) / 3);
+
+
+    }
   }
 
   &__card-img-wrap {
@@ -267,11 +519,23 @@
   }
 
   .second-card {
+    position: relative;
     width: calc(100% - 40px);
     border-radius: 0;
 
+
+
+
     .about__text-block {
       margin: 0;
+
+
+    }
+
+    .about__text-wrap {
+      @include tablet {
+        width: 100%;
+      }
     }
 
     .about-safety__card-img-wrap {
@@ -291,6 +555,23 @@
         height: 70%;
         background-color: $text-color-2;
         border-radius: 50%;
+      }
+    }
+
+    @include laptop {
+      width: calc((100% - 40px) / 3);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+
+      &>.about-safety__card-img-wrap {
+        margin-bottom: 60px;
+      }
+
+      .icon--logo-mini {
+        right: 50%;
+        transform: translateX(50%);
       }
     }
   }

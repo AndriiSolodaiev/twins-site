@@ -91,6 +91,20 @@
   }
 }
 
+.tablet {
+  .panorama-iframe__wrap {
+    height: 92vw;
+  }
+}
+
+.tablet.landscape,
+.mobile.landscape,
+.desktop {
+  .panorama-iframe__wrap {
+    height: 75vh;
+  }
+}
+
 .desktop {
   .iframe-filter .general-btn:hover {
     span {

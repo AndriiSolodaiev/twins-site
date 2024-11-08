@@ -1,7 +1,11 @@
 .page-hero {
   padding-top: 106px;
   background: radial-gradient(circle at 50% 50%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 70%), $accent-color;
+  overflow: hidden;
 
+  .about__title-wrap>.line {
+    background: rgba(246, 246, 246, 0.2);
+  }
 
 }
 
@@ -11,6 +15,11 @@
 
     .line-with-circle {
       display: none;
+    }
+
+    .about-title {
+      width: 20%;
+      transform: translateX(100%);
     }
   }
 
@@ -89,6 +98,7 @@
 
     .mask {
       display: block;
+      pointer-events: none;
       position: absolute;
       top: -1px;
       right: 0;
@@ -158,6 +168,7 @@
 .about-arcitecture {
   background-color: $accent-color;
   padding-top: 80px;
+  overflow: hidden;
 
   @include laptop {
     background: radial-gradient(circle at 50% -10%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 20%), $accent-color;
@@ -180,6 +191,7 @@
 
 .about-arcitecture__img-wrap {
   position: relative;
+  padding-bottom: 80px;
 
   @include laptop {
     margin-bottom: 150px;
@@ -187,10 +199,11 @@
 
   .about__text-block {
     margin-top: 80px;
+    margin-bottom: 0;
 
     @include laptop {
       position: absolute;
-      bottom: 0;
+      bottom: 80px;
       right: 55%;
       margin: 0;
       padding: 0;
@@ -200,11 +213,12 @@
 
   .mask {
     position: absolute;
+    pointer-events: none;
     z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 70%;
     background: linear-gradient(0deg, rgba(50, 42, 50, 0.00) 0%, rgba(50, 42, 50, 0.75) 49.5%, #322A32 100%);
   }
 
@@ -237,7 +251,7 @@
 
     img {
       width: calc(50% - 20px);
-      height: 90vh
+      height: 90vh;
     }
 
     .mask {
@@ -266,6 +280,7 @@
 
   @include laptop {
     padding-bottom: 210px;
+    background: radial-gradient(circle at 50% 50%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 50%), $accent-color;
 
     .about__title-wrap {
       .line {
@@ -274,6 +289,8 @@
 
       .section-title {
         margin-bottom: 4.1vw;
+        width: 20%;
+        transform: translateX(200%);
       }
     }
   }
@@ -414,6 +431,7 @@
 
 .about-safety {
   padding-top: 80px;
+  overflow: hidden;
   background: radial-gradient(circle at 44% 40%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 60%), $accent-color;
   padding-bottom: 20px;
 
@@ -425,6 +443,8 @@
 
       .section-title {
         margin-bottom: 4.1vw;
+        width: 20%;
+        transform: translateX(200%);
       }
     }
 
@@ -500,6 +520,7 @@
 
     .mask {
       position: absolute;
+      pointer-events: none;
       bottom: 0;
       left: 0;
       width: 100%;

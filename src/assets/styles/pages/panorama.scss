@@ -1,5 +1,12 @@
 .panorama-hero {
   padding-bottom: 20px;
+
+  @include laptop {
+    .panorama-title {
+      width: 10%;
+      transform: translateX(100%);
+    }
+  }
 }
 
 .panorama-iframe__wrap {

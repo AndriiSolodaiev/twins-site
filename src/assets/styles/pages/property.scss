@@ -1,6 +1,16 @@
 .property-hero {
   @include laptop {
     padding-bottom: 50px;
+
+    .property-title-1 {
+      width: 20%;
+      transform: translateX(100%);
+    }
+
+    .property-title-2 {
+      width: 20%;
+      transform: translateX(100%);
+    }
   }
 
 
@@ -37,7 +47,7 @@
   .property-hero__img-wrap {
     padding-left: 10.15vw;
     padding-right: 10.15vw;
-    height: 37.4vw;
+    height: 47.4vw;
   }
 }
 
@@ -57,7 +67,7 @@
   @include laptop {
     padding-left: 10.15vw;
     padding-right: 10.15vw;
-    height: 37.4vw;
+    height: 47.4vw;
   }
 
   .mask-border {

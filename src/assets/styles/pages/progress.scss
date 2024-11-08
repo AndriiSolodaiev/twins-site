@@ -4,7 +4,8 @@
 
   &-title {
     @include laptop {
-      width: 20%
+      width: 10%;
+      transform: translateX(100%);
     }
   }
 }

@@ -42,7 +42,7 @@ block content
               +svg("points")
             +svg('logo-mini')
   section.about-arcitecture
-    .container.about__text-block.about-arcitecture__text-block
+    .container.about__text-block.about-arcitecture__text-block(data-anim-appear)
       .about__text-wrap 
         p Виграшне поєднання матеріалів та глибокі кольори підкреслять лаконічність, а скляний фасад і панорамні вікна у кожній квартирі, подарують вам прекрасні краєвиди на зелений масив, озеро та місто.
           +svg("points")
@@ -50,17 +50,17 @@ block content
     .about-arcitecture__img-wrap 
       .mask 
       img(src="./assets/images/About/arc-1.jpg" alt="arcitecture")
-      p.about-arcitecture__descr Трендові архітектурні рішення та продумані планування видових квартир створять загальний естетичний вигляд та подарують комфорт і затишок майбутнім мешканцям.
-      .container.about__text-block
+      p.about-arcitecture__descr(data-anim-appear) Трендові архітектурні рішення та продумані планування видових квартир створять загальний естетичний вигляд та подарують комфорт і затишок майбутнім мешканцям.
+      .container.about__text-block(data-anim-appear)
         .about__text-wrap 
-          p Проєкт представлений двома сучасними висотними будинками по 24 поверхи.
+          p У комплексі передбачено великий укріплений підземний паркінг, в якому виділено зону укриття.
             +svg("points")
           +svg('logo-mini')
     .about-arcitecture__img-wrap.second-block 
       .mask 
       img(src="./assets/images/About/arc-2.jpg" alt="arcitecture")
-      p.about-arcitecture__descr Просторий двір з інтерактивним дитячим майданчиком, ландшафтним дизайном та зонами для відпочинку подарує затишок та стане улюбленим місцем для прогулянок та дозвілля.
-      .container.about__text-block
+      p.about-arcitecture__descr(data-anim-appear) Просторий двір з інтерактивним дитячим майданчиком, ландшафтним дизайном та зонами для відпочинку подарує затишок та стане улюбленим місцем для прогулянок та дозвілля.
+      .container.about__text-block(data-anim-appear)
         .about__text-wrap 
           p У "TWINS" ми поклали найкраще із нашого багаторічного досвіду у будівництві, знання і бажання зроблять такий проєкт, в якому люди отримають втілення найменших побажань. 
             +svg("points")
@@ -73,8 +73,8 @@ block content
     .about-location__content
       .about-location__swiper-descr-wrap
         .container
-          p.about-arcitecture__descr Ми поєднали вигідне розташування з передовими технологічними рішеннями. Все заради того, щоб створити для вас ідеальне житло, де тільки Ви і Ваші мрії над містом. 
-        .swiper-about.container
+          p.about-arcitecture__descr(data-anim-appear) Ми поєднали вигідне розташування з передовими технологічними рішеннями. Все заради того, щоб створити для вас ідеальне житло, де тільки Ви і Ваші мрії над містом. 
+        .swiper-about.container(data-anim-appear)
           .swiper-wrapper 
             .swiper-slide 
               img(src="/assets/images/About/slide1.jpg" alt="happy family")
@@ -212,11 +212,11 @@ block content
       .line
       h2.section-title.safety-title Безпека
       .line
-    .about-safety__descr-wrap
+    .about-safety__descr-wrap(data-anim-appear)
       img(src="./assets/images/About/camera.png" alt="camera").about-safety__camera
       p.about-safety__descr Закрита територія двору, з  можливістю персонального доступу та цілодобовим відеоспостереженням стане справжнім острівцем безпеки та комфорту.
     .about-safety__list 
-      .about-safety__card 
+      .about-safety__card(data-anim-appear)
         .about-safety__card-img-wrap 
           img(src="./assets/images/About/safe1.jpg" alt="lift")
           .mask
@@ -231,7 +231,7 @@ block content
             p Також у  комплексі наявний укріплений підземний паркінг, в якому передбачена зона укриття, яка просто необхідна в тривожних умовах сьогодення.
               +svg("points")
           +svg('logo-mini')
-      .about-safety__card
+      .about-safety__card(data-anim-appear)
         .about-safety__card-img-wrap 
           img(src="./assets/images/About/safe2.jpg" alt="lift")
           .mask

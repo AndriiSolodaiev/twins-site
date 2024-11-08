@@ -8,7 +8,7 @@ let lenis;
 let isInited = false;
 export const initSmoothScrolling = () => {
   // Instantiate the Lenis object with specified properties
-  // if (isInited) return lenis;
+  if (isInited) return lenis;
 
   lenis = new Lenis({
     lerp: 0.1,
@@ -36,7 +36,7 @@ export const initSmoothScrolling = () => {
   };
   // Start the animation frame loop
   requestAnimationFrame(scrollFn);
-  // isInited = true;
+  isInited = true;
   return lenis;
 };
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

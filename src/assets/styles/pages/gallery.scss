@@ -1,7 +1,16 @@
+.gallery-title {
+  @include laptop {
+    width: 25%;
+    transform: translateX(100%);
+  }
+}
+
 .gallery {
   position: relative;
   margin-top: 30px;
   margin-bottom: 100px;
+
+
 
   .slick-arrows {
     position: absolute;

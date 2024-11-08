@@ -53,3 +53,188 @@ const swiperAbout = new Swiper('.swiper-about', {
     },
   },
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const loadTl = gsap
+    .timeline({ paused: true })
+    .fromTo(
+      '.page-hero > .about__title-wrap > *',
+      {
+        opacity: 0,
+        y: -300,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+      },
+    )
+    .fromTo(
+      '.page-hero > .page-hero__wrapper > *',
+      {
+        opacity: 0,
+        y: 300,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.2,
+      },
+      '<',
+    )
+    .fromTo(
+      '.breadcrumbs',
+      {
+        opacity: 0,
+        x: -100,
+      },
+      {
+        opacity: 1,
+        x: 0,
+      },
+    );
+
+  window.addEventListener('finishLoader', () => {
+    loadTl.play();
+  });
+});
+const aboutTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.about__title-wrap',
+    start: 'top center', // when the top of the trigger hits the top of the viewport
+    end: 'bottom top', // end after scrolling 500px beyond the start
+    // smooth scrubbing, takes 1 second to "catch up" to the
+    scrub: 1,
+    // markers: true,
+  },
+});
+aboutTl.fromTo(
+  '.about-title',
+  {
+    ease: 'none',
+    xPercent: 70,
+  },
+  {
+    xPercent: -150,
+    ease: 'none',
+  },
+);
+
+const heroAboutTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.page-hero__wrapper',
+    start: 'top center', // when the top of the trigger hits the top of the viewport
+    end: 'center top', // end after scrolling 500px beyond the start
+    // smooth scrubbing, takes 1 second to "catch up" to the
+    scrub: 1,
+    // markers: true,
+  },
+});
+heroAboutTl.fromTo(
+  '.page-hero__about-img-wrap .about__text-block',
+  {
+    ease: 'none',
+    yPercent: 30,
+  },
+  {
+    yPercent: 0,
+    ease: 'none',
+  },
+);
+
+function textAppear(selector) {
+  gsap.from(selector, {
+    scrollTrigger: {
+      trigger: selector, // Той самий блок
+      start: 'top bottom', // Паралакс ефект починається, коли блок доходить до низу вікна
+      end: 'bottom bottom', // Закінчується, коли блок виходить з екрану
+      // Плавне скролювання
+      // markers: true,
+      // scrub: 1,
+    },
+    yPercent: 50, // Зміщуємо блок на -50 пікселів по осі Y
+    opacity: 0,
+    duration: 1,
+  });
+}
+document.querySelectorAll('[data-anim-appear]').forEach(block => {
+  textAppear(block);
+});
+
+// textAppear('.about-arcitecture__img-wrap');
+const secondCardTL = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.about-safety__card.second-card', // Той самий блок
+    start: 'top bottom', // Паралакс ефект починається, коли блок доходить до низу вікна
+    end: 'bottom bottom', // Закінчується, коли блок виходить з екрану
+    // Плавне скролювання
+    // markers: true,
+    // scrub: 1,
+  },
+});
+secondCardTL
+  .from('.about-safety__card.second-card', {
+    yPercent: 50, // Зміщуємо блок на -50 пікселів по осі Y
+    opacity: 0,
+    duration: 1,
+  })
+  .from(
+    '.about-safety__card.second-card .elips',
+    {
+      scale: 0.7,
+    },
+    '<+=0.2',
+  )
+  .from(
+    '.about-safety__card.second-card img',
+    {
+      yPercent: 20,
+      opacity: 0,
+    },
+    '<+=0.2',
+  );
+
+const locationTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.about-location .about__title-wrap',
+    start: 'top bottom', // when the top of the trigger hits the top of the viewport
+    end: 'bottom top', // end after scrolling 500px beyond the start
+    // smooth scrubbing, takes 1 second to "catch up" to the
+    scrub: 1,
+    // markers: true,
+  },
+});
+locationTl.fromTo(
+  '.location-title',
+  {
+    ease: 'none',
+    xPercent: 50,
+  },
+  {
+    xPercent: -100,
+    ease: 'none',
+  },
+);
+
+const safetyTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.about-safety .about__title-wrap',
+    start: 'top bottom', // when the top of the trigger hits the top of the viewport
+    end: 'bottom top', // end after scrolling 500px beyond the start
+    // smooth scrubbing, takes 1 second to "catch up" to the
+    scrub: 1,
+    // markers: true,
+  },
+});
+safetyTl.fromTo(
+  '.safety-title',
+  {
+    ease: 'none',
+    xPercent: 50,
+  },
+  {
+    xPercent: -100,
+    ease: 'none',
+  },
+);

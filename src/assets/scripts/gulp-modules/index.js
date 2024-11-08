@@ -509,7 +509,6 @@ function textAppear(selector) {
       // scrub: 1,
     },
     yPercent: 50, // Зміщуємо блок на -50 пікселів по осі Y
-
     opacity: 0,
   });
 }

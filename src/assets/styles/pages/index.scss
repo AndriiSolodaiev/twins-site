@@ -631,8 +631,8 @@ section {
 .line {
   height: 1px;
   width: 100%;
-  opacity: 0.2;
-  background: $wc;
+  // opacity: 0.2;
+  background: rgba(246, 246, 246, 0.2);
   margin-bottom: 12px;
 
   @include tablet {

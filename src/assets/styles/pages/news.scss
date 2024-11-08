@@ -4,9 +4,31 @@
 
   .section-title {
     margin: 0;
+
+
   }
 
+  .news-title-1 {
+    .pc-span {
+      display: none;
+    }
 
+    @include laptop {
+
+      width: 25%;
+      transform: translateX(50%);
+
+      .pc-span {
+        display: inline;
+      }
+    }
+  }
+
+  .news-title-2 {
+    @include laptop {
+      display: none;
+    }
+  }
 }
 
 .line-margin {

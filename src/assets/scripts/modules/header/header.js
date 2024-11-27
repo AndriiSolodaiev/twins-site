@@ -31,6 +31,13 @@ document.body.addEventListener('click', function(evt) {
   if (btnMenuTarget) {
     menu.classList.toggle('hidden');
     header.classList.toggle('menu-is-open');
+    if (menu.classList.contains('hidden')) {
+      window.dispatchEvent(new Event('start-scroll'));
+      console.log('start');
+    } else {
+      window.dispatchEvent(new Event('stop-scroll'));
+      console.log('stop');
+    }
     menuAnimation();
     return;
   }
@@ -216,20 +223,26 @@ if (iframeDayBtn[0]) {
       iframeDayBtn.forEach(btn => btn.classList.remove('active'));
       btn.classList.add('active');
       if (btn.dataset.day == 'day') {
-        iframeWindowStatic.src =
-          'https://apartment-tours.smartorange.com.ua/twins-day-floors/?scene=5';
         iframeWindow.src = 'https://apartment-tours.smartorange.com.ua/twins-day-floors/?scene=5';
+        if (iframeWindowStatic) {
+          iframeWindowStatic.src =
+            'https://apartment-tours.smartorange.com.ua/twins-day-floors/?scene=5';
+        }
       }
       if (btn.dataset.day == 'night') {
-        iframeWindowStatic.src =
-          'https://apartment-tours.smartorange.com.ua/twins-night-floors/?scene=2';
         iframeWindow.src = 'https://apartment-tours.smartorange.com.ua/twins-night-floors/?scene=2';
+        if (iframeWindowStatic) {
+          iframeWindowStatic.src =
+            'https://apartment-tours.smartorange.com.ua/twins-night-floors/?scene=2';
+        }
       }
       if (btn.dataset.day == 'sunset') {
-        iframeWindowStatic.src =
-          'https://apartment-tours.smartorange.com.ua/twins-sunset-floors/?scene=5';
         iframeWindow.src =
           'https://apartment-tours.smartorange.com.ua/twins-sunset-floors/?scene=5';
+        if (iframeWindowStatic) {
+          iframeWindowStatic.src =
+            'https://apartment-tours.smartorange.com.ua/twins-sunset-floors/?scene=5';
+        }
       }
     }),
   );

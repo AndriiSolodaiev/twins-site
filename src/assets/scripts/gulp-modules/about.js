@@ -99,10 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTl.play();
   });
 });
+
 const aboutTl = gsap.timeline({
   scrollTrigger: {
     trigger: '.about__title-wrap',
-    start: 'top center', // when the top of the trigger hits the top of the viewport
+    start: 'top top+=160px', // when the top of the trigger hits the top of the viewport
     end: 'bottom top', // end after scrolling 500px beyond the start
     // smooth scrubbing, takes 1 second to "catch up" to the
     scrub: 1,
@@ -113,14 +114,36 @@ aboutTl.fromTo(
   '.about-title',
   {
     ease: 'none',
-    xPercent: 70,
+    xPercent: 0,
   },
   {
     xPercent: -150,
     ease: 'none',
   },
 );
-
+if (window.innerWidth > 1365) {
+  const heroAboutTextTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.page-hero__wrapper',
+      start: 'top center', // when the top of the trigger hits the top of the viewport
+      end: 'center top', // end after scrolling 500px beyond the start
+      // smooth scrubbing, takes 1 second to "catch up" to the
+      scrub: 1,
+      // markers: true,
+    },
+  });
+  heroAboutTextTl.fromTo(
+    '.page-hero-descr',
+    {
+      ease: 'none',
+      yPercent: 0,
+    },
+    {
+      yPercent: 100,
+      ease: 'none',
+    },
+  );
+}
 const heroAboutTl = gsap.timeline({
   scrollTrigger: {
     trigger: '.page-hero__wrapper',
@@ -163,6 +186,37 @@ document.querySelectorAll('[data-anim-appear]').forEach(block => {
 });
 
 // textAppear('.about-arcitecture__img-wrap');
+
+const imgContTL = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.about-arcitecture__img-container', // Той самий блок
+    start: 'top bottom', // Паралакс ефект починається, коли блок доходить до низу вікна
+    end: 'bottom top', // Закінчується, коли блок виходить з екрану
+    // Плавне скролювання
+    // markers: true,
+    scrub: 1,
+  },
+});
+imgContTL.to('.about-arcitecture__img-container img', {
+  ease: 'none',
+  yPercent: 20, // Зміщуємо блок на -50 пікселів по осі Y
+});
+
+const imgCont2TL = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.about-arcitecture__img-container2', // Той самий блок
+    start: 'top bottom', // Паралакс ефект починається, коли блок доходить до низу вікна
+    end: 'bottom top', // Закінчується, коли блок виходить з екрану
+    // Плавне скролювання
+    // markers: true,
+    scrub: 1,
+  },
+});
+imgCont2TL.to('.about-arcitecture__img-container2 img', {
+  ease: 'none',
+  yPercent: 20, // Зміщуємо блок на -50 пікселів по осі Y
+});
+
 const secondCardTL = gsap.timeline({
   scrollTrigger: {
     trigger: '.about-safety__card.second-card', // Той самий блок

@@ -5,6 +5,10 @@
     @include subtitle-text;
     color: $wc;
     margin-bottom: 20px;
+
+    @include laptop {
+      font-size: 3.3vw;
+    }
   }
 
   &__date {

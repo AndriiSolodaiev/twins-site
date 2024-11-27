@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const progressTl = gsap.timeline({
   scrollTrigger: {
     trigger: '.progress .about__title-wrap',
-    start: 'top center', // when the top of the trigger hits the top of the viewport
+    start: 'top top+=160px', // when the top of the trigger hits the top of the viewport
     end: 'bottom top', // end after scrolling 500px beyond the start
     // smooth scrubbing, takes 1 second to "catch up" to the
     scrub: 1,
@@ -90,7 +90,7 @@ progressTl.fromTo(
   '.progress-title',
   {
     ease: 'none',
-    xPercent: 120,
+    xPercent: 0,
   },
   {
     xPercent: -150,

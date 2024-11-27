@@ -54,6 +54,7 @@ const renderForm = (form, elements, toast) => {
         field.inputWrapper.showDefaultStyle();
         field.inputWrapper.removeSelectedStyle();
       });
+
       elementsParamFn.$form.reset();
       elementsParamFn.$btnSubmit.setAttribute('disabled', false);
       elementsParamFn.$btnSubmit.querySelector(

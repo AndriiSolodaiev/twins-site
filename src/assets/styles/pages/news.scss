@@ -9,22 +9,27 @@
   }
 
   .news-title-1 {
+    line-height: 120%;
+
     .pc-span {
       display: none;
     }
 
     @include laptop {
 
-      width: 25%;
-      transform: translateX(50%);
+      width: 50%;
+      // transform: translateX(50%);
 
       .pc-span {
-        display: inline;
+        line-height: 120%;
+        display: inline-block;
       }
     }
   }
 
   .news-title-2 {
+    line-height: 120%;
+
     @include laptop {
       display: none;
     }

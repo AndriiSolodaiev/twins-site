@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const aboutTl = gsap.timeline({
   scrollTrigger: {
     trigger: '.page-hero .about__title-wrap',
-    start: 'top center', // when the top of the trigger hits the top of the viewport
+    start: 'top top+=160px', // when the top of the trigger hits the top of the viewport
     end: 'bottom top', // end after scrolling 500px beyond the start
     // smooth scrubbing, takes 1 second to "catch up" to the
     scrub: 1,
@@ -65,7 +65,7 @@ aboutTl.fromTo(
   '.gallery-title',
   {
     ease: 'none',
-    xPercent: 50,
+    xPercent: 0,
   },
   {
     xPercent: -50,

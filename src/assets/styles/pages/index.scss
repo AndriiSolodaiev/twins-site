@@ -332,10 +332,10 @@ section {
   bottom: 0;
   right: 0;
   width: 100%;
-  background: linear-gradient(180deg, #ffffff00, $accent-color 60%);
+  background: linear-gradient(180deg, #ffffff00, $bg-color 60%);
 
   @include tablet {
-    background: linear-gradient(180deg, #ffffff00, $accent-color 80%);
+    background: linear-gradient(180deg, #ffffff00, $bg-color 80%);
     padding: 40px;
     padding-bottom: 60px;
   }
@@ -854,6 +854,7 @@ section {
 .desktop {
   .general-btn {
     &:hover {
+      color: $wc;
       border: 1px solid rgba(90, 76, 90, 0.20);
       background-color: #321931;
       box-shadow: 0px 1px 2px 0px #814180,
@@ -1553,7 +1554,7 @@ section {
 
   .tour__text-wrap {
     @include laptop {
-
+      padding-right: 40px;
       width: 30%;
 
     }
@@ -1644,6 +1645,8 @@ section {
     justify-content: space-between;
     background-image: radial-gradient(circle at 55% 60%, rgba(172, 126, 102, 0.50) 1%, rgba(238, 130, 238, 0) 60%),
       url('../images/Advantages/bg-pc.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
 
@@ -1776,6 +1779,14 @@ section {
 
   &:nth-child(7) {
     top: 300px; // Шоста картка зупиняється на 60px від верху
+  }
+
+  &:nth-child(8) {
+    top: 320px; // Шоста картка зупиняється на 60px від верху
+  }
+
+  &:nth-child(9) {
+    top: 340px; // Шоста картка зупиняється на 60px від верху
   }
 
   img {

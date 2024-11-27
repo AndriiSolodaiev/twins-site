@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const heroTitleTl = gsap.timeline({
   scrollTrigger: {
     trigger: '.news .about__title-wrap',
-    start: 'top center', // when the top of the trigger hits the top of the viewport
+    start: 'top top+=160px', // when the top of the trigger hits the top of the viewport
     end: 'center top', // end after scrolling 500px beyond the start
     // smooth scrubbing, takes 1 second to "catch up" to the
     scrub: 1,
@@ -91,7 +91,7 @@ heroTitleTl
     '.news-title-1',
     {
       ease: 'none',
-      xPercent: 25,
+      xPercent: 0,
     },
     {
       xPercent: -25,
@@ -102,7 +102,7 @@ heroTitleTl
     '.news-title-2',
     {
       ease: 'none',
-      xPercent: -25,
+      xPercent: -10,
     },
     {
       xPercent: 25,

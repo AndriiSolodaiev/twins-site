@@ -10,7 +10,6 @@ const config = {
     header: './src/assets/scripts/modules/header/header.js',
     footer: './src/assets/scripts/modules/footer/footer.js',
     news: './src/assets/scripts/gulp-modules/news.js',
-    contacts: './src/assets/scripts/gulp-modules/contacts.js',
     singleNews: './src/assets/scripts/gulp-modules/single-news.js',
     about: './src/assets/scripts/gulp-modules/about.js',
     property: './src/assets/scripts/gulp-modules/property.js',

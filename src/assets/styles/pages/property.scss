@@ -1,5 +1,8 @@
 .property-hero {
+  background: radial-gradient(circle at 50% 30%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 70%), $accent-color;
+
   @include laptop {
+    background: radial-gradient(circle at 50% 10%, rgba(172, 126, 102, 0.69) 1%, rgba(238, 130, 238, 0) 60%), #322A32;
     padding-bottom: 50px;
 
     .property-title-1 {
@@ -23,6 +26,75 @@
   }
 }
 
+.about.about-property-anim {
+
+
+
+
+  .about-img-wrap {
+    .mask {
+      position: absolute;
+      z-index: 2;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      background: linear-gradient(180deg, rgba(34, 26, 34, 0.00) 0%, rgba(34, 26, 34, 0.80) 100%);
+
+
+    }
+  }
+
+  .page-hero-descr {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 100%;
+
+
+  }
+
+  @include laptop {
+    .about__anim-svg {
+      position: relative;
+    }
+
+    .about-img {
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .page-hero-descr {
+      font-size: 3.3vw;
+      max-width: 80%;
+      bottom: 10vh;
+    }
+  }
+
+}
+
+.tablet.landscape,
+.mobile.landscape {
+  .about.about-property-anim {
+    .about__anim-svg {
+      position: relative;
+    }
+
+    .about-img {
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .page-hero-descr {
+      font-size: 3.3vw;
+      max-width: 80%;
+      bottom: 10vh;
+    }
+  }
+}
+
 .property-hero__img-descr-wrap {
   position: relative;
   margin-top: 30px;
@@ -37,7 +109,10 @@
     color: $text-color-2;
 
     @include laptop {
-      display: none;
+      font-size: 3.3vw;
+      left: 50%;
+      max-width: 80%;
+      transform: translateX(-50%);
     }
   }
 }
@@ -184,7 +259,7 @@
   }
 
   @include laptop {
-    img {
+    picture {
       height: 92vw;
       object-fit: cover;
       object-position: center;
@@ -220,12 +295,84 @@
     overflow: visible;
     padding: 0;
 
+    &:nth-child(1) {
+      top: 120px; // Перша картка зупиняється на 10px від верху
+    }
+
+    &:nth-child(2) {
+      top: 140px; // Друга картка зупиняється на 20px від верху
+    }
+
+    &:nth-child(3) {
+      top: 160px; // Третя картка зупиняється на 30px від верху
+    }
+
+    &:nth-child(4) {
+      top: 180px; // Четверта картка зупиняється на 40px від верху
+    }
+
+    &:nth-child(5) {
+      top: 200px; // П'ята картка зупиняється на 50px від верху
+    }
+
+    &:nth-child(6) {
+      top: 220px; // Шоста картка зупиняється на 60px від верху
+    }
+
+    &:nth-child(7) {
+      top: 240px; // Шоста картка зупиняється на 60px від верху
+    }
+
+    &:nth-child(8) {
+      top: 260px; // Шоста картка зупиняється на 60px від верху
+    }
+
+    &:nth-child(9) {
+      top: 280px; // Шоста картка зупиняється на 60px від верху
+    }
+
     @include tablet {
       height: 95vw;
     }
 
     @include laptop {
       height: 65vh;
+
+      &:nth-child(1) {
+        top: 180px; // Перша картка зупиняється на 10px від верху
+      }
+
+      &:nth-child(2) {
+        top: 200px; // Друга картка зупиняється на 20px від верху
+      }
+
+      &:nth-child(3) {
+        top: 220px; // Третя картка зупиняється на 30px від верху
+      }
+
+      &:nth-child(4) {
+        top: 240px; // Четверта картка зупиняється на 40px від верху
+      }
+
+      &:nth-child(5) {
+        top: 260px; // П'ята картка зупиняється на 50px від верху
+      }
+
+      &:nth-child(6) {
+        top: 280px; // Шоста картка зупиняється на 60px від верху
+      }
+
+      &:nth-child(7) {
+        top: 300px; // Шоста картка зупиняється на 60px від верху
+      }
+
+      &:nth-child(8) {
+        top: 320px; // Шоста картка зупиняється на 60px від верху
+      }
+
+      &:nth-child(9) {
+        top: 340px; // Шоста картка зупиняється на 60px від верху
+      }
     }
 
     .mask {
@@ -320,4 +467,40 @@
       font-size: 3.3vw;
     }
   }
+}
+
+.tablet.landscape,
+.mobile.landscape {
+  .property-advantages__plannings-wrap {
+
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: sticky;
+    top: calc(11vw + 30px);
+    width: 40vw;
+    height: 70vh;
+
+    margin: 0;
+
+    p {
+      text-align: start;
+    }
+  }
+
+  .property-advantages__card {
+    height: 65vh;
+  }
+}
+
+.mobile.landscape {
+
+  .property-advantages__descr {
+    font-size: 20px;
+    text-align: start;
+  }
+
+  .property-advantages__plannings-wrap p {
+    font-size: 32px;
+  }
+
 }

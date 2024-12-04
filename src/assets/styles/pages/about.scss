@@ -393,6 +393,10 @@
     overflow: hidden;
     height: 137vw;
 
+    @include tablet {
+      height: auto;
+    }
+
     @include laptop {
       height: auto;
 

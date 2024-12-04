@@ -481,6 +481,10 @@
 }
 
 .tablet.landscape {
+  .menu-container {
+    overflow-y: auto;
+  }
+
   .big-blocks__wrap {
     display: flex;
     gap: 2vw;

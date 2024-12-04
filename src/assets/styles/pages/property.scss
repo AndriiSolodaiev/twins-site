@@ -27,7 +27,7 @@
 }
 
 .about.about-property-anim {
-
+  overflow: hidden;
 
 
 
@@ -186,6 +186,7 @@
   position: relative;
   top: -1px;
   overflow: visible;
+  overflow-x: hidden;
 }
 
 .property-filler__text-block {

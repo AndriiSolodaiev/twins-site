@@ -1628,6 +1628,10 @@ section {
 
 .tablet.landscape,
 .mobile.landscape {
+  .tour .tour-title {
+    top: 50px;
+  }
+
   .advantages {
     padding: 210px 0px 0px;
   }
@@ -1758,6 +1762,10 @@ section {
   }
 
   &:nth-child(2) {
+    img {
+      object-position: left;
+    }
+
     top: 200px; // Друга картка зупиняється на 20px від верху
   }
 

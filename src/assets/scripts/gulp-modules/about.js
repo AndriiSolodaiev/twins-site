@@ -292,3 +292,21 @@ safetyTl.fromTo(
     ease: 'none',
   },
 );
+
+function instaIndicator() {
+  if (navigator.userAgent.includes('Instagram') && device.iphone()) {
+    let screenHeight = screen.height;
+
+    document
+      .querySelector('.about-arcitecture__img-container')
+      .setAttribute('style', 'height:' + screenHeight * 0.9 + 'px');
+    document
+      .querySelector('.about-arcitecture__img-container2')
+      .setAttribute('style', 'height:' + screenHeight * 0.9 + 'px');
+    document
+      .querySelector('.map-main-wrap')
+      .setAttribute('style', 'height:' + screenHeight * 0.6 + 'px');
+  }
+}
+
+instaIndicator();

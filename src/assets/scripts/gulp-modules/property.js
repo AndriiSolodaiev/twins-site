@@ -337,3 +337,18 @@ fillerText1SecondtTl.fromTo(
     duration: 1,
   },
 );
+
+function instaIndicator() {
+  if (navigator.userAgent.includes('Instagram') && device.iphone()) {
+    let screenHeight = screen.height;
+
+    document.querySelector('.about').setAttribute('style', 'height:' + screenHeight * 1.5 + 'px');
+    document
+      .querySelector('.about__anim-svg-mob')
+      .setAttribute('style', 'height:' + screenHeight + 'px');
+    document.querySelector('.about-wrap').setAttribute('style', 'height:' + screenHeight + 'px');
+    document.querySelector('.about-img').setAttribute('style', 'height:' + screenHeight + 'px');
+  }
+}
+
+instaIndicator();

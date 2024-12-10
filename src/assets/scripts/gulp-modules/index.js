@@ -834,3 +834,43 @@ window.addEventListener('orientationchange', () => {
   //   ScrollTrigger.update();
   // }, 0);
 });
+
+function instaIndicator() {
+  if (navigator.userAgent.includes('Instagram') && device.iphone()) {
+    let screenHeight = screen.height;
+
+    document.querySelector('.hero').setAttribute('style', 'height:' + screenHeight * 0.9 + 'px');
+    document
+      .querySelector('.swiper-hero')
+      .setAttribute('style', 'height:' + screenHeight * 0.8 + 'px');
+    document.querySelector('.about').setAttribute('style', 'height:' + screenHeight * 1.5 + 'px');
+    document
+      .querySelector('.about__anim-svg-mob')
+      .setAttribute('style', 'height:' + screenHeight + 'px');
+    document.querySelector('.about-wrap').setAttribute('style', 'height:' + screenHeight + 'px');
+    document.querySelector('.about-img').setAttribute('style', 'height:' + screenHeight + 'px');
+    document
+      .querySelector('.about-content')
+      .setAttribute('style', 'min-height:' + screenHeight + 'px');
+    document
+      .querySelector('.fake-section')
+      .setAttribute('style', 'height:' + (screenHeight - 40) + 'px');
+    document.querySelector('.panorama').setAttribute('style', 'height:' + screenHeight + 'px');
+    document
+      .querySelector('.location')
+      .setAttribute('style', 'height:' + screenHeight * 1.5 + 'px');
+    document
+      .querySelector('.location__anim-svg-mob')
+      .setAttribute('style', 'height:' + screenHeight + 'px');
+    document.querySelector('.location-wrap').setAttribute('style', 'height:' + screenHeight + 'px');
+    document.querySelector('.location-img').setAttribute('style', 'height:' + screenHeight + 'px');
+    document
+      .querySelector('.location-content')
+      .setAttribute('style', 'min-height:' + screenHeight + 'px');
+    document
+      .querySelector('.map-main-wrap')
+      .setAttribute('style', 'height:' + screenHeight * 0.6 + 'px');
+  }
+}
+
+instaIndicator();

@@ -170,3 +170,20 @@ $('.slick-arrow-down').on('click', function() {
 // setTimeout(() => {
 //   document.querySelectorAll('.slick-dots').textContent = '';
 // }, 0);
+
+function instaIndicator() {
+  if (navigator.userAgent.includes('Instagram') && device.iphone()) {
+    let screenHeight = screen.height;
+
+    document
+      .querySelector('.split-slideshow ')
+      .setAttribute('style', 'height:' + screenHeight + 'px');
+    document.querySelector('.slideshow ').setAttribute('style', 'height:' + screenHeight + 'px');
+
+    document
+      .querySelectorAll('.slider .item')
+      .forEach(item => item.setAttribute('style', 'height:' + screenHeight + 'px'));
+  }
+}
+
+instaIndicator();

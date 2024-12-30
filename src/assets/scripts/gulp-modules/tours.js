@@ -92,6 +92,7 @@ filterBtnFirst.classList.add('active');
 tourIframe.src = filterBtnFirst.dataset.src;
 textChange(tourTitle, filterBtnFirst.dataset.tour);
 textChange(tourDescr, filterBtnFirst.dataset.descr);
+// textChange('.tour__text-wrap .general-btn');
 
 filterBtn.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -101,6 +102,7 @@ filterBtn.forEach(btn => {
       tourIframe.src = btn.dataset.src;
       textChange(tourTitle, btn.dataset.tour);
       textChange(tourDescr, btn.dataset.descr);
+      textChange('.tour__text-wrap .general-btn');
     }
   });
 });
@@ -110,6 +112,7 @@ function textChange(selector, newText) {
     .timeline()
     .to(selector, { opacity: 0, yPercent: 20, duration: 0.3 })
     .add(() => {
+      if (!newText) return;
       selector.textContent = newText;
     })
     .to(selector, { opacity: 1, yPercent: 0, duration: 0.3 });

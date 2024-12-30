@@ -1557,6 +1557,9 @@ section {
       padding-right: 40px;
       width: 30%;
 
+      .general-btn {
+        margin-left: 58px;
+      }
     }
 
     // @at-root {
@@ -1587,6 +1590,11 @@ section {
     @include general-text;
     padding-left: 58px;
     color: $bg-color;
+    margin-bottom: 30px;
+
+    @include laptop {
+      margin-bottom: 40px;
+    }
   }
 }
 

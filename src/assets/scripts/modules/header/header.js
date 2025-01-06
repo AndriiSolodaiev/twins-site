@@ -33,10 +33,8 @@ document.body.addEventListener('click', function(evt) {
     header.classList.toggle('menu-is-open');
     if (menu.classList.contains('hidden')) {
       window.dispatchEvent(new Event('start-scroll'));
-      console.log('start');
     } else {
       window.dispatchEvent(new Event('stop-scroll'));
-      console.log('stop');
     }
     menuAnimation();
     return;
@@ -211,7 +209,7 @@ if (iframeOpen) {
 if (iframeClose) {
   iframeClose.addEventListener('click', function() {
     window.dispatchEvent(new Event('start-scroll'));
-    console.log('close');
+
     iframePopUp.classList.remove('oppened');
     iframeWindow.src = '';
   });

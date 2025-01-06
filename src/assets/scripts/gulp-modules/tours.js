@@ -86,13 +86,14 @@ const filterBtn = document.querySelectorAll('[data-tour]');
 const tourIframe = document.querySelector('.tour-iframe');
 const tourTitle = document.querySelector('.tour__text-wrap h3 span');
 const tourDescr = document.querySelector('.tour__text-wrap p');
+const flatLink = document.querySelector('.tour__text-wrap .general-btn');
 
 filterBtn.forEach(item => item.classList.remove('active'));
 filterBtnFirst.classList.add('active');
 tourIframe.src = filterBtnFirst.dataset.src;
 textChange(tourTitle, filterBtnFirst.dataset.tour);
 textChange(tourDescr, filterBtnFirst.dataset.descr);
-// textChange('.tour__text-wrap .general-btn');
+textChange(flatLink, filterBtnFirst.dataset.link);
 
 filterBtn.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -102,6 +103,7 @@ filterBtn.forEach(btn => {
       tourIframe.src = btn.dataset.src;
       textChange(tourTitle, btn.dataset.tour);
       textChange(tourDescr, btn.dataset.descr);
+      textChange(flatLink, btn.dataset.link);
       textChange('.tour__text-wrap .general-btn');
     }
   });
@@ -113,7 +115,12 @@ function textChange(selector, newText) {
     .to(selector, { opacity: 0, yPercent: 20, duration: 0.3 })
     .add(() => {
       if (!newText) return;
-      selector.textContent = newText;
+
+      if (newText.includes('http')) {
+        selector.href = newText;
+      } else {
+        selector.textContent = newText;
+      }
     })
     .to(selector, { opacity: 1, yPercent: 0, duration: 0.3 });
 }

@@ -498,7 +498,6 @@ function aboutAnim() {
 aboutAnim();
 
 function textAppear(selector) {
-  console.log(selector);
   gsap.from(`${selector}`, {
     scrollTrigger: {
       trigger: `${selector}`, // Той самий блок
@@ -823,7 +822,6 @@ updateImage();
 // // Додаємо обробник події для зміни розміру вікна
 // window.addEventListener('resize', updateImage);
 window.addEventListener('orientationchange', () => {
-  console.log('orientationchange');
   window.location.reload();
   // initSwiperHero(tl);
   // aboutAnim();

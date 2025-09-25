@@ -184,3 +184,521 @@
     }
   }
 }
+
+
+[id*="gallery"] {
+  .about-section-2 {
+    &__head {
+      &__title {
+        .row {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          .black-title-96 {
+            margin-right: 0.3ch;
+          }
+        }
+      }
+    }
+
+    &-swiper {
+      .swiper-slide {
+        @include to(1024px) {
+          flex-direction: column-reverse;
+        }
+
+        @include to(680px) {
+          flex-direction: column;
+        }
+
+        .left {
+          @include to(680px) {
+            margin-bottom: var(--offset-40);
+          }
+        }
+
+        .right {
+          justify-content: space-between;
+
+          @include to(1024px) {
+            margin-top: 0;
+            margin-bottom: var(--offset-40);
+            justify-content: flex-start;
+          }
+
+          @include to(680px) {
+            margin-bottom: 0;
+          }
+
+          .col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            @include to(1024px) {
+              margin-bottom: var(--offset-20);
+            }
+          }
+
+          .brown-title-96 {
+            margin-bottom: 0;
+
+            @include to(1024px) {
+              display: flex;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .moving-arrow {
+    position: fixed;
+    left: 0;
+    top: 0;
+    will-change: left, top;
+    height: 100px;
+    width: 100px;
+    z-index: 10;
+    opacity: 0;
+    background: $wc;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      transition: transform .3s ease-in-out;
+      width: 24px;
+      height: 24px;
+    }
+
+    &.left-side {
+      svg {
+        transition: transform .3s ease-in-out;
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  .gallery-slider__amount {
+    @include to(680px) {
+      display: none;
+    }
+  }
+}
+
+.gallery-section-1 {
+  margin-bottom: var(--block-offset-150);
+  height: 100vh;
+  width: 100%;
+  position: relative;
+
+  // height: calc(var(--vh, 1vh) * 100);
+  .moving-arrow {
+    position: fixed;
+    left: 0;
+    top: 0;
+    will-change: left, top;
+    height: 100px;
+    width: 100px;
+    z-index: 10;
+    opacity: 0;
+    background: $wc;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      transition: transform .3s ease-in-out;
+      width: 24px;
+      height: 24px;
+    }
+
+    &.left-side {
+      svg {
+        transition: transform .3s ease-in-out;
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  .gallery-slider__amount {
+    @include to(680px) {
+      display: none;
+    }
+  }
+
+  &-btn {
+    position: absolute;
+    left: var(--field);
+    bottom: 75px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    @include to(1024px) {
+      bottom: 40px;
+    }
+
+    .black-subtitle-uppercase-48 {
+      color: $wc;
+      position: relative;
+      margin-bottom: 24px;
+      cursor: pointer;
+      padding: 0;
+      line-height: 100%;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @include to(1024px) {
+        margin-bottom: var(--offset-20);
+      }
+
+      &.active {
+        &:after {
+          position: absolute;
+          content: '';
+          height: 5px;
+          width: 37px;
+          background: $wc;
+          left: calc((37px + 10px)*(-1));
+          top: 25%;
+
+          @include to(680px) {
+            height: 3px;
+            width: 24px;
+            left: calc((24px + 10px)*(-1));
+          }
+        }
+
+        margin-left: calc(37px + 10px);
+
+        @include to(680px) {
+          margin-left: calc(24px + 10px);
+        }
+      }
+
+      &.flats-btn {
+        display: flex;
+
+        &.active {
+          .col {
+            display: flex;
+          }
+        }
+
+        .col {
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          display: none;
+          position: absolute;
+          right: calc((var(--offset-20) + 75px + 20px)*(-1));
+          top: 35%;
+          transform: translateY(-50%);
+
+          @include to(1024px) {
+            top: 0;
+          }
+
+          @include to(680px) {
+            top: -30%;
+            right: calc((var(--offset-20) + 60px + 12px)*(-1));
+          }
+
+          button {
+            width: 75px;
+            font-size: var(--font-16);
+            // @include font($default-font3, 140%, 700, none, $wc);
+            text-align: left;
+            margin-bottom: 10px;
+            margin-left: calc(6px + 10px);
+            position: relative;
+            padding: 0;
+            white-space: nowrap;
+
+            @include to(680px) {
+              margin-bottom: 6px;
+              width: 60px;
+            }
+
+            &.active {
+              &:after {
+                position: absolute;
+                content: '';
+                height: 2px;
+                width: 12px;
+                background: $wc;
+                left: -15px;
+                top: 50%;
+              }
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+
+    button {
+      border: none;
+      background: transparent;
+    }
+  }
+
+  &-swiper {
+    height: 100%;
+
+    .gallery-section-1-swiper-pagination-mobile {
+      display: none;
+
+      @include to(1024px) {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        width: auto;
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+
+      .swiper-pagination-bullet {
+        border-radius: 50px;
+        background: $wc;
+        width: 8px;
+        height: 3px;
+        opacity: 1;
+
+        &.swiper-pagination-bullet-active {
+          width: 16px;
+          height: 3px;
+          background: $bg-color;
+        }
+      }
+    }
+
+    .swiper-slide {
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .gallery-popup {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 60px;
+    background: $wc;
+    border-radius: 20px;
+    width: 300px;
+    height: 160px;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    display: none;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+
+    @include to(1600px) {
+      height: 130px;
+      width: 230px;
+    }
+
+    @include to(1024px) {
+      bottom: 40px;
+    }
+
+    @include to(680px) {
+      width: calc(50vw - var(--field)*2 - 20px);
+      height: 70px;
+      right: var(--field);
+      transform: none;
+      left: auto;
+      border-radius: 10px;
+    }
+
+    &.active {
+      display: flex;
+    }
+
+    &.open {
+      height: 80vh;
+      width: 80vw;
+      transition: .3s ease-in-out;
+
+      @include to(1600px) {
+        height: 75vh;
+        width: 75vw;
+      }
+
+      @include to(1024px) {
+        height: 50vh;
+        width: calc(100vw - var(--field)*2);
+      }
+
+      @include to(680px) {
+        height: 30vh;
+      }
+
+      .gallery-popup-close {
+        opacity: 1;
+        visibility: visible;
+        transition: .3s ease-in-out;
+      }
+    }
+
+    &-image {
+      width: 95%;
+      height: 95%;
+      object-fit: contain;
+    }
+
+    &-close {
+      border: none;
+      background: transparent;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      z-index: 101;
+      right: 0;
+      top: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: .3s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include to(1600px) {
+        width: 40px;
+        height: 40px;
+      }
+
+      @include to(680px) {
+        width: 30px;
+        height: 30px;
+      }
+
+      svg {
+        height: 20px;
+        width: 20px;
+
+        @include to(1600px) {
+          height: 15px;
+          width: 15px;
+        }
+
+        @include to(680px) {
+          height: 10px;
+          width: 10px;
+        }
+      }
+    }
+  }
+}
+
+
+
+// .gallery-slider__amount {
+//   position: absolute;
+//   bottom: 60px;
+//   right: var(--field);
+//   z-index: 20;
+//   overflow: hidden;
+//   height: var(--font-96);
+//   min-width: 150px;
+//   width: auto;
+//   display: flex;
+//   align-items: flex-end;
+//   justify-content: space-between;
+
+//   @include to(1600px) {
+//     min-width: 110px;
+//   }
+
+//   @include to(1024px) {
+//     bottom: 40px;
+//   }
+
+//   @include to(680px) {
+//     min-width: 70px;
+//   }
+
+//   .gallery-slider__current {
+//     // font-size: var(--font-48);
+//     // @include font($default-font, 100%, 400, uppercase, $wc);
+//     min-width: 2.3ch;
+//     position: relative;
+
+//     span {
+//       display: inline-block;
+//     }
+//   }
+
+//   .slider__divider {
+//     font-size: var(--font-96);
+//     // @include font($default-font, 70%, 400, uppercase, $wc);
+//   }
+
+//   .slider__all {
+//     font-size: var(--font-96);
+//     // @include font($default-font, 70%, 400, uppercase, $wc);
+//   }
+// }
+
+// .gallery-section-3 {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+//   padding: 0 var(--field);
+
+//   &__video {
+//     margin-top: var(--offset-40);
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     width: 100%;
+
+//     @include to(1024px) {
+//       flex-direction: column;
+//     }
+
+//     video {
+//       width: calc(50% - var(--field)/2);
+//       height: 530px;
+//       overflow: hidden;
+//       border-radius: 20px;
+//       object-fit: cover;
+
+//       @include to(1600px) {
+//         height: 400px;
+//       }
+
+//       @include to(1024px) {
+//         height: 380px;
+//         width: 100%;
+//         margin-bottom: var(--offset-20);
+
+//         &:last-child {
+//           margin-bottom: 0;
+//         }
+//       }
+
+//       @include to(680px) {
+//         height: 280px;
+//       }
+//     }
+//   }
+// }

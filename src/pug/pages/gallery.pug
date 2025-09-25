@@ -77,7 +77,45 @@ block content
                   srcset="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-1.jpg" media="(min-width: 768px)"
                   )
                 img(src="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-1.jpg" alt="Canyon 1")
-
+  <div class="gallery-section-1">
+      <div class="gallery-section-1-btn">
+          <button class="black-subtitle-uppercase-48" data-view="complex">Комплекс</button>
+          <!--<button class="black-subtitle-uppercase-48" data-view="entrance">Під’їзд</button>
+          <button class="black-subtitle-uppercase-48" data-view="park">Парк</button>-->
+          <button class="black-subtitle-uppercase-48" data-view="entrance">Лоббі</button>
+          <button class="black-subtitle-uppercase-48" data-view="park">Двір</button>
+          <div class="black-subtitle-uppercase-48 flats-btn"> Квартири                
+              <div class="col">
+                  <button class="flats-btn-btn" data-view="flats-first" style="display:none;">38,6 м²</button>
+                  <button class="flats-btn-btn" data-view="flats-second">46 м²</button>
+              </div>
+          </div>
+      </div>
+      <div class="gallery-section-1-swiper swiper-container">
+          <div class="swiper-wrapper"></div>
+          <div class="gallery-slider__amount">
+              <div class="gallery-slider__current" data-current>
+                  <span data-first-digit></span>
+              </div>
+              <span class="slider__divider">/</span>
+              <span class="slider__all" data-total></span>
+          </div>
+          <div class="moving-arrow">
+              <svg class="icon--gallery-arrow" role="presentation">
+                  <use xlink:href="#icon-gallery-arrow"></use>
+              </svg>
+          </div>
+          <div class="gallery-section-1-swiper-pagination-mobile"></div>
+      </div>
+      <div class="gallery-popup">
+          <img class="gallery-popup-image" src="" alt="Popup Image">
+          <button class="gallery-popup-close">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M6.58969 8.00781L0.224976 14.3725L1.63919 15.7867L8.00391 9.42203L14.3686 15.7867L15.7828 14.3725L9.41812 8.00781L15.7813 1.64461L14.3671 0.230394L8.00391 6.5936L1.6407 0.230393L0.226488 1.64461L6.58969 8.00781Z" fill="#282620"/>
+              </svg>
+          </button>
+      </div>
+  </div>
 block footer
   include ../includes/footer.pug
 

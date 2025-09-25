@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'slick-carousel';
-
+import Swiper from 'swiper';
 import { gsap, ScrollTrigger, CustomEase } from 'gsap/all';
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
@@ -187,3 +187,390 @@ function instaIndicator() {
 }
 
 instaIndicator();
+
+async function imgRendering() {
+  // Перевіряємо чи це localhost
+  const isLocalhost =
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname.includes('localhost');
+
+  if (isLocalhost) {
+    // Повертаємо статичні дані для localhost
+    return [
+      {
+        type: 'complex',
+        type_gallery: 'gallery',
+        gallery: [
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/0001.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/0002.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/0003.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/0004.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/0005.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/0006.webp' },
+        ],
+        img: false,
+      },
+      {
+        type: 'entrance',
+        type_gallery: 'gallery',
+        gallery: [
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/1-9.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/2-10.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/3-9.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/4-8.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/7-8.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/8-6.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/9-6.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/10-5.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/11-3.webp' },
+        ],
+        img: false,
+      },
+      {
+        type: 'park',
+        type_gallery: 'gallery',
+        gallery: [
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/6-3.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/8-1.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/1-3.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/7-1.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/9-1.webp' },
+        ],
+        img: false,
+      },
+      {
+        type: 'flats-first',
+        type_gallery: 'secret',
+        gallery: [{ img: 'https://montblan.dp.ua/wp-content/uploads/2023/06/7.png' }],
+        img: 'https://montblan.dp.ua/wp-content/uploads/2023/06/1-3.png',
+      },
+      {
+        type: 'flats-second',
+        type_gallery: 'secret',
+        gallery: [
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/Garderobna.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/Kabinet.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/Kabinet-2-Vitalnya.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/Kuhnya.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/Spalnya.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/Stolova.webp' },
+          { img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/Vanna.webp' },
+        ],
+        img: 'https://montblan.dp.ua/wp-content/uploads/2023/07/Planirovka-1.webp',
+      },
+    ];
+  } else {
+    // Відправляємо реальний AJAX запит для production
+    const sendData = new FormData();
+    sendData.append('action', 'gallery');
+
+    try {
+      let response = await fetch('/wp-admin/admin-ajax.php', {
+        method: 'POST',
+        body: sendData,
+      });
+
+      if (response.ok) {
+        let data = await response.json();
+        return data;
+      } else {
+        console.error('AJAX request failed');
+        return null;
+      }
+    } catch (error) {
+      console.error('AJAX request failed:', error);
+      return null;
+    }
+  }
+}
+
+window.addEventListener('DOMContentLoaded', async function() {
+  function sideSwitchArrow(swiper, arrowArgs, conArgs) {
+    const arrow = arrowArgs;
+    const container = conArgs;
+    console.log(arrow);
+    console.log(container);
+    const mediumCordValue = document.documentElement.clientWidth / 2;
+    document.body.append(arrow);
+    container.style.cursor = 'none';
+    arrow.style.cursor = 'none';
+    arrow.style.zIndex = 10;
+    arrow.__proto__.hide = function some() {
+      this.style.opacity = '0';
+      this.style.pointerEvents = 'none';
+    };
+    arrow.__proto__.show = function some() {
+      this.style.opacity = '1';
+    };
+    arrow.dataset.side = 'leftSide';
+    arrow.hide();
+    container.addEventListener('mousemove', desktopNavButtonHandler);
+    container.addEventListener('mouseenter', () => {
+      arrow.show();
+    });
+    container.addEventListener('mouseleave', () => {
+      arrow.hide();
+    });
+    if (document.documentElement.clientWidth < 1024) {
+      window.removeEventListener('mousemove', desktopNavButtonHandler);
+      arrow.remove();
+    }
+
+    function desktopNavButtonHandler(evt) {
+      arrow.style.left = `${evt.clientX - 18}px`;
+      arrow.style.top = `${evt.clientY - 18}px`;
+      getCursorSide(evt.clientX);
+    }
+
+    function getCursorSide(x) {
+      if (x < mediumCordValue) {
+        arrow.classList.add('left-side');
+        arrow.dataset.side = 'leftSide';
+      } else {
+        arrow.classList.remove('left-side');
+        arrow.dataset.side = 'rightSide';
+      }
+    }
+    container.addEventListener('click', () => {
+      switchGallerySlide(arrow.dataset.side);
+    });
+
+    const navigate = {
+      leftSide: () => {
+        if (swiper.isBeginning) return; // Перевірка, чи це перший слайд
+        swiper.slidePrev();
+      },
+      rightSide: () => {
+        if (swiper.isEnd) return; // Перевірка, чи це останній слайд
+        swiper.slideNext();
+      },
+    };
+
+    function switchGallerySlide(side) {
+      if (side === 'leftSide' && swiper.isBeginning) {
+        // Якщо це перший слайд і користувач хоче перейти з першого на останній
+        swiper.slideTo(swiper.slides.length - 1); // Перехід на останній слайд
+      } else if (side === 'rightSide' && swiper.isEnd) {
+        // Якщо це останній слайд і користувач хоче перейти з останнього на перший
+        swiper.slideTo(0); // Перехід на перший слайд
+      } else {
+        // В інших випадках виконуємо звичайні дії
+        navigate[side]();
+      }
+    }
+  }
+
+  const slider = new Swiper('.gallery-section-1-swiper', {
+    loop: false,
+    pagination: {
+      el: '.gallery-section-1-swiper-pagination-mobile',
+      clickable: true,
+    },
+    preloadImages: false,
+    lazy: {
+      loadPrevNext: true,
+      loadOnTransitionStart: true,
+    },
+    speed: 400,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true,
+    },
+  });
+
+  const currentSlideShow = [document.querySelector('[data-first-digit]')];
+
+  if (currentSlideShow[0]) {
+    currentSlideShow[0].textContent = (slider.activeIndex || 0) + 1;
+  }
+
+  const totalElement = document.querySelector('[data-total]');
+  if (totalElement) {
+    totalElement.textContent = document.querySelectorAll(
+      '.gallery-section-1-swiper .swiper-slide',
+    ).length;
+  }
+
+  slider.on('slideChange', function() {
+    if (currentSlideShow[0]) {
+      const activeIndex = this.activeIndex || 0;
+      const splitedIndex = (activeIndex + 1).toString().split('');
+      const firstDigit = splitedIndex.join('');
+
+      if (typeof gsap !== 'undefined') {
+        gsap
+          .timeline()
+          .fromTo(currentSlideShow[0], { yPercent: 0 }, { yPercent: 100 })
+          .add(() => {
+            currentSlideShow[0].textContent = firstDigit;
+          })
+          .fromTo(currentSlideShow[0], { yPercent: -100 }, { yPercent: 0 });
+      } else {
+        currentSlideShow[0].textContent = firstDigit;
+      }
+    }
+  });
+
+  const arrowElement = document.querySelector('.moving-arrow');
+  const swiperElement = document.querySelector('.gallery-section-1-swiper');
+
+  if (arrowElement && swiperElement) {
+    sideSwitchArrow(slider, arrowElement, swiperElement);
+  }
+
+  const buttons = document.querySelectorAll('button[data-view]');
+  const flatsButton = document.querySelector('.flats-btn');
+
+  if (flatsButton) {
+    flatsButton.addEventListener('click', () => {
+      flatsButton.classList.add('active');
+
+      buttons.forEach(button => {
+        if (!button.classList.contains('flats-btn-btn')) {
+          button.classList.remove('active');
+        }
+      });
+    });
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const view = button.dataset.view;
+      initializeSliderWithImages(view, slider);
+
+      if (flatsButton) {
+        flatsButton.classList.remove('active');
+      }
+
+      button.classList.add('active');
+    });
+  });
+
+  const popup = document.querySelector('.gallery-popup');
+  const popupImage = document.querySelector('.gallery-popup-image');
+  const closeButton = document.querySelector('.gallery-popup-close');
+
+  const galleryData = await imgRendering();
+
+  if (!galleryData) {
+    console.error('Failed to load gallery data');
+    return;
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const view = button.dataset.view;
+      const galleryItem = galleryData.find(item => item.type === view);
+
+      // Перевіряємо чи це "secret" тип галереї
+      if (galleryItem && galleryItem.type_gallery === 'secret') {
+        showPopup(view, galleryData);
+      } else {
+        hidePopup();
+      }
+    });
+  });
+
+  function showPopup(view, galleryData) {
+    if (!popup || !popupImage) return;
+
+    let imageUrl = '';
+
+    const galleryItem = galleryData.find(item => item.type === view);
+    if (galleryItem && galleryItem.img && galleryItem.img !== false) {
+      imageUrl = galleryItem.img;
+    }
+
+    popupImage.src = imageUrl;
+    popup.classList.add('active');
+
+    popupImage.addEventListener('click', () => {
+      popup.classList.add('open');
+    });
+  }
+
+  if (closeButton) {
+    closeButton.addEventListener('click', () => {
+      if (popup) {
+        popup.classList.remove('open');
+      }
+    });
+  }
+
+  function hidePopup() {
+    if (popup) {
+      popup.classList.remove('active');
+    }
+  }
+
+  async function initializeSliderWithImages(view, slider) {
+    buttons.forEach(button => button.classList.remove('active'));
+
+    const currentButton = document.querySelector(`button[data-view="${view}"]`);
+    if (currentButton) currentButton.classList.add('active');
+
+    if (!slider.wrapperEl) return;
+    slider.wrapperEl.innerHTML = ''; // очищаємо слайдер
+
+    const galleryData = await imgRendering();
+    if (!galleryData) {
+      console.error('Failed to load gallery data');
+      return;
+    }
+
+    // Знаходимо галерею за типом
+    const galleryItem = galleryData.find(item => item.type === view);
+    if (!galleryItem) return;
+
+    let slides = [];
+
+    if (galleryItem.type_gallery === 'gallery' && galleryItem.gallery) {
+      // Якщо звичайна галерея, беремо всі елементи gallery
+      slides = galleryItem.gallery.map(
+        item => `
+      <div class="swiper-slide">
+        <img class="swiper-slide_front swiper-lazy" src="${item.img}"  alt="">
+        <img class="swiper-slide_back swiper-lazy" src="${item.img}"  alt="">
+        <div class="swiper-lazy-preloader"></div>
+      </div>
+    `,
+      );
+    } else if (galleryItem.type_gallery === 'secret') {
+      // Для secret типу беремо спершу gallery, а потім основне img
+      if (galleryItem.gallery) {
+        slides = galleryItem.gallery.map(
+          item => `
+        <div class="swiper-slide">
+          <img class="swiper-slide_front swiper-lazy" src="${item.img}"  alt="">
+          <img class="swiper-slide_back swiper-lazy" src="${item.img}"  alt="">
+          <div class="swiper-lazy-preloader"></div>
+        </div>
+      `,
+        );
+      }
+      // додаємо основне img в кінець слайдів, якщо воно є
+      if (galleryItem.img) {
+        slides.push(`
+        <div class="swiper-slide">
+          <img class="swiper-slide_front swiper-lazy" src="${galleryItem.img}"  alt="">
+          <img class="swiper-slide_back swiper-lazy" src="${galleryItem.img}"  alt="">
+          <div class="swiper-lazy-preloader"></div>
+        </div>
+      `);
+      }
+    }
+
+    slider.wrapperEl.innerHTML = slides.join('');
+    slider.update();
+    slider.slideTo(0, 0); // миттєво на перший слайд
+
+    // Оновлюємо лічильники
+    if (currentSlideShow[0]) currentSlideShow[0].textContent = 1;
+    const totalElement = document.querySelector('[data-total]');
+    if (totalElement) totalElement.textContent = slides.length;
+  }
+
+  // Ініціалізуємо з 'complex' за замовчуванням
+  initializeSliderWithImages('complex', slider);
+});

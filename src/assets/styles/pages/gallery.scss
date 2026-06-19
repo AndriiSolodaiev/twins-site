@@ -212,8 +212,35 @@
     .slider-nav-mobile {
       position: absolute;
       top: 50%;
+      z-index: 10;
       transform: translateY(-50%);
       left: 0;
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 20px;
+      .gallery-slider-nav-prev{ 
+          width: 60px;
+        height: 60px;
+        
+        svg{
+        transform: rotate(180deg);
+      
+      }}
+      .gallery-slider-nav-next {
+        width: 60px;
+        height: 60px;
+        svg{
+        transform: rotate(0deg);
+      }}
+      .swiper-button-disabled{
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      @include laptop {
+        display: none;  
+      }
     }
 
     .slider-nav {
@@ -317,6 +344,7 @@
   @include tablet {
     left: 40px;
   }
+  display: none;
 }
 
 .swiper-slide.hidden {

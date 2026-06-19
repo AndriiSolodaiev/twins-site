@@ -89,7 +89,9 @@ function initMap() {
       filterMarkers('main', choosedCategories);
     });
   });
-  var baseFolder = '/wp-content/themes/3d/assets/images/map/';
+   const baseFolder = window.location.href.match(/localhost/)
+    ? './assets/images/map/'
+    : '/wp-content/themes/3d/assets/images/map/';
   var defaultMarkerSize = new google.maps.Size(56, 90);
   var buildLogoSize = new google.maps.Size(82, 82);
   if (document.documentElement.clientWidth < 1600) {

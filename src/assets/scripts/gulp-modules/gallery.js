@@ -205,10 +205,6 @@ const gallery = new Swiper('.gallery-swiper', {
     360: {
       slidesPerView: 1,
       centeredSlides: true,
-      navigation: {
-        nextEl: '.gallery-slider-nav-next',
-        prevEl: '.gallery-slider-nav-prev',
-      },
     },
   },
   on: {
@@ -217,23 +213,35 @@ const gallery = new Swiper('.gallery-swiper', {
       updateCounter(this);
     },
     slideChange: function() {
+      // Не даём свайпом выйти за пределы текущей категории — заворачиваем обратно
+      if (currentCategory) {
+        const range = getCategoryRange(currentCategory);
+        if (range.length && !range.includes(this.activeIndex)) {
+          const target =
+            this.activeIndex > range[range.length - 1] ? range[0] : range[range.length - 1];
+          this.slideTo(target);
+          return;
+        }
+      }
       // Обновление счетчика при смене слайда
       updateCounter(this);
     },
   },
 });
 
+// Текущая активная категория
+let currentCategory = null;
+
 function updateCounter(swiper) {
   const currentElement = document.querySelector('.gallery-counter .current');
   const totalElement = document.querySelector('.gallery-counter .total');
 
   if (currentElement && totalElement) {
-    // Подсчитываем только видимые слайды (не скрытые)
-    const visibleSlides = swiper.slides.filter(slide => !slide.classList.contains('hidden'));
-    // console.log(visibleSlides);
-    // Обновляем текущий номер слайда среди видимых
-    const visibleIndex = swiper.activeIndex;
-    // console.log(visibleIndex);
+    // Слайды текущей категории и позиция активного среди них
+    const range = currentCategory
+      ? getCategoryRange(currentCategory)
+      : swiper.slides.map((_, index) => index);
+    const visibleIndex = range.indexOf(swiper.activeIndex);
     gsap
       .timeline()
       .to(currentElement, {
@@ -253,42 +261,47 @@ function updateCounter(swiper) {
         { y: 0, opacity: 1, duration: 0.5 },
         '<',
       );
-    // Обновляем общее количество видимых слайдов
-    totalElement.textContent = visibleSlides.length;
+    // Общее количество слайдов в текущей категории
+    totalElement.textContent = range.length;
   }
 }
 
-// Функция для получения индекса среди видимых слайдов
+// Индексы слайдов категории (категории идут в DOM непрерывными блоками)
+function getCategoryRange(category) {
+  return gallery.slides
+    .map((slide, index) => (slide.getAttribute('data-category') === category ? index : -1))
+    .filter(index => index !== -1);
+}
+
+// Переход к следующему слайду с зацикливанием внутри категории
+function goNext() {
+  const range = getCategoryRange(currentCategory);
+  if (!range.length) return;
+  const pos = range.indexOf(gallery.activeIndex);
+  // если активный — последний в категории, возвращаемся к первому той же категории
+  gallery.slideTo(range[(pos + 1) % range.length]);
+}
+
+// Переход к предыдущему слайду с зацикливанием внутри категории
+function goPrev() {
+  const range = getCategoryRange(currentCategory);
+  if (!range.length) return;
+  const pos = range.indexOf(gallery.activeIndex);
+  gallery.slideTo(range[(pos - 1 + range.length) % range.length]);
+}
+
+// Подключаем мобильные кнопки навигации к зацикленной навигации
+document.querySelector('.gallery-slider-nav-next')?.addEventListener('click', goNext);
+document.querySelector('.gallery-slider-nav-prev')?.addEventListener('click', goPrev);
 
 // Функция для переключения категорий
 function switchCategory(category) {
-  const allSlides = gallery.slides;
-  let hasVisibleSlides = false;
+  const range = getCategoryRange(category);
+  if (!range.length) return;
 
-  // Показываем/скрываем слайды в зависимости от категории
-  allSlides.forEach((slide, index) => {
-    const slideCategory = slide.getAttribute('data-category');
-
-    if (slideCategory === category) {
-      slide.classList.remove('hidden');
-      slide.style.display = 'block';
-      hasVisibleSlides = true;
-    } else {
-      slide.classList.add('hidden');
-      slide.style.display = 'none';
-    }
-  });
-
-  // Обновляем слайдер и переходим к первому видимому слайду
-  if (hasVisibleSlides) {
-    gallery.update(); // Обновляем слайдер
-
-    // Находим первый видимый слайд и переходим к нему
-    const firstVisibleIndex = allSlides.findIndex(slide => !slide.classList.contains('hidden'));
-    if (firstVisibleIndex !== -1) {
-      gallery.slideTo(0); // 0 - без анимации
-    }
-  }
+  currentCategory = category;
+  // Переходим к первому слайду выбранной категории
+  gallery.slideTo(range[0]);
 
   // Обновляем счетчик
   updateCounter(gallery);
@@ -402,8 +415,8 @@ function sideSwitchArrow(swiper, arrowArgs, conArgs) {
 
   // Other functions
   const navigate = {
-    leftSide: () => swiper.slidePrev(),
-    rightSide: () => swiper.slideNext(),
+    leftSide: () => goPrev(),
+    rightSide: () => goNext(),
   };
 
   function switchGallerySlide(side) {
